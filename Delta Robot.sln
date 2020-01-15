@@ -3,7 +3,14 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29613.14
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "Controls", "..\Projet-S4---Robot-Delta\Controls\Controls.pyproj", "{FFBC3B74-0E70-459B-9A0E-BD14319D38C4}"
+Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "Controls", "Controls\Controls.pyproj", "{FFBC3B74-0E70-459B-9A0E-BD14319D38C4}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{7D5876D7-F2F1-4105-B667-D91187C35E15}"
+	ProjectSection(SolutionItems) = preProject
+		README.md = README.md
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "CAD", "CAD", "{2827A385-B00E-4E0D-AF90-939C91D1C33B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
