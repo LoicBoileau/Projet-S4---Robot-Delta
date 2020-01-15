@@ -1,0 +1,23 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29613.14
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "Controls", "..\Projet-S4---Robot-Delta\Controls\Controls.pyproj", "{FFBC3B74-0E70-459B-9A0E-BD14319D38C4}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{FFBC3B74-0E70-459B-9A0E-BD14319D38C4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FFBC3B74-0E70-459B-9A0E-BD14319D38C4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {69E9874E-8AF3-4B81-8CDB-7C3C6E86B557}
+	EndGlobalSection
+EndGlobal
