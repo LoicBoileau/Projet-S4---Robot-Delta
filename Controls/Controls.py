@@ -1,1 +1,1 @@
-a = 3
+print("hello marco")
