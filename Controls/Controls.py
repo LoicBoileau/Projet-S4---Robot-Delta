@@ -1,1 +1,5 @@
-a = 3
+
+
+print('Executing the GUI File...')
+import GUI
+
