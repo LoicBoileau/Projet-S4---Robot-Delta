@@ -11,7 +11,7 @@
     <OutputPath>.</OutputPath>
     <Name>Controls</Name>
     <RootNamespace>Controls</RootNamespace>
-    <InterpreterId>MSBuild|Venv|$(MSBuildProjectFullPath)</InterpreterId>
+    <InterpreterId>MSBuild|VenvPy2.7|$(MSBuildProjectFullPath)</InterpreterId>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
     <DebugSymbols>true</DebugSymbols>
@@ -26,12 +26,15 @@
     <Compile Include="GUI.py">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="OldGUITkinter.py">
+      <SubType>Code</SubType>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Interpreter Include="Venv\">
-      <Id>Venv</Id>
-      <Version>3.8</Version>
-      <Description>Venv (Python 3.8 (64-bit))</Description>
+    <Interpreter Include="VenvPy2.7\">
+      <Id>VenvPy2.7</Id>
+      <Version>2.7</Version>
+      <Description>VenvPy2.7 (Python 2.7 (64-bit))</Description>
       <InterpreterPath>Scripts\python.exe</InterpreterPath>
       <WindowsInterpreterPath>Scripts\pythonw.exe</WindowsInterpreterPath>
       <PathEnvironmentVariable>PYTHONPATH</PathEnvironmentVariable>
