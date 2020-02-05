@@ -7,30 +7,61 @@ root.title('GUI for delta Robot')
 
 #Global Variables -----------------------------------------------------------
 counter = tk.IntVar()
+
+checkVarCinDir = tk.BooleanVar()
+checkVarCinInv = tk.BooleanVar()
 estop = tk.BooleanVar()
 
 counter.set(0)
 
 #Class ----------------------------------------------------------------------
-"""
-class Checkbar(Frame):
-   def __init__(self, parent=None, picks=[], side=LEFT, anchor=W):
-      Frame.__init__(self, parent)
+
+class checkboxCinematique:
+    
+    def __init__(self, parent=None, title='', picks=[], othCheckBox=None, side=tk.LEFT, anchor=tk.W):
+      self.Frame = tk.Frame(parent)
+      self.Frame.grid(row=4,column=4)
+      self.otherCheckBox = othCheckBox
+      self.checkBoxVar = tk.IntVar()
+      self.checkButton = tk.Checkbutton(self.Frame, text=title, variable=self.checkBoxVar, command=self.checkboxClicked)
+      self.checkButton.pack()
       self.vars = []
       for pick in picks:
-         var = IntVar()
-         chk = Checkbutton(self, text=pick, variable=var)
-         chk.pack(side=side, anchor=anchor, expand=YES)
+         var = tk.DoubleVar()
+         lbl = tk.Label(self.Frame,text=pick)
+         lbl.pack(side=side, anchor=anchor, expand=tk.YES)
          self.vars.append(var)
-   def state(self):
-      return map((lambda var: var.get()), self.vars)
-"""
+
+    def checkboxClicked(self):
+        self.checkButton.config(state=tk.DISABLED)
+        if self.getOtherCheckButton() != None:
+            if self.getOtherCheckButton().getCheckBoxState() == 1:
+                self.getOtherCheckButton().deselect()
+                self.getOtherCheckButton().config(state=tk.NORMAL)
+        else:
+            print('There is no associated checkbox to the one you clicked on')
+
+    def getCheckBoxState(self):
+        return self.checkBoxVar
+
+    def getOtherCheckButton(self):
+        return self.otherCheckBox
+
+    def setOtherCheckBox(self, otherCheckBox):
+        self.otherCheckBox = otherCheckBox
+        
 
 #Widgets Function -----------------------------------------------------------
 def buttonPressed():
     counter.set(counter.get()+1)
     string = 'I got clicked ' + counter.get().__str__() + ' times'
     mylabel = tk.Label(root,text = string).grid(row=10, column=0)
+
+
+def clickCinInv():
+    checkButtonCinInv.config(state=tk.DISABLED)
+    checkButtonCinDir.deselect()
+    checkButtonCinDir.config(state=tk.NORMAL)
 
 def eStopPressed():
     tk.Label(root,text='Emergency Stop has been pressed').grid(row=1,column=2)
@@ -42,6 +73,9 @@ label2 = tk.Label(root, text='This is a positionned label')
 e = tk.Entry(root)
 myButton = tk.Button(root, text = 'Click', padx = 40, command = buttonPressed, bg = 'blue', fg = '#ffffff')
 
+checkBOX = checkboxCinematique(root, 'Cinématique directe', ['x' , 'y' ,'z'])
+
+checkButtonCinInv = tk.Checkbutton(root, text='Cinématique directe', variable=checkVarCinInv, command=clickCinInv)
 eStopButton = tk.Button(root, text = 'E-Stop', command = eStopPressed, bg = 'red', fg = 'white')
 
 
@@ -51,6 +85,9 @@ label1.grid(row=1, column=2)
 label2.grid(row=0, column=0)
 e.grid(row=1,column=3)
 myButton.grid(row=1, column=0)
+
+#checkButtonCinDir.grid(row=3,column=0)
+checkButtonCinInv.grid(row=4,column=0)
 eStopButton.grid(row=2,column=0)
 
 root.mainloop() 
