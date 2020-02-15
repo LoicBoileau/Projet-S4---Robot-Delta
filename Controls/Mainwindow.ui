@@ -1,0 +1,537 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="enabled">
+   <bool>true</bool>
+  </property>
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1095</width>
+    <height>799</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>MainWindow</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <widget class="Line" name="line">
+    <property name="geometry">
+     <rect>
+      <x>341</x>
+      <y>201</y>
+      <width>0</width>
+      <height>0</height>
+     </rect>
+    </property>
+    <property name="orientation">
+     <enum>Qt::Horizontal</enum>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_5">
+    <property name="geometry">
+     <rect>
+      <x>140</x>
+      <y>9</y>
+      <width>80</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Port:</string>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="JsonKey">
+    <property name="geometry">
+     <rect>
+      <x>120</x>
+      <y>40</y>
+      <width>221</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>flag</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
+    </property>
+   </widget>
+   <widget class="QComboBox" name="comboBoxPort">
+    <property name="geometry">
+     <rect>
+      <x>200</x>
+      <y>10</y>
+      <width>235</width>
+      <height>20</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_4">
+    <property name="geometry">
+     <rect>
+      <x>350</x>
+      <y>40</y>
+      <width>241</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Messages:</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+    </property>
+   </widget>
+   <widget class="QChartView" name="graph">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>70</y>
+      <width>331</width>
+      <height>191</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_3">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>40</y>
+      <width>101</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Donnees brutes:</string>
+    </property>
+   </widget>
+   <widget class="QTextBrowser" name="textBrowser">
+    <property name="geometry">
+     <rect>
+      <x>350</x>
+      <y>70</y>
+      <width>251</width>
+      <height>191</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>9</pointsize>
+     </font>
+    </property>
+   </widget>
+   <widget class="QFrame" name="frame_vision">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>270</y>
+      <width>591</width>
+      <height>301</height>
+     </rect>
+    </property>
+    <property name="frameShape">
+     <enum>QFrame::StyledPanel</enum>
+    </property>
+    <property name="frameShadow">
+     <enum>QFrame::Raised</enum>
+    </property>
+    <widget class="QLabel" name="label">
+     <property name="geometry">
+      <rect>
+       <x>260</x>
+       <y>0</y>
+       <width>59</width>
+       <height>17</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>vision</string>
+     </property>
+    </widget>
+   </widget>
+   <widget class="QFrame" name="frame_command1">
+    <property name="geometry">
+     <rect>
+      <x>610</x>
+      <y>0</y>
+      <width>321</width>
+      <height>571</height>
+     </rect>
+    </property>
+    <property name="frameShape">
+     <enum>QFrame::StyledPanel</enum>
+    </property>
+    <property name="frameShadow">
+     <enum>QFrame::Raised</enum>
+    </property>
+    <widget class="QLabel" name="label_theta1">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>164</y>
+       <width>56</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>theta1</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+     </property>
+    </widget>
+    <widget class="QLineEdit" name="lineEdit_x">
+     <property name="geometry">
+      <rect>
+       <x>72</x>
+       <y>54</y>
+       <width>234</width>
+       <height>20</height>
+      </rect>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="button_command">
+     <property name="geometry">
+      <rect>
+       <x>12</x>
+       <y>506</y>
+       <width>151</width>
+       <height>61</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <pointsize>11</pointsize>
+      </font>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">border: 2px solid #8f8f91;
+
+background-color: white;
+border-color: rgb(0, 255, 125);</string>
+     </property>
+     <property name="text">
+      <string>Start Command</string>
+     </property>
+    </widget>
+    <widget class="QLineEdit" name="lineEdit_command">
+     <property name="geometry">
+      <rect>
+       <x>170</x>
+       <y>506</y>
+       <width>51</width>
+       <height>61</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <pointsize>11</pointsize>
+      </font>
+     </property>
+     <property name="text">
+      <string>1</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignCenter</set>
+     </property>
+    </widget>
+    <widget class="QCheckBox" name="checkBox_cinDir">
+     <property name="geometry">
+      <rect>
+       <x>12</x>
+       <y>26</y>
+       <width>291</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Cinématique directe</string>
+     </property>
+    </widget>
+    <widget class="QLineEdit" name="lineEdit_y">
+     <property name="geometry">
+      <rect>
+       <x>72</x>
+       <y>80</y>
+       <width>234</width>
+       <height>20</height>
+      </rect>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label_z">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>106</y>
+       <width>56</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>z</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label_6">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>5</y>
+       <width>296</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Cinématique</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignCenter</set>
+     </property>
+    </widget>
+    <widget class="QLineEdit" name="lineEdit_theta1">
+     <property name="geometry">
+      <rect>
+       <x>72</x>
+       <y>164</y>
+       <width>234</width>
+       <height>20</height>
+      </rect>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label_x">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>54</y>
+       <width>56</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>x</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+     </property>
+    </widget>
+    <widget class="Line" name="line_3">
+     <property name="geometry">
+      <rect>
+       <x>1</x>
+       <y>5</y>
+       <width>3</width>
+       <height>560</height>
+      </rect>
+     </property>
+     <property name="orientation">
+      <enum>Qt::Vertical</enum>
+     </property>
+    </widget>
+    <widget class="QCheckBox" name="checkBox_cinInv">
+     <property name="geometry">
+      <rect>
+       <x>12</x>
+       <y>136</y>
+       <width>291</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Cinématique inverse</string>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="EStop">
+     <property name="geometry">
+      <rect>
+       <x>12</x>
+       <y>296</y>
+       <width>296</width>
+       <height>121</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <pointsize>22</pointsize>
+      </font>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">border: 2px solid #8f8f91;
+border-radius: 6px;
+
+border-color: red;
+background-color: pink;
+
+EStop{ background-color: white }</string>
+     </property>
+     <property name="text">
+      <string>Arrêt d'urgence</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label_theta3">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>216</y>
+       <width>56</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>theta3</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+     </property>
+    </widget>
+    <widget class="QLineEdit" name="lineEdit_theta2">
+     <property name="geometry">
+      <rect>
+       <x>72</x>
+       <y>190</y>
+       <width>234</width>
+       <height>20</height>
+      </rect>
+     </property>
+    </widget>
+    <widget class="QLineEdit" name="lineEdit_theta3">
+     <property name="geometry">
+      <rect>
+       <x>72</x>
+       <y>216</y>
+       <width>234</width>
+       <height>20</height>
+      </rect>
+     </property>
+    </widget>
+    <widget class="QLineEdit" name="lineEdit_z">
+     <property name="geometry">
+      <rect>
+       <x>72</x>
+       <y>106</y>
+       <width>234</width>
+       <height>20</height>
+      </rect>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label_y">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>80</y>
+       <width>56</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>y</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="pushButton_Params">
+     <property name="geometry">
+      <rect>
+       <x>12</x>
+       <y>256</y>
+       <width>296</width>
+       <height>23</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Envoie Parametres</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label_theta2">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>190</y>
+       <width>56</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>theta2</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="button_command_Stop">
+     <property name="geometry">
+      <rect>
+       <x>227</x>
+       <y>506</y>
+       <width>81</width>
+       <height>61</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <pointsize>14</pointsize>
+      </font>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">border: 2px solid #8f8f91;
+background-color: white;
+
+</string>
+     </property>
+     <property name="text">
+      <string>Stop</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label_2">
+     <property name="geometry">
+      <rect>
+       <x>12</x>
+       <y>430</y>
+       <width>296</width>
+       <height>71</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>This is the command manager :
+ - 1 : test
+ - 2 : ...</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
+     </property>
+    </widget>
+   </widget>
+  </widget>
+  <widget class="QMenuBar" name="menubar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>1095</width>
+     <height>26</height>
+    </rect>
+   </property>
+   <widget class="QMenu" name="menuOption">
+    <property name="title">
+     <string>Option</string>
+    </property>
+   </widget>
+   <addaction name="menuOption"/>
+  </widget>
+  <widget class="QStatusBar" name="statusbar"/>
+ </widget>
+ <customwidgets>
+  <customwidget>
+   <class>QChartView</class>
+   <extends>QGraphicsView</extends>
+   <header location="global">QtCharts</header>
+  </customwidget>
+ </customwidgets>
+ <resources/>
+ <connections/>
+</ui>
