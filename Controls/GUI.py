@@ -21,7 +21,7 @@
 #Dont forget to recompile it if you want the updated UI.
 import sys
 from PySide2 import QtWidgets
-from mainwindow import Ui_MainWindow
+from Mainwindow import Ui_MainWindow
 
 class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
     #initialisation du mainwindow object qui se trouve dans mainwindow.py
@@ -33,7 +33,6 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
     #Ajout des fonctions pour connecter
     def commandButtonClicked(self):
         self.lineEdit_command.setText('-1')
-
     #Modification et connection des widgets ici
     def setupConnection(self):
         self.button_command.clicked.connect(self.commandButtonClicked)

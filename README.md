@@ -11,4 +11,4 @@ et tu cliques sur le .exe appelé "designer.exe"
 Aller dans le menu de VS "outils" ou "tools", ensuite aller dans "ligne de commande",
 "invite de commande développeur" et entrer les deux commandes suivantes :
 cd Controls
-pyside2-uic Mainwindow.ui -o Manwindow.py
+pyside2-uic Mainwindow.ui -o Mainwindow.py

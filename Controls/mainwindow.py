@@ -15,15 +15,13 @@ from PySide2.QtGui import (QBrush, QColor, QConicalGradient, QCursor, QFont,
     QRadialGradient)
 from PySide2.QtWidgets import *
 
-#from QtCharts import QChartView
-
 
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         if MainWindow.objectName():
             MainWindow.setObjectName(u"MainWindow")
         MainWindow.setEnabled(True)
-        MainWindow.resize(1095, 799)
+        MainWindow.resize(1099, 809)
         self.centralwidget = QWidget(MainWindow)
         self.centralwidget.setObjectName(u"centralwidget")
         self.line = QFrame(self.centralwidget)
@@ -45,9 +43,9 @@ class Ui_MainWindow(object):
         self.label_4.setObjectName(u"label_4")
         self.label_4.setGeometry(QRect(350, 40, 241, 20))
         self.label_4.setAlignment(Qt.AlignLeading|Qt.AlignLeft|Qt.AlignVCenter)
-        #self.graph = QChartView(self.centralwidget)
-        #self.graph.setObjectName(u"graph")
-        #self.graph.setGeometry(QRect(10, 70, 331, 191))
+        self.graph = QGraphicsView(self.centralwidget)
+        self.graph.setObjectName(u"graph")
+        self.graph.setGeometry(QRect(10, 70, 331, 191))
         self.label_3 = QLabel(self.centralwidget)
         self.label_3.setObjectName(u"label_3")
         self.label_3.setGeometry(QRect(10, 40, 101, 20))
@@ -123,18 +121,22 @@ class Ui_MainWindow(object):
         self.checkBox_cinInv.setGeometry(QRect(12, 136, 291, 20))
         self.EStop = QPushButton(self.frame_command1)
         self.EStop.setObjectName(u"EStop")
-        self.EStop.setGeometry(QRect(12, 296, 296, 121))
+        self.EStop.setGeometry(QRect(12, 296, 296, 60))
         font2 = QFont()
         font2.setPointSize(22)
         self.EStop.setFont(font2)
-        self.EStop.setStyleSheet(u"border: 2px solid #8f8f91;\n"
+        self.EStop.setStyleSheet(u"#EStop {\n"
+"border: 2px solid #8f8f91;\n"
 "border-radius: 6px;\n"
 "\n"
+"color: red;\n"
 "border-color: red;\n"
 "background-color: pink;\n"
-"color: red;\n"
-"\n"
-"EStop{ background-color: white }")
+"}\n"
+"#EStop:pressed \n"
+"{ \n"
+"background-color: white;\n"
+"}")
         self.label_theta3 = QLabel(self.frame_command1)
         self.label_theta3.setObjectName(u"label_theta3")
         self.label_theta3.setGeometry(QRect(10, 216, 56, 20))
@@ -165,18 +167,15 @@ class Ui_MainWindow(object):
         font3 = QFont()
         font3.setPointSize(14)
         self.button_command_Stop.setFont(font3)
-        self.button_command_Stop.setStyleSheet(u"border: 2px solid #8f8f91;\n"
-"background-color: white;\n"
-"\n"
-"")
+        self.button_command_Stop.setStyleSheet(u"")
         self.label_2 = QLabel(self.frame_command1)
         self.label_2.setObjectName(u"label_2")
-        self.label_2.setGeometry(QRect(12, 430, 296, 71))
+        self.label_2.setGeometry(QRect(12, 370, 296, 131))
         self.label_2.setAlignment(Qt.AlignLeading|Qt.AlignLeft|Qt.AlignTop)
         MainWindow.setCentralWidget(self.centralwidget)
         self.menubar = QMenuBar(MainWindow)
         self.menubar.setObjectName(u"menubar")
-        self.menubar.setGeometry(QRect(0, 0, 1095, 26))
+        self.menubar.setGeometry(QRect(0, 0, 1099, 21))
         self.menuOption = QMenu(self.menubar)
         self.menuOption.setObjectName(u"menuOption")
         MainWindow.setMenuBar(self.menubar)
@@ -201,20 +200,27 @@ class Ui_MainWindow(object):
         self.label_theta1.setText(QCoreApplication.translate("MainWindow", u"theta1", None))
         self.button_command.setText(QCoreApplication.translate("MainWindow", u"Start Command", None))
         self.lineEdit_command.setText(QCoreApplication.translate("MainWindow", u"1", None))
-        self.checkBox_cinDir.setText(QCoreApplication.translate("MainWindow", u"Cinématique directe", None))
+        self.checkBox_cinDir.setText(QCoreApplication.translate("MainWindow", u"Cinematique directe", None))
         self.label_z.setText(QCoreApplication.translate("MainWindow", u"z", None))
-        self.label_6.setText(QCoreApplication.translate("MainWindow", u"Cinématique", None))
+        self.label_6.setText(QCoreApplication.translate("MainWindow", u"Cinematique", None))
         self.label_x.setText(QCoreApplication.translate("MainWindow", u"x", None))
-        self.checkBox_cinInv.setText(QCoreApplication.translate("MainWindow", u"Cinématique inverse", None))
-        self.EStop.setText(QCoreApplication.translate("MainWindow", u"Arrêt d'urgence", None))
+        self.checkBox_cinInv.setText(QCoreApplication.translate("MainWindow", u"Cinematique inverse", None))
+#if QT_CONFIG(whatsthis)
+        self.EStop.setWhatsThis(QCoreApplication.translate("MainWindow", u"<html><head/><body><p>Stop</p></body></html>", None))
+#endif // QT_CONFIG(whatsthis)
+        self.EStop.setText(QCoreApplication.translate("MainWindow", u"Arr\u00eat d'urgence", None))
         self.label_theta3.setText(QCoreApplication.translate("MainWindow", u"theta3", None))
         self.label_y.setText(QCoreApplication.translate("MainWindow", u"y", None))
         self.pushButton_Params.setText(QCoreApplication.translate("MainWindow", u"Envoie Parametres", None))
         self.label_theta2.setText(QCoreApplication.translate("MainWindow", u"theta2", None))
         self.button_command_Stop.setText(QCoreApplication.translate("MainWindow", u"Stop", None))
-        self.label_2.setText(QCoreApplication.translate("MainWindow", u"This is the command manager :\n"
-" - 1 : test\n"
-" - 2 : ...", None))
+        self.label_2.setText(QCoreApplication.translate("MainWindow", u"<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
+"<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
+"p, li { white-space: pre-wrap; }\n"
+"</style></head><body style=\" font-family:'MS Shell Dlg 2'; font-size:8pt; font-weight:400; font-style:normal;\">\n"
+"<p style=\" margin-top:2px; margin-bottom:2px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:9pt;\">This is the command manager :</span></p>\n"
+"<p style=\" margin-top:2px; margin-bottom:2px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:9pt;\">- 1 : Test </span></p>\n"
+"<p style=\" margin-top:2px; margin-bottom:2px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:9pt;\">- 2 : ...</span></p></body></html>", None))
         self.menuOption.setTitle(QCoreApplication.translate("MainWindow", u"Option", None))
     # retranslateUi
 
