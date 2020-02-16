@@ -26,6 +26,7 @@
     <Compile Include="GUI.py">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="mainwindow.py" />
   </ItemGroup>
   <ItemGroup>
     <Interpreter Include="RaspberryPi\">

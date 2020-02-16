@@ -9,8 +9,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1095</width>
-    <height>799</height>
+    <width>1099</width>
+    <height>809</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -248,7 +248,7 @@ border-color: rgb(0, 255, 125);</string>
       </rect>
      </property>
      <property name="text">
-      <string>Cinématique directe</string>
+      <string>Cinematique directe</string>
      </property>
     </widget>
     <widget class="QLineEdit" name="lineEdit_y">
@@ -287,7 +287,7 @@ border-color: rgb(0, 255, 125);</string>
       </rect>
      </property>
      <property name="text">
-      <string>Cinématique</string>
+      <string>Cinematique</string>
      </property>
      <property name="alignment">
       <set>Qt::AlignCenter</set>
@@ -342,7 +342,7 @@ border-color: rgb(0, 255, 125);</string>
       </rect>
      </property>
      <property name="text">
-      <string>Cinématique inverse</string>
+      <string>Cinematique inverse</string>
      </property>
     </widget>
     <widget class="QPushButton" name="EStop">
@@ -351,7 +351,7 @@ border-color: rgb(0, 255, 125);</string>
        <x>12</x>
        <y>296</y>
        <width>296</width>
-       <height>121</height>
+       <height>60</height>
       </rect>
      </property>
      <property name="font">
@@ -359,14 +359,23 @@ border-color: rgb(0, 255, 125);</string>
        <pointsize>22</pointsize>
       </font>
      </property>
+     <property name="whatsThis">
+      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Stop&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+     </property>
      <property name="styleSheet">
-      <string notr="true">border: 2px solid #8f8f91;
+      <string notr="true">#Estop 
+{
+border: 2px solid #8f8f91;
 border-radius: 6px;
 
+color: red;
 border-color: red;
 background-color: pink;
-
-EStop{ background-color: white }</string>
+}
+#EStop:pressed 
+{ 
+background-color: white;
+}</string>
      </property>
      <property name="text">
       <string>Arrêt d'urgence</string>
@@ -478,9 +487,7 @@ EStop{ background-color: white }</string>
       </font>
      </property>
      <property name="styleSheet">
-      <string notr="true">border: 2px solid #8f8f91;
-background-color: white;
-
+      <string notr="true">
 </string>
      </property>
      <property name="text">
@@ -491,15 +498,19 @@ background-color: white;
      <property name="geometry">
       <rect>
        <x>12</x>
-       <y>430</y>
+       <y>370</y>
        <width>296</width>
-       <height>71</height>
+       <height>131</height>
       </rect>
      </property>
      <property name="text">
-      <string>This is the command manager :
- - 1 : test
- - 2 : ...</string>
+      <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'MS Shell Dlg 2'; font-size:8pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:9pt;&quot;&gt;This is the command manager :&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:9pt;&quot;&gt;- 1 : Test &lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:9pt;&quot;&gt;- 2 : ...&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
      </property>
      <property name="alignment">
       <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
@@ -512,8 +523,8 @@ background-color: white;
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>1095</width>
-     <height>26</height>
+     <width>1099</width>
+     <height>21</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuOption">
