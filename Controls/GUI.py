@@ -29,16 +29,29 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         super().__init__(*args, **kwargs)
         self.setupUi(self)
         self.setupConnection()
+        self.updateCoordonneCart()
 
     #Ajout des fonctions pour connecter
     def commandButtonClicked(self):
         self.lineEdit_command.setText('-1')
+
+    def paramUpdateCoordonneCart(self):
+        """Pour updater les coordonnees cartesiennes lorsqu'elles sont modifiees"""
+        self.xx = float(self.lineEdit_x.text())
+        self.yy = float(self.lineEdit_y.text())
+        self.zz = float(self.lineEdit_z.text())
+        self.label_x_confimed.setText(str(self.xx))
+        self.label_y_confimed.setText(str(self.yy))
+        self.label_z_confimed.setText(str(self.zz))
+        
+
     #Modification et connection des widgets ici
     def setupConnection(self):
         self.button_command.clicked.connect(self.commandButtonClicked)
+        self.pushButton_Params.clicked.connect(self.paramUpdateCoordonneCart)
 
 
-    
+  
 
 
 app = QtWidgets.QApplication(sys.argv)

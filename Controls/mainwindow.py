@@ -57,7 +57,7 @@ class Ui_MainWindow(object):
         self.textBrowser.setFont(font)
         self.frame_vision = QFrame(self.centralwidget)
         self.frame_vision.setObjectName(u"frame_vision")
-        self.frame_vision.setGeometry(QRect(10, 270, 591, 301))
+        self.frame_vision.setGeometry(QRect(30, 280, 591, 301))
         self.frame_vision.setFrameShape(QFrame.StyledPanel)
         self.frame_vision.setFrameShadow(QFrame.Raised)
         self.label = QLabel(self.frame_vision)
@@ -66,6 +66,7 @@ class Ui_MainWindow(object):
         self.frame_command1 = QFrame(self.centralwidget)
         self.frame_command1.setObjectName(u"frame_command1")
         self.frame_command1.setGeometry(QRect(610, 0, 321, 571))
+        self.frame_command1.setStyleSheet(u"")
         self.frame_command1.setFrameShape(QFrame.StyledPanel)
         self.frame_command1.setFrameShadow(QFrame.Raised)
         self.label_theta1 = QLabel(self.frame_command1)
@@ -74,28 +75,38 @@ class Ui_MainWindow(object):
         self.label_theta1.setAlignment(Qt.AlignRight|Qt.AlignTrailing|Qt.AlignVCenter)
         self.lineEdit_x = QLineEdit(self.frame_command1)
         self.lineEdit_x.setObjectName(u"lineEdit_x")
-        self.lineEdit_x.setGeometry(QRect(72, 54, 234, 20))
+        self.lineEdit_x.setGeometry(QRect(72, 54, 91, 20))
+        self.lineEdit_x.setStyleSheet(u"background-color: rgb(255, 255, 255);")
         self.button_command = QPushButton(self.frame_command1)
         self.button_command.setObjectName(u"button_command")
         self.button_command.setGeometry(QRect(12, 506, 151, 61))
         font1 = QFont()
         font1.setPointSize(11)
         self.button_command.setFont(font1)
-        self.button_command.setStyleSheet(u"border: 2px solid #8f8f91;\n"
-"\n"
+        self.button_command.setStyleSheet(u"#button_command{\n"
+"border: 2px solid;\n"
 "background-color: white;\n"
-"border-color: rgb(0, 255, 125);")
+"	border-top-color: rgb(85, 255, 0);\n"
+"	border-left-color: rgb(85, 255, 0);\n"
+"	border-right-color: rgb(67, 203, 0);\n"
+"	border-bottom-color: rgb(67, 203, 0);\n"
+"}\n"
+"#button_command:pressed{\n"
+"	background-color: rgb(85, 255, 0);\n"
+"}")
         self.lineEdit_command = QLineEdit(self.frame_command1)
         self.lineEdit_command.setObjectName(u"lineEdit_command")
-        self.lineEdit_command.setGeometry(QRect(170, 506, 51, 61))
+        self.lineEdit_command.setGeometry(QRect(200, 370, 41, 41))
         self.lineEdit_command.setFont(font1)
+        self.lineEdit_command.setStyleSheet(u"background-color: rgb(255, 255, 255);")
         self.lineEdit_command.setAlignment(Qt.AlignCenter)
         self.checkBox_cinDir = QCheckBox(self.frame_command1)
         self.checkBox_cinDir.setObjectName(u"checkBox_cinDir")
         self.checkBox_cinDir.setGeometry(QRect(12, 26, 291, 20))
         self.lineEdit_y = QLineEdit(self.frame_command1)
         self.lineEdit_y.setObjectName(u"lineEdit_y")
-        self.lineEdit_y.setGeometry(QRect(72, 80, 234, 20))
+        self.lineEdit_y.setGeometry(QRect(72, 80, 91, 20))
+        self.lineEdit_y.setStyleSheet(u"background-color: rgb(255, 255, 255);")
         self.label_z = QLabel(self.frame_command1)
         self.label_z.setObjectName(u"label_z")
         self.label_z.setGeometry(QRect(10, 106, 56, 20))
@@ -107,6 +118,7 @@ class Ui_MainWindow(object):
         self.lineEdit_theta1 = QLineEdit(self.frame_command1)
         self.lineEdit_theta1.setObjectName(u"lineEdit_theta1")
         self.lineEdit_theta1.setGeometry(QRect(72, 164, 234, 20))
+        self.lineEdit_theta1.setStyleSheet(u"background-color: rgb(255, 255, 255);")
         self.label_x = QLabel(self.frame_command1)
         self.label_x.setObjectName(u"label_x")
         self.label_x.setGeometry(QRect(10, 54, 56, 20))
@@ -126,11 +138,14 @@ class Ui_MainWindow(object):
         font2.setPointSize(22)
         self.EStop.setFont(font2)
         self.EStop.setStyleSheet(u"#EStop {\n"
-"border: 2px solid #8f8f91;\n"
+"border: 2px solid;\n"
 "border-radius: 6px;\n"
 "\n"
 "color: red;\n"
-"border-color: red;\n"
+"	border-top-color: rgb(255, 0, 0);\n"
+"	border-right-color: rgb(202, 0, 0);\n"
+"	border-bottom-color: rgb(202, 0, 0);\n"
+"	border-left-color: rgb(255, 0, 0);\n"
 "background-color: pink;\n"
 "}\n"
 "#EStop:pressed \n"
@@ -144,12 +159,15 @@ class Ui_MainWindow(object):
         self.lineEdit_theta2 = QLineEdit(self.frame_command1)
         self.lineEdit_theta2.setObjectName(u"lineEdit_theta2")
         self.lineEdit_theta2.setGeometry(QRect(72, 190, 234, 20))
+        self.lineEdit_theta2.setStyleSheet(u"background-color: rgb(255, 255, 255);")
         self.lineEdit_theta3 = QLineEdit(self.frame_command1)
         self.lineEdit_theta3.setObjectName(u"lineEdit_theta3")
         self.lineEdit_theta3.setGeometry(QRect(72, 216, 234, 20))
+        self.lineEdit_theta3.setStyleSheet(u"background-color: rgb(255, 255, 255);")
         self.lineEdit_z = QLineEdit(self.frame_command1)
         self.lineEdit_z.setObjectName(u"lineEdit_z")
-        self.lineEdit_z.setGeometry(QRect(72, 106, 234, 20))
+        self.lineEdit_z.setGeometry(QRect(72, 106, 91, 20))
+        self.lineEdit_z.setStyleSheet(u"background-color: rgb(255, 255, 255);")
         self.label_y = QLabel(self.frame_command1)
         self.label_y.setObjectName(u"label_y")
         self.label_y.setGeometry(QRect(10, 80, 56, 20))
@@ -167,11 +185,55 @@ class Ui_MainWindow(object):
         font3 = QFont()
         font3.setPointSize(14)
         self.button_command_Stop.setFont(font3)
-        self.button_command_Stop.setStyleSheet(u"")
+        self.button_command_Stop.setStyleSheet(u"#button_command_Stop{\n"
+"border: 2px solid ;\n"
+"background-color: white;\n"
+"\n"
+"}\n"
+"#button_command_Stop:pressed{\n"
+"	\n"
+"	color:rgb(255, 255, 255);\n"
+"	border-color: rgb(255, 0, 0);\n"
+"	background-color: rgb(184, 184, 184);\n"
+"}")
         self.label_2 = QLabel(self.frame_command1)
         self.label_2.setObjectName(u"label_2")
         self.label_2.setGeometry(QRect(12, 370, 296, 131))
         self.label_2.setAlignment(Qt.AlignLeading|Qt.AlignLeft|Qt.AlignTop)
+        self.label_x_confimed = QLabel(self.frame_command1)
+        self.label_x_confimed.setObjectName(u"label_x_confimed")
+        self.label_x_confimed.setGeometry(QRect(200, 54, 91, 20))
+        self.label_x_confimed.setStyleSheet(u"background-color: rgb(255, 255, 255);\n"
+"border: 1px solid;\n"
+"border-color: rgb(111, 111, 111);")
+        self.label_x_confimed.setAlignment(Qt.AlignCenter)
+        self.label_y_confimed = QLabel(self.frame_command1)
+        self.label_y_confimed.setObjectName(u"label_y_confimed")
+        self.label_y_confimed.setGeometry(QRect(200, 80, 91, 20))
+        self.label_y_confimed.setStyleSheet(u"background-color: rgb(255, 255, 255);\n"
+"border: 1px solid;\n"
+"border-color: rgb(111, 111, 111);")
+        self.label_y_confimed.setAlignment(Qt.AlignCenter)
+        self.label_z_confimed = QLabel(self.frame_command1)
+        self.label_z_confimed.setObjectName(u"label_z_confimed")
+        self.label_z_confimed.setGeometry(QRect(200, 106, 91, 20))
+        self.label_z_confimed.setStyleSheet(u"background-color: rgb(255, 255, 255);\n"
+"border: 1px solid;\n"
+"border-color: rgb(111, 111, 111);")
+        self.label_z_confimed.setAlignment(Qt.AlignCenter)
+        self.label_7 = QLabel(self.frame_command1)
+        self.label_7.setObjectName(u"label_7")
+        self.label_7.setGeometry(QRect(170, 506, 51, 61))
+        self.label_7.setFont(font1)
+        self.label_7.setStyleSheet(u"background-color: rgb(255, 255, 255);\n"
+"\n"
+"\n"
+"border-color: rgb(111, 111, 111);")
+        self.label_7.setAlignment(Qt.AlignCenter)
+        self.button_send = QPushButton(self.frame_command1)
+        self.button_send.setObjectName(u"button_send")
+        self.button_send.setGeometry(QRect(250, 370, 51, 41))
+        self.button_send.setFont(font1)
         MainWindow.setCentralWidget(self.centralwidget)
         self.menubar = QMenuBar(MainWindow)
         self.menubar.setObjectName(u"menubar")
@@ -198,9 +260,11 @@ class Ui_MainWindow(object):
         self.label_3.setText(QCoreApplication.translate("MainWindow", u"Donnees brutes:", None))
         self.label.setText(QCoreApplication.translate("MainWindow", u"vision", None))
         self.label_theta1.setText(QCoreApplication.translate("MainWindow", u"theta1", None))
+        self.lineEdit_x.setText(QCoreApplication.translate("MainWindow", u"0", None))
         self.button_command.setText(QCoreApplication.translate("MainWindow", u"Start Command", None))
-        self.lineEdit_command.setText(QCoreApplication.translate("MainWindow", u"1", None))
+        self.lineEdit_command.setText(QCoreApplication.translate("MainWindow", u"-10", None))
         self.checkBox_cinDir.setText(QCoreApplication.translate("MainWindow", u"Cinematique directe", None))
+        self.lineEdit_y.setText(QCoreApplication.translate("MainWindow", u"0", None))
         self.label_z.setText(QCoreApplication.translate("MainWindow", u"z", None))
         self.label_6.setText(QCoreApplication.translate("MainWindow", u"Cinematique", None))
         self.label_x.setText(QCoreApplication.translate("MainWindow", u"x", None))
@@ -210,6 +274,7 @@ class Ui_MainWindow(object):
 #endif // QT_CONFIG(whatsthis)
         self.EStop.setText(QCoreApplication.translate("MainWindow", u"Arr\u00eat d'urgence", None))
         self.label_theta3.setText(QCoreApplication.translate("MainWindow", u"theta3", None))
+        self.lineEdit_z.setText(QCoreApplication.translate("MainWindow", u"0", None))
         self.label_y.setText(QCoreApplication.translate("MainWindow", u"y", None))
         self.pushButton_Params.setText(QCoreApplication.translate("MainWindow", u"Envoie Parametres", None))
         self.label_theta2.setText(QCoreApplication.translate("MainWindow", u"theta2", None))
@@ -219,8 +284,13 @@ class Ui_MainWindow(object):
 "p, li { white-space: pre-wrap; }\n"
 "</style></head><body style=\" font-family:'MS Shell Dlg 2'; font-size:8pt; font-weight:400; font-style:normal;\">\n"
 "<p style=\" margin-top:2px; margin-bottom:2px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:9pt;\">This is the command manager :</span></p>\n"
-"<p style=\" margin-top:2px; margin-bottom:2px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:9pt;\">- 1 : Test </span></p>\n"
-"<p style=\" margin-top:2px; margin-bottom:2px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:9pt;\">- 2 : ...</span></p></body></html>", None))
+"<p style=\" margin-top:2px; margin-bottom:2px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:9pt;\">- 1 : Start/Stop to position</span></p>\n"
+"<p style=\" margin-top:2px; margin-bottom:2px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:9pt;\">- 2 : Manual jog</span></p></body></html>", None))
+        self.label_x_confimed.setText(QCoreApplication.translate("MainWindow", u"0", None))
+        self.label_y_confimed.setText(QCoreApplication.translate("MainWindow", u"0", None))
+        self.label_z_confimed.setText(QCoreApplication.translate("MainWindow", u"0", None))
+        self.label_7.setText(QCoreApplication.translate("MainWindow", u"1", None))
+        self.button_send.setText(QCoreApplication.translate("MainWindow", u"Send", None))
         self.menuOption.setTitle(QCoreApplication.translate("MainWindow", u"Option", None))
     # retranslateUi
 

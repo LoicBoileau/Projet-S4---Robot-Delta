@@ -126,8 +126,8 @@
    <widget class="QFrame" name="frame_vision">
     <property name="geometry">
      <rect>
-      <x>10</x>
-      <y>270</y>
+      <x>30</x>
+      <y>280</y>
       <width>591</width>
       <height>301</height>
      </rect>
@@ -161,6 +161,9 @@
       <height>571</height>
      </rect>
     </property>
+    <property name="styleSheet">
+     <string notr="true"/>
+    </property>
     <property name="frameShape">
      <enum>QFrame::StyledPanel</enum>
     </property>
@@ -188,9 +191,15 @@
       <rect>
        <x>72</x>
        <y>54</y>
-       <width>234</width>
+       <width>91</width>
        <height>20</height>
       </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background-color: rgb(255, 255, 255);</string>
+     </property>
+     <property name="text">
+      <string>0</string>
      </property>
     </widget>
     <widget class="QPushButton" name="button_command">
@@ -208,10 +217,17 @@
       </font>
      </property>
      <property name="styleSheet">
-      <string notr="true">border: 2px solid #8f8f91;
-
+      <string notr="true">#button_command{
+border: 2px solid;
 background-color: white;
-border-color: rgb(0, 255, 125);</string>
+	border-top-color: rgb(85, 255, 0);
+	border-left-color: rgb(85, 255, 0);
+	border-right-color: rgb(67, 203, 0);
+	border-bottom-color: rgb(67, 203, 0);
+}
+#button_command:pressed{
+	background-color: rgb(85, 255, 0);
+}</string>
      </property>
      <property name="text">
       <string>Start Command</string>
@@ -220,10 +236,10 @@ border-color: rgb(0, 255, 125);</string>
     <widget class="QLineEdit" name="lineEdit_command">
      <property name="geometry">
       <rect>
-       <x>170</x>
-       <y>506</y>
-       <width>51</width>
-       <height>61</height>
+       <x>200</x>
+       <y>370</y>
+       <width>41</width>
+       <height>41</height>
       </rect>
      </property>
      <property name="font">
@@ -231,8 +247,11 @@ border-color: rgb(0, 255, 125);</string>
        <pointsize>11</pointsize>
       </font>
      </property>
+     <property name="styleSheet">
+      <string notr="true">background-color: rgb(255, 255, 255);</string>
+     </property>
      <property name="text">
-      <string>1</string>
+      <string>-10</string>
      </property>
      <property name="alignment">
       <set>Qt::AlignCenter</set>
@@ -256,9 +275,15 @@ border-color: rgb(0, 255, 125);</string>
       <rect>
        <x>72</x>
        <y>80</y>
-       <width>234</width>
+       <width>91</width>
        <height>20</height>
       </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background-color: rgb(255, 255, 255);</string>
+     </property>
+     <property name="text">
+      <string>0</string>
      </property>
     </widget>
     <widget class="QLabel" name="label_z">
@@ -301,6 +326,9 @@ border-color: rgb(0, 255, 125);</string>
        <width>234</width>
        <height>20</height>
       </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background-color: rgb(255, 255, 255);</string>
      </property>
     </widget>
     <widget class="QLabel" name="label_x">
@@ -364,11 +392,14 @@ border-color: rgb(0, 255, 125);</string>
      </property>
      <property name="styleSheet">
       <string notr="true">#EStop {
-border: 2px solid #8f8f91;
+border: 2px solid;
 border-radius: 6px;
 
 color: red;
-border-color: red;
+	border-top-color: rgb(255, 0, 0);
+	border-right-color: rgb(202, 0, 0);
+	border-bottom-color: rgb(202, 0, 0);
+	border-left-color: rgb(255, 0, 0);
 background-color: pink;
 }
 #EStop:pressed 
@@ -405,6 +436,9 @@ background-color: white;
        <height>20</height>
       </rect>
      </property>
+     <property name="styleSheet">
+      <string notr="true">background-color: rgb(255, 255, 255);</string>
+     </property>
     </widget>
     <widget class="QLineEdit" name="lineEdit_theta3">
      <property name="geometry">
@@ -415,15 +449,24 @@ background-color: white;
        <height>20</height>
       </rect>
      </property>
+     <property name="styleSheet">
+      <string notr="true">background-color: rgb(255, 255, 255);</string>
+     </property>
     </widget>
     <widget class="QLineEdit" name="lineEdit_z">
      <property name="geometry">
       <rect>
        <x>72</x>
        <y>106</y>
-       <width>234</width>
+       <width>91</width>
        <height>20</height>
       </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background-color: rgb(255, 255, 255);</string>
+     </property>
+     <property name="text">
+      <string>0</string>
      </property>
     </widget>
     <widget class="QLabel" name="label_y">
@@ -486,8 +529,17 @@ background-color: white;
       </font>
      </property>
      <property name="styleSheet">
-      <string notr="true">
-</string>
+      <string notr="true">#button_command_Stop{
+border: 2px solid ;
+background-color: white;
+
+}
+#button_command_Stop:pressed{
+	
+	color:rgb(255, 255, 255);
+	border-color: rgb(255, 0, 0);
+	background-color: rgb(184, 184, 184);
+}</string>
      </property>
      <property name="text">
       <string>Stop</string>
@@ -508,11 +560,119 @@ background-color: white;
 p, li { white-space: pre-wrap; }
 &lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'MS Shell Dlg 2'; font-size:8pt; font-weight:400; font-style:normal;&quot;&gt;
 &lt;p style=&quot; margin-top:2px; margin-bottom:2px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:9pt;&quot;&gt;This is the command manager :&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:2px; margin-bottom:2px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:9pt;&quot;&gt;- 1 : Test &lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:2px; margin-bottom:2px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:9pt;&quot;&gt;- 2 : ...&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+&lt;p style=&quot; margin-top:2px; margin-bottom:2px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:9pt;&quot;&gt;- 1 : Start/Stop to position&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:2px; margin-bottom:2px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:9pt;&quot;&gt;- 2 : Manual jog&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
      </property>
      <property name="alignment">
       <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label_x_confimed">
+     <property name="geometry">
+      <rect>
+       <x>200</x>
+       <y>54</y>
+       <width>91</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background-color: rgb(255, 255, 255);
+border: 1px solid;
+border-color: rgb(111, 111, 111);</string>
+     </property>
+     <property name="text">
+      <string>0</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignCenter</set>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label_y_confimed">
+     <property name="geometry">
+      <rect>
+       <x>200</x>
+       <y>80</y>
+       <width>91</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background-color: rgb(255, 255, 255);
+border: 1px solid;
+border-color: rgb(111, 111, 111);</string>
+     </property>
+     <property name="text">
+      <string>0</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignCenter</set>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label_z_confimed">
+     <property name="geometry">
+      <rect>
+       <x>200</x>
+       <y>106</y>
+       <width>91</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background-color: rgb(255, 255, 255);
+border: 1px solid;
+border-color: rgb(111, 111, 111);</string>
+     </property>
+     <property name="text">
+      <string>0</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignCenter</set>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label_7">
+     <property name="geometry">
+      <rect>
+       <x>170</x>
+       <y>506</y>
+       <width>51</width>
+       <height>61</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <pointsize>11</pointsize>
+      </font>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background-color: rgb(255, 255, 255);
+
+
+border-color: rgb(111, 111, 111);</string>
+     </property>
+     <property name="text">
+      <string>1</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignCenter</set>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="button_send">
+     <property name="geometry">
+      <rect>
+       <x>250</x>
+       <y>370</y>
+       <width>51</width>
+       <height>41</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <pointsize>11</pointsize>
+      </font>
+     </property>
+     <property name="text">
+      <string>Send</string>
      </property>
     </widget>
    </widget>
