@@ -18,7 +18,7 @@
 
 #-------------------------------------------------------
 #This section is to take the mainwindow.py and run it.
-#Dont forget to recompile it if you want the updated UI.
+#Dont forget to recompile it if you want the updated UI. To recompile go to readMe.
 import sys
 from PySide2 import QtWidgets
 from Mainwindow import Ui_MainWindow
@@ -29,7 +29,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         super().__init__(*args, **kwargs)
         self.setupUi(self)
         self.setupConnection()
-        self.updateCoordonneCart()
+        self.paramUpdateCoordonneCart()
 
     #Ajout des fonctions pour connecter
     def commandButtonClicked(self):
