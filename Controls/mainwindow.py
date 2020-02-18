@@ -57,7 +57,7 @@ class Ui_MainWindow(object):
         self.textBrowser.setFont(font)
         self.frame_vision = QFrame(self.centralwidget)
         self.frame_vision.setObjectName(u"frame_vision")
-        self.frame_vision.setGeometry(QRect(30, 280, 591, 301))
+        self.frame_vision.setGeometry(QRect(10, 280, 591, 301))
         self.frame_vision.setFrameShape(QFrame.StyledPanel)
         self.frame_vision.setFrameShadow(QFrame.Raised)
         self.label = QLabel(self.frame_vision)
@@ -65,7 +65,7 @@ class Ui_MainWindow(object):
         self.label.setGeometry(QRect(260, 0, 59, 17))
         self.frame_command1 = QFrame(self.centralwidget)
         self.frame_command1.setObjectName(u"frame_command1")
-        self.frame_command1.setGeometry(QRect(610, 0, 321, 571))
+        self.frame_command1.setGeometry(QRect(610, 0, 321, 581))
         self.frame_command1.setStyleSheet(u"")
         self.frame_command1.setFrameShape(QFrame.StyledPanel)
         self.frame_command1.setFrameShadow(QFrame.Raised)
@@ -103,6 +103,7 @@ class Ui_MainWindow(object):
         self.checkBox_cinDir = QCheckBox(self.frame_command1)
         self.checkBox_cinDir.setObjectName(u"checkBox_cinDir")
         self.checkBox_cinDir.setGeometry(QRect(12, 26, 291, 20))
+        self.checkBox_cinDir.setFont(font)
         self.lineEdit_y = QLineEdit(self.frame_command1)
         self.lineEdit_y.setObjectName(u"lineEdit_y")
         self.lineEdit_y.setGeometry(QRect(72, 80, 91, 20))
@@ -114,6 +115,7 @@ class Ui_MainWindow(object):
         self.label_6 = QLabel(self.frame_command1)
         self.label_6.setObjectName(u"label_6")
         self.label_6.setGeometry(QRect(10, 5, 296, 20))
+        self.label_6.setFont(font)
         self.label_6.setAlignment(Qt.AlignCenter)
         self.lineEdit_theta1 = QLineEdit(self.frame_command1)
         self.lineEdit_theta1.setObjectName(u"lineEdit_theta1")
@@ -131,6 +133,7 @@ class Ui_MainWindow(object):
         self.checkBox_cinInv = QCheckBox(self.frame_command1)
         self.checkBox_cinInv.setObjectName(u"checkBox_cinInv")
         self.checkBox_cinInv.setGeometry(QRect(12, 136, 291, 20))
+        self.checkBox_cinInv.setFont(font)
         self.EStop = QPushButton(self.frame_command1)
         self.EStop.setObjectName(u"EStop")
         self.EStop.setGeometry(QRect(12, 296, 296, 60))
@@ -188,6 +191,10 @@ class Ui_MainWindow(object):
         self.button_command_Stop.setStyleSheet(u"#button_command_Stop{\n"
 "border: 2px solid ;\n"
 "background-color: white;\n"
+"	border-top-color: rgb(116, 116, 116);\n"
+"	border-left-color: rgb(116, 116, 116);\n"
+"	border-right-color: rgb(11, 11, 11);\n"
+"	border-bottom-color: rgb(11, 11, 11);\n"
 "\n"
 "}\n"
 "#button_command_Stop:pressed{\n"
