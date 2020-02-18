@@ -24,6 +24,7 @@
 import sys
 from PySide2 import QtWidgets, QtCore
 from Mainwindow import Ui_MainWindow
+import os
 import serial.tools.list_ports
 import time
 
@@ -47,7 +48,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         self.setup()
 
 
-    #Ajout des fonctions pour connecter
+    #-----------------Ajout des fonctions pour connecter--------------------------------------
     def eStop():
         #self.timer.stop() #uncomment if you need to stop the timer thread loop
         #which updates elements in the UI
@@ -66,8 +67,8 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
             self.label_y_confimed.setText(str(self.yy))
             self.label_z_confimed.setText(str(self.zz))
         else:
-            self.theta1 = float(self.lineEdit_x.text())
-            '...'
+            self.theta1 = float(self.lineEdit_theta1.text())
+            '...A completer'
 
     def checkboxCinDirClicked(self):
         if not self.checkBox_cinDir.isChecked():
@@ -77,6 +78,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
             self.lineEdit_theta1.setEnabled(True)
             self.lineEdit_theta2.setEnabled(True)
             self.lineEdit_theta3.setEnabled(True)
+
     def checkboxCinInvClicked(self):
         if not self.checkBox_cinInv.isChecked():
             self.lineEdit_x.setEnabled(True)
@@ -86,33 +88,43 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
             self.lineEdit_theta2.setEnabled(False)
             self.lineEdit_theta3.setEnabled(False)
             
+    def timeSecCheck(self,*args,**kwargs):
+        print('The timer thread is runing')
 
-    #Thread functions
+    def updatePort(self):
+        print('A search for ports has been created')
+        infoPorts = list(serial.tools.list_ports.comports())
+        currentText = self.comboBoxPort.currentText()
+        self.comboBoxPort.clear()
+        self.comboBoxPort.addItems(info[0] for info in infoPorts) 
+        print('A search for ports has closed') 
+    
+    #-----------------------Thread functions------------------------------------------------------
     def createTimeThread(self):
-        worker = Worker(self.timeTenthOfASecCheck) # Any other args, kwargs are passed to the run function
+        worker = Worker(self.timeSecCheck) # Any other args, kwargs are passed to the run function
+        self.threadpool.start(worker)
+   
+    def createPortThread(self):
+        worker = Worker(self.updatePort) # Any other args, kwargs are passed to the run function
         self.threadpool.start(worker)
 
-    def timeTenthOfASecCheck(self,*args,**kwargs):
-        print('The timer thread is runing')
-            
-        
-
-    #Modification et connection des widgets ici
+    #-------------------Modification et connection des widgets ici----------------------------------
     def setup(self):
         self.button_command.clicked.connect(self.commandButtonClicked)
         self.pushButton_Params.clicked.connect(self.paramUpdateCoordonneCart)
         self.EStop.clicked.connect(self.eStop)
         self.checkBox_cinDir.stateChanged.connect(self.checkboxCinDirClicked)
         self.checkBox_cinInv.stateChanged.connect(self.checkboxCinInvClicked)
+        self.buttonUpdatePort.clicked.connect(self.createPortThread)
 
-        ports = list(serial.tools.list_ports.comports())
-        self.comboBoxPort.addItems(ports)
+
+        self.createPortThread()
         self.serialPort = self.comboBoxPort.currentText()
 
-        self.timer = QtCore.QTimer()
-        self.timer.setInterval(100)
-        self.timer.timeout.connect(self.createTimeThread)
-        #self.timer.start()
+        self.timerASec = QtCore.QTimer()
+        self.timerASec.setInterval(1000)
+        self.timerASec.timeout.connect(self.createTimeThread)
+        #self.timer3Sec.start()
 
 
 

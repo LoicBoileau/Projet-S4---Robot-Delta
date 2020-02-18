@@ -31,14 +31,14 @@ class Ui_MainWindow(object):
         self.line.setFrameShadow(QFrame.Sunken)
         self.label_5 = QLabel(self.centralwidget)
         self.label_5.setObjectName(u"label_5")
-        self.label_5.setGeometry(QRect(140, 9, 80, 20))
+        self.label_5.setGeometry(QRect(70, 9, 80, 20))
         self.JsonKey = QLineEdit(self.centralwidget)
         self.JsonKey.setObjectName(u"JsonKey")
         self.JsonKey.setGeometry(QRect(120, 40, 221, 20))
         self.JsonKey.setAlignment(Qt.AlignCenter)
         self.comboBoxPort = QComboBox(self.centralwidget)
         self.comboBoxPort.setObjectName(u"comboBoxPort")
-        self.comboBoxPort.setGeometry(QRect(200, 10, 235, 20))
+        self.comboBoxPort.setGeometry(QRect(120, 10, 261, 20))
         self.label_4 = QLabel(self.centralwidget)
         self.label_4.setObjectName(u"label_4")
         self.label_4.setGeometry(QRect(350, 40, 241, 20))
@@ -65,7 +65,7 @@ class Ui_MainWindow(object):
         self.label.setGeometry(QRect(260, 0, 59, 17))
         self.frame_command1 = QFrame(self.centralwidget)
         self.frame_command1.setObjectName(u"frame_command1")
-        self.frame_command1.setGeometry(QRect(610, 0, 321, 581))
+        self.frame_command1.setGeometry(QRect(610, 0, 311, 581))
         self.frame_command1.setStyleSheet(u"")
         self.frame_command1.setFrameShape(QFrame.StyledPanel)
         self.frame_command1.setFrameShadow(QFrame.Raised)
@@ -205,7 +205,7 @@ class Ui_MainWindow(object):
 "}")
         self.label_2 = QLabel(self.frame_command1)
         self.label_2.setObjectName(u"label_2")
-        self.label_2.setGeometry(QRect(12, 370, 296, 131))
+        self.label_2.setGeometry(QRect(12, 370, 181, 131))
         self.label_2.setAlignment(Qt.AlignLeading|Qt.AlignLeft|Qt.AlignTop)
         self.label_x_confimed = QLabel(self.frame_command1)
         self.label_x_confimed.setObjectName(u"label_x_confimed")
@@ -268,10 +268,13 @@ class Ui_MainWindow(object):
         self.label_z_confimed.raise_()
         self.label_7.raise_()
         self.button_send.raise_()
+        self.buttonUpdatePort = QPushButton(self.centralwidget)
+        self.buttonUpdatePort.setObjectName(u"buttonUpdatePort")
+        self.buttonUpdatePort.setGeometry(QRect(410, 5, 93, 30))
         MainWindow.setCentralWidget(self.centralwidget)
         self.menubar = QMenuBar(MainWindow)
         self.menubar.setObjectName(u"menubar")
-        self.menubar.setGeometry(QRect(0, 0, 1028, 21))
+        self.menubar.setGeometry(QRect(0, 0, 1028, 26))
         self.menuOption = QMenu(self.menubar)
         self.menuOption.setObjectName(u"menuOption")
         MainWindow.setMenuBar(self.menubar)
@@ -317,14 +320,17 @@ class Ui_MainWindow(object):
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
 "</style></head><body style=\" font-family:'MS Shell Dlg 2'; font-size:8pt; font-weight:400; font-style:normal;\">\n"
-"<p style=\" margin-top:2px; margin-bottom:2px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:9pt;\">This is the command manager :</span></p>\n"
-"<p style=\" margin-top:2px; margin-bottom:2px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:9pt;\">- 1 : Start/Stop to position</span></p>\n"
-"<p style=\" margin-top:2px; margin-bottom:2px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:9pt;\">- 2 : Manual jog</span></p></body></html>", None))
+"<p align=\"center\" style=\" margin-top:2px; margin-bottom:2px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-family:'MS Shell Dlg 2'; font-size:10pt; font-weight:600;\">This is the command</span></p>\n"
+"<p align=\"center\" style=\" margin-top:2px; margin-bottom:2px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-family:'MS Shell Dlg 2'; font-size:10pt; font-weight:600;\">manager :</span></p>\n"
+"<p style=\" margin-top:2px; margin-bottom:2px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-family:'MS Shell Dlg 2'; font-size:9pt;\">- 1 :"
+                        " Start/Stop to position</span></p>\n"
+"<p style=\" margin-top:2px; margin-bottom:2px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-family:'MS Shell Dlg 2'; font-size:9pt;\">- 2 : Manual jog</span></p></body></html>", None))
         self.label_x_confimed.setText(QCoreApplication.translate("MainWindow", u"0", None))
         self.label_y_confimed.setText(QCoreApplication.translate("MainWindow", u"0", None))
         self.label_z_confimed.setText(QCoreApplication.translate("MainWindow", u"0", None))
         self.label_7.setText(QCoreApplication.translate("MainWindow", u"1", None))
         self.button_send.setText(QCoreApplication.translate("MainWindow", u"Send", None))
+        self.buttonUpdatePort.setText(QCoreApplication.translate("MainWindow", u"Update Ports", None))
         self.menuOption.setTitle(QCoreApplication.translate("MainWindow", u"Option", None))
     # retranslateUi
 

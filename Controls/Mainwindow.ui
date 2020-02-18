@@ -33,7 +33,7 @@
    <widget class="QLabel" name="label_5">
     <property name="geometry">
      <rect>
-      <x>140</x>
+      <x>70</x>
       <y>9</y>
       <width>80</width>
       <height>20</height>
@@ -62,9 +62,9 @@
    <widget class="QComboBox" name="comboBoxPort">
     <property name="geometry">
      <rect>
-      <x>200</x>
+      <x>120</x>
       <y>10</y>
-      <width>235</width>
+      <width>261</width>
       <height>20</height>
      </rect>
     </property>
@@ -157,7 +157,7 @@
      <rect>
       <x>610</x>
       <y>0</y>
-      <width>321</width>
+      <width>311</width>
       <height>581</height>
      </rect>
     </property>
@@ -569,7 +569,7 @@ background-color: white;
       <rect>
        <x>12</x>
        <y>370</y>
-       <width>296</width>
+       <width>181</width>
        <height>131</height>
       </rect>
      </property>
@@ -578,9 +578,10 @@ background-color: white;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
 &lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'MS Shell Dlg 2'; font-size:8pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p style=&quot; margin-top:2px; margin-bottom:2px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:9pt;&quot;&gt;This is the command manager :&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:2px; margin-bottom:2px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:9pt;&quot;&gt;- 1 : Start/Stop to position&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:2px; margin-bottom:2px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:9pt;&quot;&gt;- 2 : Manual jog&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+&lt;p align=&quot;center&quot; style=&quot; margin-top:2px; margin-bottom:2px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'MS Shell Dlg 2'; font-size:10pt; font-weight:600;&quot;&gt;This is the command&lt;/span&gt;&lt;/p&gt;
+&lt;p align=&quot;center&quot; style=&quot; margin-top:2px; margin-bottom:2px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'MS Shell Dlg 2'; font-size:10pt; font-weight:600;&quot;&gt;manager :&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:2px; margin-bottom:2px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'MS Shell Dlg 2'; font-size:9pt;&quot;&gt;- 1 : Start/Stop to position&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:2px; margin-bottom:2px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'MS Shell Dlg 2'; font-size:9pt;&quot;&gt;- 2 : Manual jog&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
      </property>
      <property name="alignment">
       <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
@@ -722,6 +723,19 @@ border-color: rgb(111, 111, 111);</string>
     <zorder>label_7</zorder>
     <zorder>button_send</zorder>
    </widget>
+   <widget class="QPushButton" name="buttonUpdatePort">
+    <property name="geometry">
+     <rect>
+      <x>410</x>
+      <y>5</y>
+      <width>93</width>
+      <height>30</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Update Ports</string>
+    </property>
+   </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">
@@ -729,7 +743,7 @@ border-color: rgb(111, 111, 111);</string>
      <x>0</x>
      <y>0</y>
      <width>1028</width>
-     <height>21</height>
+     <height>26</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuOption">
