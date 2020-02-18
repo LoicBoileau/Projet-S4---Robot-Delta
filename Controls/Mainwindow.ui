@@ -9,8 +9,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1099</width>
-    <height>809</height>
+    <width>1028</width>
+    <height>724</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -675,6 +675,33 @@ border-color: rgb(111, 111, 111);</string>
       <string>Send</string>
      </property>
     </widget>
+    <zorder>label_2</zorder>
+    <zorder>label_theta1</zorder>
+    <zorder>lineEdit_x</zorder>
+    <zorder>button_command</zorder>
+    <zorder>lineEdit_command</zorder>
+    <zorder>checkBox_cinDir</zorder>
+    <zorder>lineEdit_y</zorder>
+    <zorder>label_z</zorder>
+    <zorder>label_6</zorder>
+    <zorder>lineEdit_theta1</zorder>
+    <zorder>label_x</zorder>
+    <zorder>line_3</zorder>
+    <zorder>checkBox_cinInv</zorder>
+    <zorder>EStop</zorder>
+    <zorder>label_theta3</zorder>
+    <zorder>lineEdit_theta2</zorder>
+    <zorder>lineEdit_theta3</zorder>
+    <zorder>lineEdit_z</zorder>
+    <zorder>label_y</zorder>
+    <zorder>pushButton_Params</zorder>
+    <zorder>label_theta2</zorder>
+    <zorder>button_command_Stop</zorder>
+    <zorder>label_x_confimed</zorder>
+    <zorder>label_y_confimed</zorder>
+    <zorder>label_z_confimed</zorder>
+    <zorder>label_7</zorder>
+    <zorder>button_send</zorder>
    </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">
@@ -682,7 +709,7 @@ border-color: rgb(111, 111, 111);</string>
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>1099</width>
+     <width>1028</width>
      <height>21</height>
     </rect>
    </property>
