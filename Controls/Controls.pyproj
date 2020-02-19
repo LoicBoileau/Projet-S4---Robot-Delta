@@ -11,7 +11,8 @@
     <OutputPath>.</OutputPath>
     <Name>Controls</Name>
     <RootNamespace>Controls</RootNamespace>
-    <InterpreterId>MSBuild|RaspberryPi|$(MSBuildProjectFullPath)</InterpreterId>
+    <InterpreterId>
+    </InterpreterId>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
     <DebugSymbols>true</DebugSymbols>
@@ -27,17 +28,6 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Mainwindow.py" />
-  </ItemGroup>
-  <ItemGroup>
-    <Interpreter Include="RaspberryPi\">
-      <Id>RaspberryPi</Id>
-      <Version>3.8</Version>
-      <Description>RaspberryPi (Python 3.8 (64-bit))</Description>
-      <InterpreterPath>Scripts\python.exe</InterpreterPath>
-      <WindowsInterpreterPath>Scripts\pythonw.exe</WindowsInterpreterPath>
-      <PathEnvironmentVariable>PYTHONPATH</PathEnvironmentVariable>
-      <Architecture>X64</Architecture>
-    </Interpreter>
   </ItemGroup>
   <ItemGroup>
     <Content Include="Mainwindow.ui" />
