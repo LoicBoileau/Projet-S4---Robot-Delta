@@ -11,7 +11,8 @@ et tu cliques sur le .exe appelé "designer.exe"
 Aller dans le menu de VS "outils" ou "tools", ensuite aller dans "ligne de commande",
 "invite de commande développeur" et entrer les deux commandes suivantes :
 cd Controls
-pyside2-uic Mainwindow.ui -o Mainwindow.py
+//Pas prendre cette commande//pyside2-uic Mainwindow.ui -o Mainwindow38.py
+pyside-uic Mainwindow.ui -o Mainwindow34.py
 
 ## Creating the virtual environnement to program
 Pour programmer le UI il faut un environnement virtuel qui contient les librairies utilisées,

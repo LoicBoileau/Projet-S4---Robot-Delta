@@ -11,8 +11,7 @@
     <OutputPath>.</OutputPath>
     <Name>Controls</Name>
     <RootNamespace>Controls</RootNamespace>
-    <InterpreterId>
-    </InterpreterId>
+    <InterpreterId>Global|PythonCore|3.4-32</InterpreterId>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
     <DebugSymbols>true</DebugSymbols>
@@ -27,12 +26,16 @@
     <Compile Include="GUI.py">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Mainwindow.py" />
+    <Compile Include="Mainwindow34.py" />
+    <Compile Include="Mainwindow38.py" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Mainwindow.ui" />
-    <Content Include="pyside2-uic.exe" />
     <Content Include="requirements.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <InterpreterReference Include="Global|PythonCore|3.4-32" />
+    <InterpreterReference Include="Global|VisualStudio|venvPy (Python 3.8 (64-bit))" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.targets" />
   <!-- Uncomment the CoreCompile target to enable the Build command in

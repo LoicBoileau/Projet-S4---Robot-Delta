@@ -1,7 +1,6 @@
-Click==7.0
-pip==20.0.2
+pip==6.0.8
 pyserial==3.4
-PySide2==5.14.1
-python-dotenv==0.11.0
-setuptools==45.2.0
-shiboken2==5.14.1
+PySide==1.2.4
+setuptools==12.0.5
+You
+You

@@ -233,7 +233,7 @@ background-color: white;
       <string>Start Command</string>
      </property>
     </widget>
-    <widget class="QLineEdit" name="lineEdit_command">
+    <widget class="QLineEdit" name="lineEdit_ChangeCommand">
      <property name="geometry">
       <rect>
        <x>200</x>
@@ -251,7 +251,7 @@ background-color: white;
       <string notr="true">background-color: rgb(255, 255, 255);</string>
      </property>
      <property name="text">
-      <string>-10</string>
+      <string>1</string>
      </property>
      <property name="alignment">
       <set>Qt::AlignCenter</set>
@@ -650,7 +650,7 @@ border-color: rgb(111, 111, 111);</string>
       <set>Qt::AlignCenter</set>
      </property>
     </widget>
-    <widget class="QLabel" name="label_7">
+    <widget class="QLabel" name="label_commandNumber">
      <property name="geometry">
       <rect>
        <x>170</x>
@@ -677,7 +677,7 @@ border-color: rgb(111, 111, 111);</string>
       <set>Qt::AlignCenter</set>
      </property>
     </widget>
-    <widget class="QPushButton" name="button_send">
+    <widget class="QPushButton" name="button_sendCommandNb">
      <property name="geometry">
       <rect>
        <x>250</x>
@@ -699,7 +699,7 @@ border-color: rgb(111, 111, 111);</string>
     <zorder>label_theta1</zorder>
     <zorder>lineEdit_x</zorder>
     <zorder>button_command</zorder>
-    <zorder>lineEdit_command</zorder>
+    <zorder>lineEdit_ChangeCommand</zorder>
     <zorder>checkBox_cinDir</zorder>
     <zorder>lineEdit_y</zorder>
     <zorder>label_z</zorder>
@@ -720,8 +720,8 @@ border-color: rgb(111, 111, 111);</string>
     <zorder>label_x_confimed</zorder>
     <zorder>label_y_confimed</zorder>
     <zorder>label_z_confimed</zorder>
-    <zorder>label_7</zorder>
-    <zorder>button_send</zorder>
+    <zorder>label_commandNumber</zorder>
+    <zorder>button_sendCommandNb</zorder>
    </widget>
    <widget class="QPushButton" name="buttonUpdatePort">
     <property name="geometry">

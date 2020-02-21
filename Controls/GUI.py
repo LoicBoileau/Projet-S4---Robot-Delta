@@ -1,34 +1,21 @@
-#Block comment in python : ctrl+K and ctrl+c to comment and ctrl+k and ctrl+u
+#Block comment en python : ctrl+K and ctrl+c to comment and ctrl+k and ctrl+u
 #to uncomment
 #*****************
 
 #-------------------------------------------------------
-#This section is to automatically compile the .ui file and run the application
-
-#import sys
-#from PySide2 import QtCore, QtGui, QtWidgets
-#from PySide2.QtUiTools import QUiLoader
-
-#loader = QUiLoader()
-
-#app = QtWidgets.QApplication(sys.argv)
-#window = loader.load("Mainwindow.ui", None)
-#window.show()
-#app.exec_()
-#------------------------------------------------------
-
-#-------------------------------------------------------
-#This section is to take the mainwindow.py and run it.
-#Dont forget to recompile it if you want the updated UI.  To recompile go to
-#readMe.
+#Cette section prend le fichier Mainwindow.py et l'execute.
+#Ne pas oublier de recompiler le .py lorsqu'une modification est faite dans le fichier .ui
+#Pour savoir la commande, aller lire le readMe.
 import sys
-from PySide2 import QtWidgets, QtCore
-from Mainwindow import Ui_MainWindow
+from PySide import QtGui, QtCore
+from Mainwindow34 import Ui_MainWindow
 import os
 import serial.tools.list_ports
 import time
 
-class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
+
+
+class MainWindow(QtGui.QMainWindow, Ui_MainWindow):
     #initialisation du mainwindow object qui se trouve dans mainwindow.py
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -37,7 +24,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         self.threadpool = QtCore.QThreadPool()
         print("Multithreading with maximum %d threads" % self.threadpool.maxThreadCount())
 
-        self.button_group = QtWidgets.QButtonGroup(self) #creating exclusive checkboxes
+        self.button_group = QtGui.QButtonGroup(self) #creer checkboxes exclusives
         self.button_group.addButton(self.checkBox_cinDir)
         self.button_group.addButton(self.checkBox_cinInv)
         self.checkBox_cinDir.setChecked(True)
@@ -49,13 +36,25 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
 
 
     #-----------------Ajout des fonctions pour connecter--------------------------------------
-    def eStop():
-        #self.timer.stop() #uncomment if you need to stop the timer thread loop
-        #which updates elements in the UI
+    def eStop(self):
+        #self.timer.stop() #uncomment si tu veux arrêter la loop de timer qui créer une thread a chaque délai
         ''
 
-    def commandButtonClicked(self):
-        self.lineEdit_command.setText('-1')
+    def sendCommandNumber(self):
+        self.commandNb = self.lineEdit_ChangeCommand.text()
+        try:
+            cmdNb = int(self.commandNb)
+        except:
+            cmdNb = 0
+            print('Ceci n''est pas une commande')
+            return
+        if cmdNb < 1 and cmdNb != 0:
+            self.commandNb = 0
+            print('Mauvais numero de commande')
+        else:
+            self.commandNb = cmdNb;
+        self.label_commandNumber.setText(str(self.commandNb))
+        print('Command is set to: ', self.commandNb)
 
     def paramUpdateCoordonneCart(self):
         """Pour updater les coordonnees cartesiennes lorsqu'elles sont modifiees"""
@@ -90,14 +89,22 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
             
     def timeSecCheck(self,*args,**kwargs):
         print('The timer thread is runing')
-
+    
+    #FONCTIONS pour self.comboBoxPort
     def updatePort(self):
         print('A search for ports has been created')
         infoPorts = list(serial.tools.list_ports.comports())
-        currentText = self.comboBoxPort.currentText()
         self.comboBoxPort.clear()
-        self.comboBoxPort.addItems(info[0] for info in infoPorts) 
+        self.listNamePorts = []
+        for ports in infoPorts:
+            self.listNamePorts.append(ports[0])
+        self.comboBoxPort.addItems(self.listNamePorts)
+        self.currentPort = self.comboBoxPort.currentText()
         print('A search for ports has closed') 
+
+    def portChanged(self):
+        self.currentPort = self.comboBoxPort.currentText()
+        print('Port: ', self.currentPort)
     
     #-----------------------Thread functions------------------------------------------------------
     def createTimeThread(self):
@@ -105,18 +112,19 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         self.threadpool.start(worker)
    
     def createPortThread(self):
-        worker = Worker(self.updatePort) # Any other args, kwargs are passed to the run function
+        worker = Worker(self.updatePort) # Used to check for new ports when button is clicked
         self.threadpool.start(worker)
 
     #-------------------Modification et connection des widgets ici----------------------------------
     def setup(self):
-        self.button_command.clicked.connect(self.commandButtonClicked)
+        self.button_sendCommandNb.clicked.connect(self.sendCommandNumber)
         self.pushButton_Params.clicked.connect(self.paramUpdateCoordonneCart)
         self.EStop.clicked.connect(self.eStop)
-        self.checkBox_cinDir.stateChanged.connect(self.checkboxCinDirClicked)
-        self.checkBox_cinInv.stateChanged.connect(self.checkboxCinInvClicked)
         self.buttonUpdatePort.clicked.connect(self.createPortThread)
 
+        self.checkBox_cinDir.stateChanged.connect(self.checkboxCinDirClicked)
+        self.checkBox_cinInv.stateChanged.connect(self.checkboxCinInvClicked)
+        self.comboBoxPort.currentIndexChanged.connect(self.portChanged)
 
         self.createPortThread()
         self.serialPort = self.comboBoxPort.currentText()
@@ -132,18 +140,6 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
 
 #---------------------------Thread Class-----------------------------------
 class Worker(QtCore.QRunnable):
-    '''
-    Worker thread
-
-    Inherits from QRunnable to handler worker thread setup, signals and wrap-up.
-
-    :param callback: The function callback to run on this worker thread. Supplied args and 
-                     kwargs will be passed through to the runner.
-    :type callback: function
-    :param args: Arguments to pass to the callback function
-    :param kwargs: Keywords to pass to the callback function
-
-    '''
     def __init__(self, fn, *args, **kwargs):
         super(Worker, self).__init__()
         # Store constructor arguments (re-used for processing)
@@ -159,11 +155,7 @@ class Worker(QtCore.QRunnable):
         self.fn(*self.args, **self.kwargs)
 
 
-
-  
-
-
-app = QtWidgets.QApplication(sys.argv)
+app = QtGui.QApplication(sys.argv)
 win = MainWindow()
 win.show()
 sys.exit(app.exec_())
