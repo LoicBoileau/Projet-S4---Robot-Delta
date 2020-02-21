@@ -25,5 +25,6 @@ librairies.
 Pour programmer les moteurs Dynamixel, il faut le IDE d'Arduino avec la librairie de OpenCR.
 La programmation n'est pas très complexe, puisque la librairie contient des exemples de codes qui 
 permettent de facilement intégrer la fonctionnalité désirée.
+
 http://emanual.robotis.com/docs/en/parts/controller/opencr10/
 http://emanual.robotis.com/docs/en/software/dynamixel/dynamixel_workbench/
