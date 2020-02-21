@@ -7,16 +7,23 @@ Pour accéder au designer de .ui de Qt, accéder au virtualEnvironnement appelé
 Dans le fichier, aller ensuite dans "Lib", "site-packages", "PySide2"
 et cliquer sur le .exe appelé "designer.exe".
 
-## Converting .ui to .py 
+## Convertir .ui à .py 
 Aller dans le menu de VS "outils" ou "tools", ensuite aller dans "ligne de commande",
 "invite de commande développeur" et entrer les deux commandes suivantes :
 cd Controls
 //Pas prendre cette commande//pyside2-uic Mainwindow.ui -o Mainwindow38.py
 pyside-uic Mainwindow.ui -o Mainwindow34.py
 
-## Creating the virtual environnement to program
+## Creation de l'environnement virtual à programmer
 Pour programmer le UI, il faut un environnement virtuel qui contient les librairies utilisées.
 Pour ce faire, lorsque la solution est téléchargée, premièrement enlever du dossier l'environnement
 virtuel appelé RaspberryPi et en créer un nouveau en allant dans "Explorateur de solutions". Choisir 
 la version de python et ensuite prendre le fichier requirements.txt pour télécharger les bonnes 
 librairies.
+
+## Programmer les moteurs
+Pour programmer les moteurs Dynamixel, il faut le IDE d'Arduino avec la librairie de OpenCR.
+La programmation n'est pas très complexe, puisque la librairie contient des exemples de codes qui 
+permettent de facilement intégrer la fonctionnalité désirée.
+http://emanual.robotis.com/docs/en/parts/controller/opencr10/
+http://emanual.robotis.com/docs/en/software/dynamixel/dynamixel_workbench/
