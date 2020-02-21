@@ -12,6 +12,7 @@
     <Name>Controls</Name>
     <RootNamespace>Controls</RootNamespace>
     <InterpreterId>Global|PythonCore|3.4-32</InterpreterId>
+    <SuppressPackageInstallationPrompt>True</SuppressPackageInstallationPrompt>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
     <DebugSymbols>true</DebugSymbols>
