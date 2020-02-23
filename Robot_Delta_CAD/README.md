@@ -12,7 +12,7 @@
 
 * Les « *turnbuckles* » sont utilisés pour accorder plus de liberté au mouvement de rotation des biceps avec les avant-bras ainsi qu'au avant-bras avec l'effecteur.
 
-* Le « Fixateur_Bicep_Turnbuckle » sert à empêcher que le « *turbuckle* » supérieur, celui attaché au bicep puisse se déplacer horizontalement ou tourner. 
+* Le « Fixateur_Bicep_Turnbuckle » sert à empêcher que le « *turnbuckle* » supérieur, celui attaché au bicep puisse se déplacer horizontalement ou tourner. 
 
 * Les gaines thermorétrécissables sont chaufées à l'aide d'un fer à souder. Son but est d'empêcher le mouvement vertical des avant-bras. 
 
