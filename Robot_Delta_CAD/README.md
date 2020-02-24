@@ -14,7 +14,7 @@
 
 * Le « Fixateur_Bicep_Turnbuckle » sert à empêcher que le « *turnbuckle* » supérieur, celui attaché au bicep puisse se déplacer horizontalement ou tourner. 
 
-* Les gaines thermorétrécissables sont chaufées à l'aide d'un fer à souder. Son but est d'empêcher le mouvement vertical des avant-bras. 
+* Les gaines thermorétrécissables sont chaufées à l'aide d'un pistolet thermique « *Heat Gun* ». Son but est d'empêcher le mouvement vertical des avant-bras. 
 
 * L'attache_Turnbuckle_Effecteur sert à relier le « *turnbuckle* » inférieur à l'effecteur.
 
