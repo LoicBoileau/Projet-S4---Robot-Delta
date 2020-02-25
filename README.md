@@ -30,7 +30,7 @@ virtuel appelé RaspberryPi et en créer un nouveau en allant dans "Explorateur 
 la version de python et ensuite prendre le fichier requirements.txt pour télécharger les bonnes 
 librairies.
 
-## Programmer les moteurs
+### Programmer les moteurs
 Pour programmer les moteurs Dynamixel, il faut le IDE d'Arduino avec la librairie de OpenCR.
 La programmation n'est pas très complexe, puisque la librairie contient des exemples de codes qui 
 permettent de facilement intégrer la fonctionnalité désirée.
