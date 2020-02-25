@@ -1,8 +1,6 @@
 # Projet-S4---Robot-Delta
 Projet de session hiver 2020 Équipe 1 Université de Sherbrooke - Robot Delta
 
-## License MIT
-
 ## Requis pour l'Interface graphique
 ### Coposantes
   - RaspberryPi avec python 3.4 installé (ou une version moins récente)
@@ -23,6 +21,10 @@ Aller dans le menu de VS "outils" ou "tools", ensuite aller dans "ligne de comma
 "invite de commande développeur" et entrer les deux commandes suivantes :
 cd Controls
 pyside-uic Mainwindow.ui -o Mainwindow34.py
+
+### Mathématique du modèle
+Une simulation physique a été conçu pour décrire la cinématique directe et inverse du robot.
+>Disponible [ici](https://github.com/LoicBoileau/Projet-S4---Robot-Delta/tree/master/Simulations%20Physiques).
 
 ### Creation de l'environnement virtual à programmer
 Pour programmer le UI, il faut un environnement virtuel qui contient les librairies utilisées.
