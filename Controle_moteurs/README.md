@@ -1,5 +1,7 @@
 ### Programmer les moteurs
 Pour programmer les moteurs Dynamixel, il faut le IDE d'Arduino avec la librairie de OpenCR.
+Il faut également que les moteurs soient alimentés par une source d'alimentation externe, car l'alimentation fournie par le port USB de
+l'ordinateur n'est pas suffisant au fonctionnement des moteurs.
 La programmation n'est pas très complexe, puisque la librairie contient des exemples de codes qui 
 permettent de facilement intégrer la fonctionnalité désirée. Les liens suivants dirigent vers les tutoriels appropriés.
 Il est nécessaire de suivre les tutoriels afin d'identifier les moteurs. Afin de spécifier un déplacement des moteurs selon la 
