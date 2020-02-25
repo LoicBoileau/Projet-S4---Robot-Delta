@@ -1,6 +1,6 @@
 # Simulation Physiques
 
-![DeltaRobot]([https://1ugn2l2m3z2y31d4y73c1m5w-wpengine.netdna-ssl.com/wp-content/uploads/2016/01/Delta-Robot-Diagram.jpg]( https://1ugn2l2m3z2y31d4y73c1m5w-wpengine.netdna-ssl.com/wp-content/uploads/2016/01/Delta-Robot-Diagram.jpg ))
+![DeltaRobot](https://1ugn2l2m3z2y31d4y73c1m5w-wpengine.netdna-ssl.com/wp-content/uploads/2016/01/Delta-Robot-Diagram.jpg)
 
 ## Simulation MotionGenesis
 
