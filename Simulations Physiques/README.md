@@ -11,12 +11,12 @@ Logiciel de simulation physique permettant semblable à MatLab, permettant de fa
 
 ### Cinématique directe
 Description statiques du robot. 
-- Prend en **entrée** les angles ![equation](http://www.sciweavers.org/tex2img.php?eq=%5Ctheta_1%2C%20%5Ctheta_2&bc=White&fc=Black&im=png&fs=12&ff=arev&edit=0) et ![equation](http://www.sciweavers.org/tex2img.php?eq=%5Ctheta_3&bc=White&fc=Black&im=bmp&fs=12&ff=arev&edit=0) des moteurs.
-- Donne en **sortie** la position ![equation](http://www.sciweavers.org/tex2img.php?eq=P%28x%2Cy%2Cz%29&bc=White&fc=Black&im=jpg&fs=12&ff=arev&edit=0) de la "pince" du robot.
+- Prend en **entrée** les angles &theta;<sub>1</sub>, &theta;<sub>2</sub> et &theta;<sub>3</sub> des moteurs.
+- Donne en **sortie** la position P(x,y,z) de la "pince" du robot.
 
 Est décrit par le fichier **MotionGenesis.txt**.
 
 ### Cinématique inverse
 Description statiques du robot. 
-- Donne en **sortie** la position ![equation](http://www.sciweavers.org/tex2img.php?eq=P%28x%2Cy%2Cz%29&bc=White&fc=Black&im=jpg&fs=12&ff=arev&edit=0) de la "pince" du robot.
-- Prend en **entrée** les angles ![equation](http://www.sciweavers.org/tex2img.php?eq=%5Ctheta_1%2C%20%5Ctheta_2&bc=White&fc=Black&im=png&fs=12&ff=arev&edit=0) et ![equation](http://www.sciweavers.org/tex2img.php?eq=%5Ctheta_3&bc=White&fc=Black&im=bmp&fs=12&ff=arev&edit=0) des moteurs.
+- Donne en **sortie** la position P(x,y,z) de la "pince" du robot.
+- Prend en **entrée** les angles &theta;<sub>1</sub>, &theta;<sub>2</sub> et &theta;<sub>3</sub> des moteurs.
