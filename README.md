@@ -1,7 +1,7 @@
 # Projet-S4---Robot-Delta
 Projet de session hiver 2020 Équipe 1 Université de Sherbrooke - Robot Delta
 
-## licence MIT
+## Licence MIT
 Puisque notre projet est en open source, nous avons opter pour une licence MIT, car c'est une licence très permissive, de plus elle est simple. Elle permet que tous les utilisateurs peuvent utiliser notre projet à leur guise, c'est-à-dire le modifier, le distribuer, l'utiliser à des fins commerciales ainsi que l'utiliser en privé. Toutefois nous n'avons pas de garantie sur ce qui arrive avec ceux qui utilise notre projet et ils ne peuvent pas nous poursuivre si jamais ils se blessent ou autre.
 
 Pour une description complète de la License, voir le fichier License.
