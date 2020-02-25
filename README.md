@@ -4,6 +4,9 @@ Projet de session hiver 2020 Équipe 1 Université de Sherbrooke - Robot Delta
 ## License MIT
 Pour une description complète de la License, voir le fichier License.
 
+### Partie mécanique
+Pour voir la liste des matériaux, les étapes d'assemblage du robot ainsi qu'une description des fichiers et des pièces allez voir dans la fichier Robot_Delta_CAD.
+
 ## Mathématiques du modèle
 Une simulation physique a été conçu pour décrire la cinématique directe et inverse du robot.
 -Disponible [ici](https://github.com/LoicBoileau/Projet-S4---Robot-Delta/tree/master/Simulations%20Physiques).
@@ -38,3 +41,5 @@ Pour ce faire, lorsque la solution est téléchargée, premièrement enlever du 
 virtuel appelé RaspberryPi et en créer un nouveau en allant dans "Explorateur de solutions". Choisir 
 la version de python et ensuite prendre le fichier requirements.txt pour télécharger les bonnes 
 librairies.
+
+
