@@ -12,8 +12,8 @@ Projet de session hiver 2020 Équipe 1 Université de Sherbrooke - Robot Delta
 GUI.py est le main pour l'interface graphique et dépend du fichier de setup du UI appelé Mainwindow34.py
 
 ### Designer .UI
-Pour accéder au designer de .ui de Qt, accéder au virtualEnvironnement appelé RaspberryPi.
-Dans le fichier, aller ensuite dans "Lib", "site-packages", "PySide2"
+Pour accéder au designer de .ui de Qt, accéder au virtualEnvironnement ou le dossier contenant les librairies de python 3.4.
+Dans le fichier, aller ensuite dans "Lib", "site-packages", "PySide"
 et cliquer sur le .exe appelé "designer.exe".
 
 ### Convertir .ui à .py 
