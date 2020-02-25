@@ -17,8 +17,8 @@ Pour programmer les moteurs Dynamixel, il faut aller consulter le fichier "READM
 ## Requis pour l'Interface graphique
 ### Coposantes
   - RaspberryPi avec python 3.4 installé (ou une version moins récente)
-  - Python 3.4 installé pour programmer sur un ordinateur 
-  - Librairie pyside et pyserial installé dans python 3.4 ou dans un environnement virtuel
+  - Python 3.4 installé sur un ordinateur pour programmer sur un ordinateur 
+  - Librairie PySide et PySerial installé dans python 3.4 ou dans un environnement virtuel
   - IDE de programmation pour python (i.e. Visual Studio ou Visual Studio Code)
   
 ### Main pour Interface graphique
@@ -26,14 +26,12 @@ GUI.py est le main pour l'interface graphique et dépend du fichier de setup du 
 
 ### Designer .UI
 Pour accéder au designer de .ui de Qt, accéder au virtualEnvironnement ou le dossier contenant les librairies de python 3.4.
-Dans le fichier, aller ensuite dans "Lib", "site-packages", "PySide"
-et cliquer sur le .exe appelé "designer.exe".
+Dans le fichier, aller ensuite dans "Lib", "site-packages", "PySide" et cliquer sur le .exe appelé "designer.exe".
 
 ### Convertir .ui à .py 
-Aller dans le menu de VS "outils" ou "tools", ensuite aller dans "ligne de commande",
-"invite de commande développeur" et entrer les deux commandes suivantes :
-cd Controls
-pyside-uic Mainwindow.ui -o Mainwindow34.py
+Aller dans le menu de VS "outils" ou "tools", ensuite aller dans "ligne de commande", "invite de commande développeur" et entrer les deux commandes suivantes :
+* cd Controls
+* pyside-uic Mainwindow.ui -o Mainwindow34.py
 
 ### Creation de l'environnement virtual à programmer
 Pour programmer le UI, il faut un environnement virtuel qui contient les librairies utilisées.
