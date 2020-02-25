@@ -11,7 +11,7 @@ Logiciel de simulation physique permettant semblable à MatLab, permettant de fa
 
 ### Cinématique directe
 Description statiques du robot. 
-- Prend en **entrée** les angles $\theta_1, \theta_2$ et $\theta_3$ des moteurs.
+- Prend en **entrée** les angles ![equation](http://www.sciweavers.org/tex2img.php?eq=%20%5Ctheta_1%2C%20%5Ctheta_2&bc=White&fc=Black&im=png&fs=12&ff=arev&edit=0) et ![equation](http://www.sciweavers.org/tex2img.php?eq=%20%5Ctheta_3&bc=White&fc=Black&im=png&fs=12&ff=arev&edit=0)$\theta_1, \theta_2$ et $\theta_3$ des moteurs.
 - Donne en **sortie** la position $P(x,y,z)$ de la "pince" du robot.
 
 Est décrit par le fichier **MotionGenesis.txt**.
