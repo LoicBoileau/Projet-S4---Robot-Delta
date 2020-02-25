@@ -22,7 +22,7 @@ Aller dans le menu de VS "outils" ou "tools", ensuite aller dans "ligne de comma
 cd Controls
 pyside-uic Mainwindow.ui -o Mainwindow34.py
 
-### Mathématique du modèle
+### Mathématiques du modèle
 Une simulation physique a été conçu pour décrire la cinématique directe et inverse du robot.
 >Disponible [ici](https://github.com/LoicBoileau/Projet-S4---Robot-Delta/tree/master/Simulations%20Physiques).
 
