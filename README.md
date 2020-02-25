@@ -1,6 +1,8 @@
 # Projet-S4---Robot-Delta
 Projet de session hiver 2020 Équipe 1 Université de Sherbrooke - Robot Delta
 
+## License MIT
+
 ## Requis pour l'Interface graphique
 ### Coposantes
   - RaspberryPi avec python 3.4 installé (ou une version moins récente)
