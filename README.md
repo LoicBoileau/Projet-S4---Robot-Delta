@@ -8,6 +8,8 @@ Projet de session hiver 2020 Équipe 1 Université de Sherbrooke - Robot Delta
   - Librairie pyside et pyserial installé dans python 3.4 ou dans un environnement virtuel
   - IDE de programmation pour python (i.e. Visual Studio ou Visual Studio Code)
   
+### Main pour Interface graphique
+GUI.py est le main pour l'interface graphique et dépend du fichier de setup du UI appelé Mainwindow34.py
 
 ### Designer .UI
 Pour accéder au designer de .ui de Qt, accéder au virtualEnvironnement appelé RaspberryPi.
