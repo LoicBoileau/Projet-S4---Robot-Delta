@@ -12,7 +12,7 @@ from Mainwindow34 import Ui_MainWindow
 import os
 import serial.tools.list_ports
 import time
-
+import struct
 
 
 class MainWindow(QtGui.QMainWindow, Ui_MainWindow):
