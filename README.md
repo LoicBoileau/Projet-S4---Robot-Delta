@@ -1,21 +1,30 @@
-﻿# Projet-S4---Robot-Delta
+# Projet-S4---Robot-Delta
 Projet de session hiver 2020 Équipe 1 Université de Sherbrooke - Robot Delta
 
+## Requis pour l'Interface graphique
+### Coposantes
+  - RaspberryPi avec python 3.4 installé (ou une version moins récente)
+  - Python 3.4 installé pour programmer sur un ordinateur 
+  - Librairie pyside et pyserial installé dans python 3.4 ou dans un environnement virtuel
+  - IDE de programmation pour python (i.e. Visual Studio ou Visual Studio Code)
+  
 
-## Designer .UI
-Pour accéder au designer de .ui de Qt, accéder au virtualEnvironnement créer pour être capable de runner pyside.
-Dans le fichier, aller ensuite dans "Lib", "site-packages", "PySide"
+### Designer .UI
+Pour accéder au designer de .ui de Qt, accéder au virtualEnvironnement appelé RaspberryPi.
+Dans le fichier, aller ensuite dans "Lib", "site-packages", "PySide2"
 et cliquer sur le .exe appelé "designer.exe".
 
-## Convertir .ui à .py 
+### Convertir .ui à .py 
 Aller dans le menu de VS "outils" ou "tools", ensuite aller dans "ligne de commande",
 "invite de commande développeur" et entrer les deux commandes suivantes :
 cd Controls
+//Pas prendre cette commande//pyside2-uic Mainwindow.ui -o Mainwindow38.py
 pyside-uic Mainwindow.ui -o Mainwindow34.py
 
-## Creation de l'environnement virtual à programmer
+### Creation de l'environnement virtual à programmer
 Pour programmer le UI, il faut un environnement virtuel qui contient les librairies utilisées.
-Pour ce faire, lorsque la solution est téléchargée, en créer un nouveau en allant dans "Explorateur de solutions". Choisir 
+Pour ce faire, lorsque la solution est téléchargée, premièrement enlever du dossier l'environnement
+virtuel appelé RaspberryPi et en créer un nouveau en allant dans "Explorateur de solutions". Choisir 
 la version de python et ensuite prendre le fichier requirements.txt pour télécharger les bonnes 
 librairies.
 
