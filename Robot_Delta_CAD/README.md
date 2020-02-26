@@ -2,19 +2,19 @@
 ## Descriptions des pièces de l'assemblage
 * La plateforme supérieure sert à supporter l'ensemble du robot. 
 
-* Les équerres permettent de soutenir les moteurs à la platefrome.
+* Les équerres permettent de soutenir les moteurs à la plateforme.
 
 * Les moteurs utilisés sont les Dynamixel XL-430. 
 
-* Le biceps est le premier bras (supérieur celui qui est le plus court).
+* Le biceps est le premier bras (supérieur, celui qui est le plus court).
 
-* L'avant-bras est le second bras (inférieur celui qui est plus long) qui est d'une longueur de 25 cm.
+* L'avant-bras est le second bras (inférieur, celui qui est plus long) qui est d'une longueur de 25 cm.
 
-* Les « *turnbuckles* » sont utilisés pour accorder plus de liberté au mouvement de rotation des biceps avec les avant-bras ainsi qu'au avant-bras avec l'effecteur. Ils sont achetés tel quel au lien suivant: https://traxxas.com/products/parts/3745.
+* Les « *turnbuckles* » sont utilisés pour accorder plus de liberté au mouvement de rotation des biceps avec les avant-bras ainsi qu'au avant-bras avec l'effecteur. Ils sont achetés tels quels au lien suivant: https://traxxas.com/products/parts/3745.
 
-* Le « Fixateur_Bicep_Turnbuckle » sert à empêcher que le « *turnbuckle* » supérieur, celui attaché au biceps puisse se déplacer horizontalement ou tourner. 
+* Le « Fixateur_Bicep_Turnbuckle » sert à empêcher que le « *turnbuckle* » supérieur, celui attaché au biceps, puisse se déplacer horizontalement ou tourner. 
 
-* Les gaines thermorétrécissables sont chaufées à l'aide d'un pistolet thermique « *Heat Gun* ». Son but est d'empêcher le mouvement vertical des avant-bras. 
+* Les gaines thermorétrécissables sont chauffées à l'aide d'un pistolet thermique « *Heat Gun* ». Son but est d'empêcher le mouvement vertical des avant-bras. 
 
 * L'attache_Turnbuckle_Effecteur sert à relier le « *turnbuckle* » inférieur à l'effecteur.
 
@@ -26,9 +26,9 @@
 
 * Bac_Poubelle et Bac_Recyclage sont deux bacs permettant aux déchets d'être triés.
 
-* Aluminium_Extrusion est la pièce qui a été utilisée pour faire l'assemblage de la basse du robot. 
+* Aluminium_Extrusion est la pièce qui a été utilisée pour faire l'assemblage de la base du robot. 
 
-* Planche_De_Travail est la planche d'opération du robot c'est-à-dire où les bacs ainsi que les déchets sont situés.
+* Planche_De_Travail est la planche d'opération du robot, c'est-à-dire où les bacs ainsi que les déchets sont situés.
 
 ## Description des assemblages
 * L'assemblage du robot est contenu dans le fichier « Assemblage_Robot_Delta ».
@@ -43,29 +43,29 @@
 ## Étapes d'assemblage
 1. Assembler la base du robot à l'aide des extrudés d'aluminium.
 
-2. Ensuite assembler les équerres à la plaque supérieure à l'aide de 2 vis M4 à tête cylindrique à six pans creux avec des écrous par équerre. Refaire cette opération trois fois.
+2. Ensuite, assembler les équerres à la plaque supérieure à l'aide de 2 vis M4 à tête cylindrique à six pans creux avec des écrous par équerre. Refaire cette opération trois fois.
 
-3. Par la suite assembler les moteurs aux équerres à l'aide de quatre vis M2 à tête cylindrique bombée à empreinte cruciforme et de rondelles « washer » par équerre. Refaire cette opération trois fois.
+3. Par la suite, assembler les moteurs aux équerres à l'aide de quatre vis M2 à tête cylindrique bombée à empreinte cruciforme et de rondelles « washer » par équerre. Refaire cette opération trois fois.
 
-4. Assembler les biceps aux moteurs à l'aide de quatre vis M2 à tête cylindrique bombée à six pans creux, par moteur, qui filte le bois du biceps lorsque la vis entre et qui se rend aux coupleurs du moteurs. Refaire cette opération trois fois.
+4. Assembler les biceps aux moteurs à l'aide de quatre vis M2 à tête cylindrique bombée à six pans creux, par moteur, qui filtre le bois du biceps lorsque la vis entre et qui se rend aux coupleurs du moteur. Refaire cette opération trois fois.
 
 5. Assembler les « *turnbuckles* » aux biceps en enlevant un des bouts des « *turnbuckles* » pour qu'ils puissent s'insérer dans le trou du biceps. Refaire cette opération trois fois.
 
 6. Remettre le bout enlevé des « *turnbuckles* ». Refaire cette opération trois fois.
 
-7. Insérer le « Fixateur_Bicep_Turnbuckle » de chaque côté du biceps et le serrer à l'aide d'une vis M4 à tête cylindrique à six pans creux et d'un écrou par « Fixateur_Bicep_Turnbuckle ». Ce qui empêche que les « *turnbuckles* » puissent se déplacer horizontalement ainsi que les rotations, sauf sur eux-mêmes. Refaire cette opération trois fois. 
+7. Insérer le « Fixateur_Bicep_Turnbuckle » de chaque côté du biceps et le serrer à l'aide d'une vis M4 à tête cylindrique à six pans creux et d'un écrou par « Fixateur_Bicep_Turnbuckle », ce qui empêchera que les « *turnbuckles* » puissent se déplacer horizontalement ainsi que les rotations, sauf sur eux-mêmes. Refaire cette opération trois fois. 
 
 8. Insérer « Attache_Turnbuckle_Effecteur » aux « *turnbuckles* » seulement en les poussant. Refaire cette opération trois fois. 
 
-9. Insérer deux vis M4 à tête cylindrique à six pans creux avec des écrous par                       « Attache_Turnbuckle_Effecteur » pour empêcher le mouvement horizontale des « *turnbuckles* » ainsi que les mouvements de rotation, sauf sur eux-mêmes encore une fois. Refaire cette opération trois fois.
+9. Insérer deux vis M4 à tête cylindrique à six pans creux avec des écrous par                       « Attache_Turnbuckle_Effecteur » pour empêcher le mouvement horizontal des « *turnbuckles* » ainsi que les mouvements de rotation, sauf sur eux-mêmes encore une fois. Refaire cette opération trois fois.
 
 10. Insérer les six tiges (avant-bras) dans les trous des « *turnbuckles* ».
 
 11. Découper les gaines thermorétrécissables en longueur de 1 cm 24 fois. (Quatre gaines thermorétrécissables par avant-bras).
 
-12. Pour un avant-bras: chauffer les morceaux de gaines thermorétrécissables pour empêcher que les   « *turnbuckles* » sortent de la tige. Donc il faut chauffer un morceau de gaine thermorétrécissable à chaque bout de la tige et les deux autres morceaux sont espacés par les « *turnbuckles* ». Ce qui fait en sorte que les « *turnbuckles* » ne peuvent pas se déplacer en translation et qu'ils sont situés aux extrémités des avant-bras. 
+12. Pour un avant-bras: chauffer les morceaux de gaines thermorétrécissables pour empêcher que les   « *turnbuckles* » sortent de la tige. Il faut donc chauffer un morceau de gaine thermorétrécissable à chaque bout de la tige et les deux autres morceaux sont espacés par les « *turnbuckles* ». Cela fait en sorte que les « *turnbuckles* » ne peuvent pas se déplacer en translation et qu'ils sont situés aux extrémités des avant-bras. 
 
-13. Prendre l'électroaimant et l'insérer dans son support respectif. Si ce dernier tombe de son support utiliser des vis M2 à tête cylindrique bombée à six pans creux pour qu'il reste en place.
+13. Prendre l'électroaimant et l'insérer dans son support respectif. Si ce dernier tombe de son support, utiliser des vis M2 à tête cylindrique bombée à six pans creux pour qu'il reste en place.
 
 14. Visser le support de l'électroaimant à l'effecteur à l'aide de quatre vis M4 à tête cylindrique à six pans creux avec des écrous.
 
@@ -87,7 +87,7 @@
 11. 1 support à électroaimant en plastique
 12. 1 effecteur en bois
 13. 28 vis M4 à tête cylindrique à six pans creux avec des écrous respectifs
-14. 12 vis M2 à tête cylindrique bombée à six pans creux avec 12 rondelles respectifs
+14. 12 vis M2 à tête cylindrique bombée à six pans creux avec 12 rondelles respectives
 15. 12 vis M2 à tête cylindrique bombée à empreinte cruciforme
 
 
