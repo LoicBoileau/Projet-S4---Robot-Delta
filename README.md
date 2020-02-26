@@ -37,7 +37,7 @@ Aller dans le menu de VS "outils" ou "tools", ensuite aller dans "ligne de comma
 
 ### Creation de l'environnement virtuel à programmer
 Pour programmer le UI, il faut un environnement virtuel qui contient les librairies utilisées.
-Pour en créer un nouveau,il faut aller dans "Explorateur de solutions". Choisir 
+Pour en créer un nouveau, il faut aller dans "Explorateur de solutions". Choisir 
 la version de python et ensuite prendre le fichier requirements.txt pour télécharger les bonnes 
 librairies.
 
