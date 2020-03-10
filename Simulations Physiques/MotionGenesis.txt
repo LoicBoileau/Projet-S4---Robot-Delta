@@ -3,7 +3,7 @@
 %------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 %   Physical objects.
 NewtonianFrame  N               % Newtonian reference frame
-RigidFrame      A, B, C
+RigidFrame      A, B, C, PA3, PB3, PC3
 RigidBody       A1, A2, B1, B2, C1, C2, P       % Technical name of body
 % RigidFrame      B                % Comment
 % Particle        Q                % Comment
@@ -15,9 +15,11 @@ Point           PA( P ), PB( P ), PC( P )
 % Point           PAo( P ), PBo( P ), PCo( P )
 %------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 %   Mathematical declarations.
-Variable    qA1'', qB1'', qC1''
+Specified    qA1'', qB1'', qC1''
 Variable    qA2'', qB2'', qC2''    % qA1 and its 1st and 2nd derivatives.
-Constant    l1 = 0.1 m, l2 = 0.23 m              % Reaction forces
+Variable    qA3'', qB3'', qC3''    % qA1 and its 1st and 2nd derivatives.
+Variable    Px'', Py'', Pz''
+Constant    l1 = 0.1 m, l2 = 0.23 m, l3 = -0.030185 m
 Constant    mA1, mA2, mB1, mB2, mC1, mC2, mP    % arms masses
 Constant    g = 9.80665 m/s^2    % Earth's gravitational acceleration
 Constant    anglu = 120 deg
@@ -59,6 +61,10 @@ A2.RotateZ( A1, qA2 )
 B2.RotateZ( B1, qB2 )
 C2.RotateZ( C1, qC2 )
 
+PA3.RotateZ( A2, qA3 )
+PB3.RotateZ( B2, qB3 )
+PC3.RotateZ( C2, qC3 )
+
 P.RotateZ( N, 0 )
 
 % //***********************************************
@@ -91,9 +97,9 @@ PA.Translate( AP, 0> )
 PB.Translate( BP, 0> )
 PC.Translate( CP, 0> )
 
-Pcm.Translate( PA, -0.030185 * Ax> )
-Pcm.Translate( PB, -0.030185 * Bx> )
-Pcm.Translate( Pc, -0.030185 * Cx> )
+Pcm.Translate( PA, -l3 * PA3x> )
+Pcm.Translate( PB, -l3 * PB3x> )
+Pcm.Translate( PC, -l3 * PC3x> )
 
 Po.Translate( Pcm, 0> )
 
@@ -142,26 +148,36 @@ C2cm.Translate( C12, 0.08979 * c2x> - 0.13516 * c2y> - 0.10491 * c2z> )
 MotionConstraint[1] = Dot( System.GetDynamics(), Nx> )
 MotionConstraint[2] = Dot( System.GetDynamics(), Ny> )
 MotionConstraint[3] = Dot( System.GetDynamics(), Nz> )
+MotionConstraint[4] = Dot( p_PA_Pcm> - p_PB_Pcm> + p_PC_Pcm> - p_Pcm_Po>, Nx> )
+MotionConstraint[5] = Dot( p_PA_Pcm> - p_PB_Pcm> + p_PC_Pcm> - p_Pcm_Po>, Ny> )
+MotionConstraint[6] = Dot( p_PA_Pcm> - p_PB_Pcm> + p_PC_Pcm> - p_Pcm_Po>, Nz> )
+% MotionConstraint[7] = AN.GetPosition( No ) + A12.GetPosition( AN ) + AP.GetPosition( A12 ) + Po.GetPosition( AP ) + No.GetPosition( Po )
+% MotionConstraint[8] = BN.GetPosition( No ) + B12.GetPosition( BN ) + BP.GetPosition( B12 ) + Po.GetPosition( BP ) + No.GetPosition( Po )
+% MotionConstraint[9] = CN.GetPosition( No ) + C12.GetPosition( CN ) + CP.GetPosition( C12 ) + Po.GetPosition( CP ) + No.GetPosition( Po )
 % MotionConstraint[4] = 90 - qA1 - qA2 - Dot( Po.GetPosition( ), Ny> )
 % MotionConstraint[5] = 90 - qB1 - qB2 - Dot( Po, Ny> )
 % MotionConstraint[6] = 90 - qC1 - qC2 - Dot( Po, Ny> )
 
-PPos[1] = Dot( Po.GetPosition( No ), Nx> ) - 30
-PPos[2] = Dot( Po.GetPosition( No ), Ny> ) - 40
-PPos[3] = Dot( Po.GetPosition( No ), Nz> ) - 20
+% PPos[1] = Dot( Po.GetPosition( No ), Nx> ) - 30
+% PPos[2] = Dot( Po.GetPosition( No ), Ny> ) - 40
+% PPos[3] = Dot( Po.GetPosition( No ), Nz> ) - 20
+PPos[1] = Dot( Po.GetPosition( No ), Nx> ) - Px
+PPos[2] = Dot( Po.GetPosition( No ), Ny> ) - Py
+PPos[3] = Dot( Po.GetPosition( No ), Nz> ) - Pz
 
 % MotionConstraint[4] = 2*qA1 + 2*qA2 - 180
 % MotionConstraint[5] = 2*qB1 + 2*qB2 - 180
 % MotionConstraint[6] = 2*qC1 + 2*qC2 - 180
 
-MotionConstraint[4] = Dot(AN.GetPosition( No ) + A12.GetPosition( AN ) + AP.GetPosition( A12 ) + PB.GetPosition( AP ) + B12.GetPosition( PB ) + BN.GetPosition( B12 ) + No.GetPosition( BN ) + BN.GetPosition( No ) + B12.GetPosition( BN ) + BP.GetPosition( B12 ) + PC.GetPosition( BP ) + C12.GetPosition( PC ) + CN.GetPosition( C12 ) + No.GetPosition( CN ) + CN.GetPosition( No ) + C12.GetPosition( CN ) + CP.GetPosition( C12 ) + PA.GetPosition( CP ) + A12.GetPosition( PA ) + AN.GetPosition( A12 ) + No.GetPosition( AN ), Nx> )
-MotionConstraint[5] = Dot(AN.GetPosition( No ) + A12.GetPosition( AN ) + AP.GetPosition( A12 ) + PB.GetPosition( AP ) + B12.GetPosition( PB ) + BN.GetPosition( B12 ) + No.GetPosition( BN ) + BN.GetPosition( No ) + B12.GetPosition( BN ) + BP.GetPosition( B12 ) + PC.GetPosition( BP ) + C12.GetPosition( PC ) + CN.GetPosition( C12 ) + No.GetPosition( CN ) + CN.GetPosition( No ) + C12.GetPosition( CN ) + CP.GetPosition( C12 ) + PA.GetPosition( CP ) + A12.GetPosition( PA ) + AN.GetPosition( A12 ) + No.GetPosition( AN ), Ny> )
-MotionConstraint[6] = Dot(AN.GetPosition( No ) + A12.GetPosition( AN ) + AP.GetPosition( A12 ) + PB.GetPosition( AP ) + B12.GetPosition( PB ) + BN.GetPosition( B12 ) + No.GetPosition( BN ) + BN.GetPosition( No ) + B12.GetPosition( BN ) + BP.GetPosition( B12 ) + PC.GetPosition( BP ) + C12.GetPosition( PC ) + CN.GetPosition( C12 ) + No.GetPosition( CN ) + CN.GetPosition( No ) + C12.GetPosition( CN ) + CP.GetPosition( C12 ) + PA.GetPosition( CP ) + A12.GetPosition( PA ) + AN.GetPosition( A12 ) + No.GetPosition( AN ), Nz> )
+MotionConstraint[7] = Dot(AN.GetPosition( No ) + A12.GetPosition( AN ) + AP.GetPosition( A12 ) + PB.GetPosition( AP ) + B12.GetPosition( PB ) + BN.GetPosition( B12 ) + No.GetPosition( BN ) + BN.GetPosition( No ) + B12.GetPosition( BN ) + BP.GetPosition( B12 ) + PC.GetPosition( BP ) + C12.GetPosition( PC ) + CN.GetPosition( C12 ) + No.GetPosition( CN ) + CN.GetPosition( No ) + C12.GetPosition( CN ) + CP.GetPosition( C12 ) + PA.GetPosition( CP ) + A12.GetPosition( PA ) + AN.GetPosition( A12 ) + No.GetPosition( AN ), Nx> )
+MotionConstraint[8] = Dot(AN.GetPosition( No ) + A12.GetPosition( AN ) + AP.GetPosition( A12 ) + PB.GetPosition( AP ) + B12.GetPosition( PB ) + BN.GetPosition( B12 ) + No.GetPosition( BN ) + BN.GetPosition( No ) + B12.GetPosition( BN ) + BP.GetPosition( B12 ) + PC.GetPosition( BP ) + C12.GetPosition( PC ) + CN.GetPosition( C12 ) + No.GetPosition( CN ) + CN.GetPosition( No ) + C12.GetPosition( CN ) + CP.GetPosition( C12 ) + PA.GetPosition( CP ) + A12.GetPosition( PA ) + AN.GetPosition( A12 ) + No.GetPosition( AN ), Ny> )
+MotionConstraint[9] = Dot(AN.GetPosition( No ) + A12.GetPosition( AN ) + AP.GetPosition( A12 ) + PB.GetPosition( AP ) + B12.GetPosition( PB ) + BN.GetPosition( B12 ) + No.GetPosition( BN ) + BN.GetPosition( No ) + B12.GetPosition( BN ) + BP.GetPosition( B12 ) + PC.GetPosition( BP ) + C12.GetPosition( PC ) + CN.GetPosition( C12 ) + No.GetPosition( CN ) + CN.GetPosition( No ) + C12.GetPosition( CN ) + CP.GetPosition( C12 ) + PA.GetPosition( CP ) + A12.GetPosition( PA ) + AN.GetPosition( A12 ) + No.GetPosition( AN ), Nz> )
 
 % Solve( MotionConstraint, qA1'', qB1'', qC1'' )
-Solve( MotionConstraint, qA1'', qB1'', qC1'', qA2'', qB2'', qC2'' )
+Solve( MotionConstraint, qA1'', qB1'', qC1'', qA2'', qB2'', qC2'', qA3'', qB3'', qC3'' )
 % Solve( [qA1'', qB1'', qC1''], qA1, qB1, qC1 )
 % Solve( PPos, qA1, qB1, qC1 )
+Solve( PPos, Px, Py, Pz )
 % Solve( Dynamics,  x'', y'', Fx, Fy )
 %------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 %   Initial values for variables (e.g., for ODE command).
@@ -191,7 +207,7 @@ Input mP = 10
 % L> = EvaluateAtInput( System.GetLinearMomentum() )
 %------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 %   List output quantities (e.g., for ODE command).
-Output      t sec,  qA1 degrees,  qB1 degrees, qC1 degrees
+Output      t sec,  qA1 degrees,  qB1 degrees, qC1 degrees, Px m, Py m, Pz m
 % OutputPlot  t sec,  qA1 degrees,  qB1 degrees, qC1 degrees
 %------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 %   Solve ODEs (or auto-generate MATLAB, C, Fortran, ... code).
@@ -203,4 +219,6 @@ ODE()
 %   Record input together with resPcmnses.
 % Save  someFileName.txt
 % Quit
+
+
 
