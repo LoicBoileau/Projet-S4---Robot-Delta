@@ -11,6 +11,7 @@ from PySide import QtGui, QtCore
 from Mainwindow34 import Ui_MainWindow
 import os
 import serial.tools.list_ports
+import serial
 import time
 import struct
 
@@ -31,6 +32,9 @@ class MainWindow(QtGui.QMainWindow, Ui_MainWindow):
         self.lineEdit_theta1.setEnabled(False)
         self.lineEdit_theta2.setEnabled(False)
         self.lineEdit_theta3.setEnabled(False)
+
+        self.commandNb = 1
+        self.currentPort = ''
 
         self.setup()
 
@@ -89,8 +93,49 @@ class MainWindow(QtGui.QMainWindow, Ui_MainWindow):
             
     def timeSecCheck(self,*args,**kwargs):
         print('The timer thread is runing')
-    
-    #FONCTIONS pour self.comboBoxPort
+
+    #--------------------FONCTIONS de commande---------------------------------------------
+    def commandButtonStart(self):
+        cmd = self.commandNb
+        print('start button has been pressed')
+        if cmd == 1:
+            print("Command 1 is getting executed")
+        elif cmd == 2:
+            print("Command 2 is getting executed")
+        elif cmd == 3:
+            print('---------COMMAND 3----------\n')
+            self.communicationTest()
+            print('\n----------------------------')
+        else:
+            print("The command ", self.commandNb, " is not a known command")
+ 
+    #cmd1:
+
+    #cmd2:
+
+    #cmd3: (Test de la communication)
+    def communicationTest(self):
+
+        message = struct.pack('h',35)
+        print('Sending this message: ',message,'\n')
+        try:
+            self.SerComm = serial.Serial(port=self.currentPort, baudrate=57600)
+            print('Trying to open port :', self.currentPort)
+            try:
+                self.SerComm.open()
+                print('\t-> Port', self.currentPort,' is open')
+            except:
+                print('\t-> Port', self.currentPort,' did not open')
+        
+            self.SerComm.write(message)
+            print('Message has been send')
+            #print(struct.unpack('h',message))
+            self.SerComm.close()
+        except:
+            print('The message did not send')
+
+
+    #---------------------FONCTIONS pour self.comboBoxPort-------------------------------------
     def updatePort(self):
         print('A search for ports has been created')
         infoPorts = list(serial.tools.list_ports.comports())
@@ -121,6 +166,7 @@ class MainWindow(QtGui.QMainWindow, Ui_MainWindow):
         self.pushButton_Params.clicked.connect(self.paramUpdateCoordonneCart)
         self.EStop.clicked.connect(self.eStop)
         self.buttonUpdatePort.clicked.connect(self.createPortThread)
+        self.button_command.clicked.connect(self.commandButtonStart)
 
         self.checkBox_cinDir.stateChanged.connect(self.checkboxCinDirClicked)
         self.checkBox_cinInv.stateChanged.connect(self.checkboxCinInvClicked)

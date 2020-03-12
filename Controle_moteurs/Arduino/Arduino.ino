@@ -25,14 +25,18 @@
 #endif   
 
 #define BAUDRATE  57600
-#define DXL_ID1    1
-#define DXL_ID2    107
-#define DXL_ID3    109
+#define DXL_ID1    2
+#define DXL_ID2    3
+#define DXL_ID3    1
+
+bool newMessage = false;
+
 
 DynamixelWorkbench dxl_wb;
 
 void setup() 
 {
+  
   Serial.begin(57600);
   // while(!Serial); // Wait for Opening Serial Monitor
 
@@ -70,10 +74,18 @@ void setup()
   else
   {
     Serial.println("Succeeded to ping");
-    Serial.print("id : ");
+    Serial.print("id motor1 : ");
     Serial.print(dxl_id1);
     Serial.print(" model_number : ");
     Serial.println(model_number_id1);
+    Serial.print("id motor2 : ");
+    Serial.print(dxl_id2);
+    Serial.print(" model_number : ");
+    Serial.println(model_number_id2);
+    Serial.print("id motor3 : ");
+    Serial.print(dxl_id3);
+    Serial.print(" model_number : ");
+    Serial.println(model_number_id3);
   }
 
   result = dxl_wb.jointMode(dxl_id1, 0, 0, &log) && dxl_wb.jointMode(dxl_id2, 0, 0, &log) && dxl_wb.jointMode(dxl_id3, 0, 0, &log);
@@ -90,13 +102,13 @@ void setup()
     for (int count = 0; count < 2; count++)
     {
       dxl_wb.goalPosition(dxl_id1, (int32_t)1000);
-      //dxl_wb.goalPosition(dxl_id2, (int32_t)1000);
-      //dxl_wb.goalPosition(dxl_id3, (int32_t)750);
+      dxl_wb.goalPosition(dxl_id2, (int32_t)1000);
+      dxl_wb.goalPosition(dxl_id3, (int32_t)750);
       delay(3000);
 
       dxl_wb.goalPosition(dxl_id1, (int32_t)2000);
-      //dxl_wb.goalPosition(dxl_id2, (int32_t)2000);
-      //dxl_wb.goalPosition(dxl_id3, (int32_t)1750);
+      dxl_wb.goalPosition(dxl_id2, (int32_t)2000);
+      dxl_wb.goalPosition(dxl_id3, (int32_t)1750);
       delay(3000);
     }
       dxl_wb.goalPosition(dxl_id1, (int32_t)2000);
@@ -104,9 +116,21 @@ void setup()
       dxl_wb.goalPosition(dxl_id3, (int32_t)1750);
       delay(3000);
   }
+  
+}
+
+void SerialEvent()
+{
+    newMessage = true;
 }
 
 void loop() 
 {
-
+  Serial.println(newMessage);
+  if (newMessage){
+    int message = Serial.read();
+    newMessage = false;
+    dxl_wb.goalPosition(DXL_ID1, (int32_t)1500);
+    delay(1000);
+    }
 }
