@@ -273,7 +273,7 @@ class Ui_MainWindow(object):
         self.label_theta1.setText(QtGui.QApplication.translate("MainWindow", "theta1", None, QtGui.QApplication.UnicodeUTF8))
         self.lineEdit_x.setText(QtGui.QApplication.translate("MainWindow", "0", None, QtGui.QApplication.UnicodeUTF8))
         self.button_command.setText(QtGui.QApplication.translate("MainWindow", "Start Command", None, QtGui.QApplication.UnicodeUTF8))
-        self.lineEdit_ChangeCommand.setText(QtGui.QApplication.translate("MainWindow", "1", None, QtGui.QApplication.UnicodeUTF8))
+        self.lineEdit_ChangeCommand.setText(QtGui.QApplication.translate("MainWindow", "3", None, QtGui.QApplication.UnicodeUTF8))
         self.checkBox_cinDir.setText(QtGui.QApplication.translate("MainWindow", "Cinematique directe", None, QtGui.QApplication.UnicodeUTF8))
         self.lineEdit_y.setText(QtGui.QApplication.translate("MainWindow", "0", None, QtGui.QApplication.UnicodeUTF8))
         self.label_z.setText(QtGui.QApplication.translate("MainWindow", "z", None, QtGui.QApplication.UnicodeUTF8))
