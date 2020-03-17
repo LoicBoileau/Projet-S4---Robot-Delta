@@ -129,10 +129,10 @@ class MainWindow(QtGui.QMainWindow, Ui_MainWindow):
             self.communicationTest()
         elif cmd == 4:
             print('---------COMMAND 4----------\n')
-            sendMotorPositionAngle(1500,1500,1250)
+            self.sendMotorPositionAngle(4,1500,1500,1250)
         else:
             print("The command ", self.commandNb, " is not a known command")
-        print('\n----------------------------')
+        print('----------------------------')
  
     #cmd1:
 
@@ -157,7 +157,7 @@ class MainWindow(QtGui.QMainWindow, Ui_MainWindow):
     def sendMotorPositionAngle(self, cmdNb, theta1, theta2, theta3):
         messageBuff = self.packingMessageShort(cmdNb, theta1, theta2, theta3)
 
-        print('Sending those angles: ', theta1,', ', theta2,', ', theta3,'\n')
+        print('Sending those angles: ', theta1,', ', theta2,', ', theta3)
         try:
             self.SerComm = serial.Serial(port=self.currentPort, baudrate=57600)
             self.SerComm.write(messageBuff)
