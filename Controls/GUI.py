@@ -35,6 +35,8 @@ class MainWindow(QtGui.QMainWindow, Ui_MainWindow):
 
         self.commandNb = 1
         self.currentPort = ''
+        self.counter = 0;
+
 
         self.setup()
 
@@ -62,7 +64,7 @@ class MainWindow(QtGui.QMainWindow, Ui_MainWindow):
         print('Command is set to: ', self.commandNb)
 
     def paramUpdateCoordonneCart(self):
-        """Pour updater les coordonnees cartesiennes lorsqu'elles sont modifiees"""
+        """Pour updater les coordonnees cartesiennes ou joints lorsqu'elles sont modifiees"""
         if self.checkBox_cinDir.isChecked():
             self.xx = float(self.lineEdit_x.text())
             self.yy = float(self.lineEdit_y.text())
@@ -72,7 +74,11 @@ class MainWindow(QtGui.QMainWindow, Ui_MainWindow):
             self.label_z_confimed.setText(str(self.zz))
         else:
             self.theta1 = float(self.lineEdit_theta1.text())
-            '...A completer'
+            self.theta2 = float(self.lineEdit_theta2.text())
+            self.theta3 = float(self.lineEdit_theta3.text())
+            self.label_theta1_confimed.setText(str(self.theta1))
+            self.label_theta2_confimed.setText(str(self.theta2))
+            self.label_theta3_confimed.setText(str(self.theta3))
 
     def checkboxCinDirClicked(self):
         if not self.checkBox_cinDir.isChecked():
@@ -90,16 +96,7 @@ class MainWindow(QtGui.QMainWindow, Ui_MainWindow):
             self.lineEdit_z.setEnabled(True)
             self.lineEdit_theta1.setEnabled(False)
             self.lineEdit_theta2.setEnabled(False)
-            self.lineEdit_theta3.setEnabled(False)
-            
-    def commCheckThread(self,*args,**kwargs):
-        """This function is for the thread responsible of checking for the communication"""
-        #time.sleep(3)
-        #print('The thread in charge of looking for message is being created')
-        #ser = serial.Serial('COM8', baudrate=57600)
-        #while True:
-        #    print(ser.readline())
-        #ser.close
+            self.lineEdit_theta3.setEnabled(False)   
         
 
     def packingMessageShort(self, msg1_cmdNb, msg2_short, msg3_short, msg4_short):
@@ -116,7 +113,7 @@ class MainWindow(QtGui.QMainWindow, Ui_MainWindow):
     def timeSecCheck(self):
         print('the time thread is runing')
 
-    #--------------------FONCTIONS de commande---------------------------------------------
+    #FONCTIONS de commande
     def commandButtonStart(self):
         cmd = self.commandNb
         print('start button has been pressed')
@@ -126,10 +123,13 @@ class MainWindow(QtGui.QMainWindow, Ui_MainWindow):
             print("Command 2 is getting executed")
         elif cmd == 3:
             print('---------COMMAND 3----------\n')
-            self.communicationTest()
-        elif cmd == 4:
-            print('---------COMMAND 4----------\n')
-            self.sendMotorPositionAngle(4,1500,1500,1250)
+            if self.counter < 1:
+                self.sendMotorPositionAngle(cmd,1500,1500,1250)
+                self.counter = self.counter + 1;
+            else:
+                self.sendMotorPositionAngle(cmd,2000,2000,1750)
+                self.counter = self.counter - 1;
+            #self.sendMotorAngleThread(cmd,1500,1500,1250)
         else:
             print("The command ", self.commandNb, " is not a known command")
         print('----------------------------')
@@ -138,36 +138,32 @@ class MainWindow(QtGui.QMainWindow, Ui_MainWindow):
 
     #cmd2:
 
-    #cmd3: (Test de la communication)
-    def communicationTest(self):
-        messageBuff = self.packingMessageShort(3, 3000, 12, 445)
-
-        print('Sending this message: ', messageBuff,' (3 (cmdNb), 3000, 12, 445)',', the size is : 8\n')
-
-        print('Trying to open port :', self.currentPort)
-        try:
-            self.SerComm = serial.Serial(port=self.currentPort, baudrate=57600)
-            print('\t-> [SUCCESS]Port', self.currentPort,' is open')
-            print('\t-> Writing into the port : (Number of bytes written)', self.SerComm.write(messageBuff))
-            self.SerComm.close()
-        except:
-            print('\t-> [FAIL]Port', self.currentPort,' did not open')
-
-    #cmd4: (Motor position)
+    #cmd3: (Motor position)
     def sendMotorPositionAngle(self, cmdNb, theta1, theta2, theta3):
+        """Function to send data to the Open CR, also used with a different thread so the loop wont block until it receives data """
         messageBuff = self.packingMessageShort(cmdNb, theta1, theta2, theta3)
 
+        #create a thread to send the position and wait for response
+        msgReceived = False
         print('Sending those angles: ', theta1,', ', theta2,', ', theta3)
         try:
             self.SerComm = serial.Serial(port=self.currentPort, baudrate=57600)
             self.SerComm.write(messageBuff)
+            while msgReceived == False:
+                if self.SerComm.in_waiting:
+                    bytesReponse = self.SerComm.read(1)
+                    msgReceived = True
             self.SerComm.close()
+            print('\t-> [SUCCESS]With an response of : ', struct.unpack('B',bytesReponse)[0])
+            
         except:
             print('\t-> [FAIL]Port', self.currentPort,' did not open')
-            
+
+    #FONCTIONS pour Manual jog
+         
 
 
-    #---------------------FONCTIONS pour self.comboBoxPort-------------------------------------
+    #FONCTIONS pour self.comboBoxPort
     def updatePort(self):
         print('A search for ports has been created')
         infoPorts = list(serial.tools.list_ports.comports())
@@ -183,13 +179,13 @@ class MainWindow(QtGui.QMainWindow, Ui_MainWindow):
         self.currentPort = self.comboBoxPort.currentText()
         print('Port: ', self.currentPort)
     
-    #-----------------------Thread creation functions------------------------------------------------------
+    #-----------------------Thread creation functions to call------------------------------------------------------
     def createTimeThread(self):
         worker = Worker(self.timeSecCheck) # Any other args, kwargs are passed to the run function
         self.threadpool.start(worker)
 
-    def createCommCheckThread(self):
-        worker = Worker(self.commCheckThread)
+    def sendMotorAngleThread(self, cmdNb, theta1, theta2, theta3):
+        worker = Worker(self.sendMotorPositionAngle, cmdNb, theta1, theta2, theta3)
         self.threadpool.start(worker)
    
     def createPortThread(self):

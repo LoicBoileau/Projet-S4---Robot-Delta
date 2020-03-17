@@ -23,6 +23,10 @@ int32_t theta1 = 0;
 int32_t theta2 = 0;
 int32_t theta3 = 0;
 
+int32_t msgArg1 = 0;
+int32_t msgArg2 = 0;
+int32_t msgArg3 = 0;
+
 int cmdNb = 0;
 
 uint32_t maxPosMotor1 = 2000;
@@ -119,24 +123,29 @@ void loop()
 {
 
   if (Serial.available() > 0){
-    delay(4000);
     cmdNb = readData(); //read the available data and return the first short received as the command number
-    checkMaxPosMotors(); //make sure the angle received are in a good range
 
-    commandReceived = true;
-  }
-
-  if (commandReceived){
-    if (cmdNb == 4){ //Move motors to angle position
-      Serial.println("************cmdNb 4**************");
-      
-      dxl_wb.goalPosition(dxl_id1, (int32_t)theta1);
-      dxl_wb.goalPosition(dxl_id2, (int32_t)theta2);
-      dxl_wb.goalPosition(dxl_id3, (int32_t)theta3);
-      delay(1000);
+    if ( cmdNb >= 2 ) //make sure the angle received are in a good range and command is for moving motors
+      Serial.write((byte)cmdNb);  //write the command Number to confirmed you have received it
+      theta1 = msgArg1;
+      theta2 = msgArg2;
+      theta3 = msgArg3;
+      commandReceived = true;
+      delay(10);
     }
+    else if( cmdNb == 1 ){ //if the command is for something else then dont activate the motors
+      Serial.write((byte)cmdNb);
+      delay(10);
+    }
+  
+  if (commandReceived){
+    checkMaxPosMotors();
+        
+    dxl_wb.goalPosition(dxl_id1, (int32_t)theta1);
+    dxl_wb.goalPosition(dxl_id2, (int32_t)theta2);
+    dxl_wb.goalPosition(dxl_id3, (int32_t)theta3);
     
-  commandReceived = false;
+    commandReceived = false;
   }
 }
 
@@ -155,38 +164,39 @@ int readData()
   //Prendre le premier octet et le décaller de 8 bits.
   int commandNb = int((unsigned char)(bytesBuffer[1]) << 8 | (unsigned char)(bytesBuffer[0]));
   
-  theta1 = int((unsigned char)(bytesBuffer[3]) << 8 | (unsigned char)(bytesBuffer[2])); 
-  theta2 = int((unsigned char)(bytesBuffer[5]) << 8 | (unsigned char)(bytesBuffer[4]));
-  theta3 = int((unsigned char)(bytesBuffer[7]) << 8 | (unsigned char)(bytesBuffer[6]));
-  Serial.println("Theta received :");
-  Serial.print("Theta1 : ");
-  Serial.println(theta1);
-  Serial.print("Theta2 : ");
-  Serial.println(theta2);
-  Serial.print("Theta3 : ");
-  Serial.println(theta3);
+  msgArg1 = int((unsigned char)(bytesBuffer[3]) << 8 | (unsigned char)(bytesBuffer[2])); 
+  msgArg2 = int((unsigned char)(bytesBuffer[5]) << 8 | (unsigned char)(bytesBuffer[4]));
+  msgArg3 = int((unsigned char)(bytesBuffer[7]) << 8 | (unsigned char)(bytesBuffer[6]));
 
   return (commandNb);
 }
 
-void checkMaxPosMotors()
+bool checkMaxPosMotors()
 {
+  bool motorCommandInRange = true;
   if (theta1 > maxPosMotor1){
     theta1 = maxPosMotor1;
+    motorCommandInRange = false;
   }
   else if (theta1 < minPosMotor1){
     theta1 = minPosMotor1;
+    motorCommandInRange = false;
   }
   if (theta2 > maxPosMotor2){
-    theta2 = 2200;
+    theta2 = maxPosMotor2;
+    motorCommandInRange = false;
   }
   else if (theta2 < minPosMotor2){
-    theta1 = minPosMotor1;
+    theta2 = minPosMotor2;
+    motorCommandInRange = false;
   }
   if (theta3 > maxPosMotor3){
-    theta3 = 2200;
+    theta3 = maxPosMotor3;
+    motorCommandInRange = false;
   }
   else if (theta3 < minPosMotor3){
-    theta1 = minPosMotor1;
+    theta3 = minPosMotor3;
+    motorCommandInRange = false;
   }
+  return (motorCommandInRange);
 }
