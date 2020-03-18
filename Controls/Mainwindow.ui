@@ -504,7 +504,7 @@ p, li { white-space: pre-wrap; }
       <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
      </property>
     </widget>
-    <widget class="QLabel" name="label_x_confimed">
+    <widget class="QLabel" name="label_x_confirmed">
      <property name="geometry">
       <rect>
        <x>260</x>
@@ -525,7 +525,7 @@ border-color: rgb(111, 111, 111);</string>
       <set>Qt::AlignCenter</set>
      </property>
     </widget>
-    <widget class="QLabel" name="label_y_confimed">
+    <widget class="QLabel" name="label_y_confirmed">
      <property name="geometry">
       <rect>
        <x>260</x>
@@ -545,7 +545,7 @@ border-color: rgb(111, 111, 111);</string>
       <set>Qt::AlignCenter</set>
      </property>
     </widget>
-    <widget class="QLabel" name="label_z_confimed">
+    <widget class="QLabel" name="label_z_confirmed">
      <property name="geometry">
       <rect>
        <x>260</x>
@@ -626,7 +626,7 @@ border-color: rgb(111, 111, 111);</string>
       <string>0</string>
      </property>
     </widget>
-    <widget class="QLabel" name="label_theta1_confimed">
+    <widget class="QLabel" name="label_theta1_confirmed">
      <property name="geometry">
       <rect>
        <x>260</x>
@@ -640,7 +640,7 @@ border-color: rgb(111, 111, 111);</string>
 </string>
      </property>
      <property name="text">
-      <string>1000</string>
+      <string>2000</string>
      </property>
      <property name="alignment">
       <set>Qt::AlignCenter</set>
@@ -661,8 +661,7 @@ border-color: rgb(111, 111, 111);</string>
 p, li { white-space: pre-wrap; }
 &lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'MS Shell Dlg 2'; font-size:8pt; font-weight:400; font-style:normal;&quot;&gt;
 &lt;p style=&quot; margin-top:2px; margin-bottom:2px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'MS Shell Dlg 2'; font-size:9pt;&quot;&gt;- 1 : Start/Stop to position&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:2px; margin-bottom:2px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'MS Shell Dlg 2'; font-size:9pt;&quot;&gt;- 2 : Manual jog&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:2px; margin-bottom:2px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'MS Shell Dlg 2'; font-size:9pt;&quot;&gt;- 3 : Move motor mode joint&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+&lt;p style=&quot; margin-top:2px; margin-bottom:2px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'MS Shell Dlg 2'; font-size:9pt;&quot;&gt;- 2 : Move motor mode joint&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
      </property>
      <property name="alignment">
       <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
@@ -700,7 +699,7 @@ p, li { white-space: pre-wrap; }
       <string>0</string>
      </property>
     </widget>
-    <widget class="QLabel" name="label_theta2_confimed">
+    <widget class="QLabel" name="label_theta2_confirmed">
      <property name="geometry">
       <rect>
        <x>260</x>
@@ -714,13 +713,13 @@ p, li { white-space: pre-wrap; }
 </string>
      </property>
      <property name="text">
-      <string>1000</string>
+      <string>2000</string>
      </property>
      <property name="alignment">
       <set>Qt::AlignCenter</set>
      </property>
     </widget>
-    <widget class="QLabel" name="label_theta3_confimed">
+    <widget class="QLabel" name="label_theta3_confirmed">
      <property name="geometry">
       <rect>
        <x>260</x>
@@ -734,7 +733,7 @@ p, li { white-space: pre-wrap; }
 </string>
      </property>
      <property name="text">
-      <string>750</string>
+      <string>2000</string>
      </property>
      <property name="alignment">
       <set>Qt::AlignCenter</set>
@@ -779,18 +778,18 @@ p, li { white-space: pre-wrap; }
     <zorder>pushButton_Params</zorder>
     <zorder>label_theta2</zorder>
     <zorder>button_command_Stop</zorder>
-    <zorder>label_x_confimed</zorder>
-    <zorder>label_y_confimed</zorder>
-    <zorder>label_z_confimed</zorder>
+    <zorder>label_x_confirmed</zorder>
+    <zorder>label_y_confirmed</zorder>
+    <zorder>label_z_confirmed</zorder>
     <zorder>label_commandNumber</zorder>
     <zorder>button_sendCommandNb</zorder>
     <zorder>lineEdit_theta1</zorder>
-    <zorder>label_theta1_confimed</zorder>
+    <zorder>label_theta1_confirmed</zorder>
     <zorder>label_7</zorder>
     <zorder>lineEdit_theta2</zorder>
     <zorder>lineEdit_theta3</zorder>
-    <zorder>label_theta2_confimed</zorder>
-    <zorder>label_theta3_confimed</zorder>
+    <zorder>label_theta2_confirmed</zorder>
+    <zorder>label_theta3_confirmed</zorder>
     <zorder>label_11</zorder>
    </widget>
    <widget class="QPushButton" name="buttonUpdatePort">

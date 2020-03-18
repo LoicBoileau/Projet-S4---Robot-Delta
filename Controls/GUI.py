@@ -44,7 +44,7 @@ class MainWindow(QtGui.QMainWindow, Ui_MainWindow):
     #-----------------Ajout des fonctions pour connecter--------------------------------------
     def eStop(self):
        """Bouton d'arrêt d'urgence"""
-        #self.timer.stop() #uncomment si tu veux arrêter la loop de timer qui créer une thread a chaque délai
+        
         
 
     def sendCommandNumber(self):
@@ -69,16 +69,16 @@ class MainWindow(QtGui.QMainWindow, Ui_MainWindow):
             self.xx = float(self.lineEdit_x.text())
             self.yy = float(self.lineEdit_y.text())
             self.zz = float(self.lineEdit_z.text())
-            self.label_x_confimed.setText(str(self.xx))
-            self.label_y_confimed.setText(str(self.yy))
-            self.label_z_confimed.setText(str(self.zz))
+            self.label_x_confirmed.setText(str(self.xx))
+            self.label_y_confirmed.setText(str(self.yy))
+            self.label_z_confirmed.setText(str(self.zz))
         else:
-            self.theta1 = float(self.lineEdit_theta1.text())
-            self.theta2 = float(self.lineEdit_theta2.text())
-            self.theta3 = float(self.lineEdit_theta3.text())
-            self.label_theta1_confimed.setText(str(self.theta1))
-            self.label_theta2_confimed.setText(str(self.theta2))
-            self.label_theta3_confimed.setText(str(self.theta3))
+            self.theta1 = int(self.lineEdit_theta1.text())
+            self.theta2 = int(self.lineEdit_theta2.text())
+            self.theta3 = int(self.lineEdit_theta3.text())
+            self.label_theta1_confirmed.setText(str(self.theta1))
+            self.label_theta2_confirmed.setText(str(self.theta2))
+            self.label_theta3_confirmed.setText(str(self.theta3))
 
     def checkboxCinDirClicked(self):
         if not self.checkBox_cinDir.isChecked():
@@ -116,29 +116,37 @@ class MainWindow(QtGui.QMainWindow, Ui_MainWindow):
     #FONCTIONS de commande
     def commandButtonStart(self):
         cmd = self.commandNb
+        answerCmdNb = cmd
         print('start button has been pressed')
         if cmd == 1:
-            print("Command 1 is getting executed")
-        elif cmd == 2:
-            print("Command 2 is getting executed")
-        elif cmd == 3:
-            print('---------COMMAND 3----------\n')
+            print('---------COMMAND 1----------\n')
             if self.counter < 1:
-                self.sendMotorPositionAngle(cmd,1500,1500,1250)
+                answerCmdNb = self.sendMotorPositionAngle(cmd,1500,1500,1500)
                 self.counter = self.counter + 1;
             else:
-                self.sendMotorPositionAngle(cmd,2000,2000,1750)
+                answerCmdNb = self.sendMotorPositionAngle(cmd,2000,2000,2000)
                 self.counter = self.counter - 1;
-            #self.sendMotorAngleThread(cmd,1500,1500,1250)
+
+        elif cmd == 2:
+            print("Command 2 is getting executed")
+
+        elif cmd == 3:
+            print('---------COMMAND 3----------\n')
+            self.theta1 = (int)(self.label_theta1_confirmed.text())
+            self.theta2 = (int)(self.label_theta2_confirmed.text())
+            self.theta3 = (int)(self.label_theta3_confirmed.text())
+
+            answerCmdNb = self.sendMotorPositionAngle(cmd,self.theta1,self.theta2,self.theta3)
         else:
             print("The command ", self.commandNb, " is not a known command")
-        print('----------------------------')
- 
-    #cmd1:
 
-    #cmd2:
+        if answerCmdNb != cmd: #Verification pour voir si il n'y a pas eu d'erreur de comm
+            print("!****Erreur de comm****!")
+            
+            #self.sendMotorAngleThread(cmd,1500,1500,1250)
+        
+        print('--------------------------\n')
 
-    #cmd3: (Motor position)
     def sendMotorPositionAngle(self, cmdNb, theta1, theta2, theta3):
         """Function to send data to the Open CR, also used with a different thread so the loop wont block until it receives data """
         messageBuff = self.packingMessageShort(cmdNb, theta1, theta2, theta3)
@@ -154,10 +162,13 @@ class MainWindow(QtGui.QMainWindow, Ui_MainWindow):
                     bytesReponse = self.SerComm.read(1)
                     msgReceived = True
             self.SerComm.close()
-            print('\t-> [SUCCESS]With an response of : ', struct.unpack('B',bytesReponse)[0])
+            answer = struct.unpack('B',bytesReponse)[0];
+            print('\t-> [SUCCESS]With an response of : ', answer)
             
         except:
             print('\t-> [FAIL]Port', self.currentPort,' did not open')
+
+        return (int)(answer)
 
     #FONCTIONS pour Manual jog
          

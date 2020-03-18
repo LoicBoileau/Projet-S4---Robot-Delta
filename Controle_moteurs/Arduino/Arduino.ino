@@ -14,6 +14,7 @@
 #define DXL_ID3         1
 
 #define LENGTH_MESSAGE  8
+#define DECA_MOT3       200
 
 uint8_t dxl_id1 = DXL_ID1;
 uint8_t dxl_id2 = DXL_ID2;
@@ -29,13 +30,13 @@ int32_t msgArg3 = 0;
 
 int cmdNb = 0;
 
-uint32_t maxPosMotor1 = 2000;
-uint32_t maxPosMotor2 = 2000;
-uint32_t maxPosMotor3 = 1750;
+uint32_t maxPosMotor1 = 2500;
+uint32_t maxPosMotor2 = 2500;
+uint32_t maxPosMotor3 = 2500;
 
 uint32_t minPosMotor1 = 1000;
 uint32_t minPosMotor2 = 1000;
-uint32_t minPosMotor3 = 750;
+uint32_t minPosMotor3 = 800; //valeur des autres moteurs - DECA_MOT3(200)
 
 DynamixelWorkbench dxl_wb;
 
@@ -107,12 +108,12 @@ void setup()
     {
       dxl_wb.goalPosition(dxl_id1, (int32_t)1000);
       dxl_wb.goalPosition(dxl_id2, (int32_t)1000);
-      dxl_wb.goalPosition(dxl_id3, (int32_t)750);
+      dxl_wb.goalPosition(dxl_id3, (int32_t)800);
       delay(3000);
 
       dxl_wb.goalPosition(dxl_id1, (int32_t)2000);
       dxl_wb.goalPosition(dxl_id2, (int32_t)2000);
-      dxl_wb.goalPosition(dxl_id3, (int32_t)1750);
+      dxl_wb.goalPosition(dxl_id3, (int32_t)1800);
       delay(3000);
     }
   }
@@ -143,7 +144,7 @@ void loop()
         
     dxl_wb.goalPosition(dxl_id1, (int32_t)theta1);
     dxl_wb.goalPosition(dxl_id2, (int32_t)theta2);
-    dxl_wb.goalPosition(dxl_id3, (int32_t)theta3);
+    dxl_wb.goalPosition(dxl_id3, (int32_t)theta3-DECA_MOT3);
     
     commandReceived = false;
   }
