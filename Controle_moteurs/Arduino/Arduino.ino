@@ -126,7 +126,7 @@ void loop()
   if (Serial.available() > 0){
     cmdNb = readData(); //read the available data and return the first short received as the command number
 
-    if ( cmdNb >= 2 ) //make sure the angle received are in a good range and command is for moving motors
+    if ( cmdNb >= 1 ) //make sure the angle received are in a good range and command is for moving motors
       Serial.write((byte)cmdNb);  //write the command Number to confirmed you have received it
       theta1 = msgArg1;
       theta2 = msgArg2;

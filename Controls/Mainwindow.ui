@@ -9,7 +9,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1081</width>
+    <width>1124</width>
     <height>724</height>
    </rect>
   </property>
@@ -810,8 +810,8 @@ p, li { white-space: pre-wrap; }
      <rect>
       <x>800</x>
       <y>50</y>
-      <width>261</width>
-      <height>251</height>
+      <width>301</width>
+      <height>321</height>
      </rect>
     </property>
     <property name="frameShape">
@@ -820,28 +820,12 @@ p, li { white-space: pre-wrap; }
     <property name="frameShadow">
      <enum>QFrame::Raised</enum>
     </property>
-    <widget class="QPushButton" name="pushButton_ManJog_Motor1up">
-     <property name="geometry">
-      <rect>
-       <x>20</x>
-       <y>70</y>
-       <width>41</width>
-       <height>28</height>
-      </rect>
-     </property>
-     <property name="styleSheet">
-      <string notr="true"/>
-     </property>
-     <property name="text">
-      <string>UP</string>
-     </property>
-    </widget>
     <widget class="QLabel" name="label_12">
      <property name="geometry">
       <rect>
        <x>0</x>
        <y>5</y>
-       <width>261</width>
+       <width>301</width>
        <height>20</height>
       </rect>
      </property>
@@ -860,8 +844,8 @@ p, li { white-space: pre-wrap; }
     <widget class="QLabel" name="label_ManJog_Motor1">
      <property name="geometry">
       <rect>
-       <x>0</x>
-       <y>110</y>
+       <x>10</x>
+       <y>170</y>
        <width>81</width>
        <height>20</height>
       </rect>
@@ -878,37 +862,11 @@ p, li { white-space: pre-wrap; }
       <set>Qt::AlignCenter</set>
      </property>
     </widget>
-    <widget class="QPushButton" name="pushButton_ManJog_Motor1dwn">
-     <property name="geometry">
-      <rect>
-       <x>20</x>
-       <y>140</y>
-       <width>41</width>
-       <height>28</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string>DWN</string>
-     </property>
-    </widget>
-    <widget class="QPushButton" name="pushButton_ManJog_Motor3dwn">
-     <property name="geometry">
-      <rect>
-       <x>110</x>
-       <y>140</y>
-       <width>41</width>
-       <height>28</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string>DWN</string>
-     </property>
-    </widget>
     <widget class="QLabel" name="label_ManJog_theta2">
      <property name="geometry">
       <rect>
        <x>90</x>
-       <y>110</y>
+       <y>170</y>
        <width>81</width>
        <height>20</height>
       </rect>
@@ -925,37 +883,11 @@ p, li { white-space: pre-wrap; }
       <set>Qt::AlignCenter</set>
      </property>
     </widget>
-    <widget class="QPushButton" name="pushButton_ManJog_Motor2up">
-     <property name="geometry">
-      <rect>
-       <x>110</x>
-       <y>70</y>
-       <width>41</width>
-       <height>28</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string>UP</string>
-     </property>
-    </widget>
-    <widget class="QPushButton" name="pushButton_ManJog_Motor3dwn_2">
-     <property name="geometry">
-      <rect>
-       <x>190</x>
-       <y>140</y>
-       <width>41</width>
-       <height>28</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string>DWN</string>
-     </property>
-    </widget>
     <widget class="QLabel" name="label_ManJog_theta3">
      <property name="geometry">
       <rect>
        <x>170</x>
-       <y>110</y>
+       <y>170</y>
        <width>81</width>
        <height>20</height>
       </rect>
@@ -972,24 +904,11 @@ p, li { white-space: pre-wrap; }
       <set>Qt::AlignCenter</set>
      </property>
     </widget>
-    <widget class="QPushButton" name="pushButton_ManJog_Motor3up">
-     <property name="geometry">
-      <rect>
-       <x>190</x>
-       <y>70</y>
-       <width>41</width>
-       <height>28</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string>UP</string>
-     </property>
-    </widget>
     <widget class="QLabel" name="label_ManJog_Increments">
      <property name="geometry">
       <rect>
-       <x>40</x>
-       <y>210</y>
+       <x>70</x>
+       <y>270</y>
        <width>101</width>
        <height>31</height>
       </rect>
@@ -1009,8 +928,8 @@ p, li { white-space: pre-wrap; }
     <widget class="QLineEdit" name="lineEdit_ManJog_increments">
      <property name="geometry">
       <rect>
-       <x>150</x>
-       <y>210</y>
+       <x>180</x>
+       <y>270</y>
        <width>51</width>
        <height>31</height>
       </rect>
@@ -1033,8 +952,8 @@ p, li { white-space: pre-wrap; }
     <widget class="QPushButton" name="pushButton_ManJog_up">
      <property name="geometry">
       <rect>
-       <x>20</x>
-       <y>40</y>
+       <x>50</x>
+       <y>200</y>
        <width>211</width>
        <height>28</height>
       </rect>
@@ -1046,14 +965,127 @@ p, li { white-space: pre-wrap; }
     <widget class="QPushButton" name="pushButton_ManJog_dwn">
      <property name="geometry">
       <rect>
-       <x>20</x>
-       <y>170</y>
+       <x>50</x>
+       <y>230</y>
        <width>211</width>
        <height>28</height>
       </rect>
      </property>
      <property name="text">
-      <string>DWN</string>
+      <string>DOWN</string>
+     </property>
+    </widget>
+    <widget class="QSlider" name="Slider_ManJog_theta1">
+     <property name="geometry">
+      <rect>
+       <x>40</x>
+       <y>40</y>
+       <width>22</width>
+       <height>131</height>
+      </rect>
+     </property>
+     <property name="orientation">
+      <enum>Qt::Vertical</enum>
+     </property>
+    </widget>
+    <widget class="QSlider" name="Slider_ManJog_theta2">
+     <property name="geometry">
+      <rect>
+       <x>120</x>
+       <y>40</y>
+       <width>22</width>
+       <height>131</height>
+      </rect>
+     </property>
+     <property name="orientation">
+      <enum>Qt::Vertical</enum>
+     </property>
+    </widget>
+    <widget class="QSlider" name="Slider_ManJog_theta3">
+     <property name="geometry">
+      <rect>
+       <x>200</x>
+       <y>40</y>
+       <width>22</width>
+       <height>131</height>
+      </rect>
+     </property>
+     <property name="orientation">
+      <enum>Qt::Vertical</enum>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="pushButton_ManJog_Max">
+     <property name="geometry">
+      <rect>
+       <x>240</x>
+       <y>37</y>
+       <width>51</width>
+       <height>21</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Max</string>
+     </property>
+    </widget>
+    <widget class="QLineEdit" name="lineEdit_ManJog_Max">
+     <property name="geometry">
+      <rect>
+       <x>240</x>
+       <y>60</y>
+       <width>51</width>
+       <height>21</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <pointsize>9</pointsize>
+      </font>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background-color: rgb(255, 255, 255);</string>
+     </property>
+     <property name="text">
+      <string>2400</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignCenter</set>
+     </property>
+    </widget>
+    <widget class="QLineEdit" name="lineEdit_ManJog_Min">
+     <property name="geometry">
+      <rect>
+       <x>240</x>
+       <y>130</y>
+       <width>51</width>
+       <height>21</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <pointsize>9</pointsize>
+      </font>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background-color: rgb(255, 255, 255);</string>
+     </property>
+     <property name="text">
+      <string>1000</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignCenter</set>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="pushButton_ManJog_Min">
+     <property name="geometry">
+      <rect>
+       <x>240</x>
+       <y>153</y>
+       <width>51</width>
+       <height>21</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Min</string>
      </property>
     </widget>
    </widget>
@@ -1063,7 +1095,7 @@ p, li { white-space: pre-wrap; }
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>1081</width>
+     <width>1124</width>
      <height>26</height>
     </rect>
    </property>

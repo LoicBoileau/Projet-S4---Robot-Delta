@@ -22,10 +22,16 @@ class MainWindow(QtGui.QMainWindow, Ui_MainWindow):
         super().__init__(*args, **kwargs)
         self.setupUi(self)
 
-        self.threadpool = QtCore.QThreadPool()
-        print("Multithreading with maximum %d threads" % self.threadpool.maxThreadCount())
+        self.setup()
 
-        self.button_group = QtGui.QButtonGroup(self) #creer checkboxes exclusives
+
+
+
+    #-------------------Modification et connection des widgets ici----------------------------------
+    def setup(self):
+
+        #QTWidgets setuo
+        self.button_group = QtGui.QButtonGroup(self) 
         self.button_group.addButton(self.checkBox_cinDir)
         self.button_group.addButton(self.checkBox_cinInv)
         self.checkBox_cinDir.setChecked(True)
@@ -33,12 +39,56 @@ class MainWindow(QtGui.QMainWindow, Ui_MainWindow):
         self.lineEdit_theta2.setEnabled(False)
         self.lineEdit_theta3.setEnabled(False)
 
+        self.Slider_ManJog_theta1.setMaximum(2400)
+        self.Slider_ManJog_theta2.setMaximum(2400)
+        self.Slider_ManJog_theta3.setMaximum(2400)
+        self.Slider_ManJog_theta1.setMinimum(1000)
+        self.Slider_ManJog_theta2.setMinimum(1000)
+        self.Slider_ManJog_theta3.setMinimum(1000)
+
+        #Initialisation des variables globales
         self.commandNb = 1
         self.currentPort = ''
-        self.counter = 0;
+        self.counter = 0
+        self.sliderIsClicked = False
+        self.theta1 = (int)(self.label_theta1_confirmed.text())
+        self.theta2 = (int)(self.label_theta2_confirmed.text())
+        self.theta3 = (int)(self.label_theta3_confirmed.text())
+        self.increments = (int)(self.lineEdit_ManJog_increments.text())
 
+        #Thread setup
+        self.threadpool = QtCore.QThreadPool()
+        print("Multithreading with maximum %d threads" % self.threadpool.maxThreadCount())
 
-        self.setup()
+        self.createPortThread()
+        #self.createCommCheckThread()
+        self.serialPort = self.comboBoxPort.currentText()
+
+        self.timer = QtCore.QTimer()
+        self.timer.setInterval(100)
+        #self.timer.timeout.connect(self.creatSliderThread)
+        #self.timer.start()
+
+        #FUNCTIONS SETUP
+
+        self.button_sendCommandNb.clicked.connect(self.sendCommandNumber)
+        self.pushButton_Params.clicked.connect(self.paramUpdateCoordonneCart)
+        self.EStop.clicked.connect(self.eStop)
+        self.buttonUpdatePort.clicked.connect(self.createPortThread)
+        self.button_command.clicked.connect(self.commandButtonStart)
+
+        self.checkBox_cinDir.stateChanged.connect(self.checkboxCinDirClicked)
+        self.checkBox_cinInv.stateChanged.connect(self.checkboxCinInvClicked)
+        self.comboBoxPort.currentIndexChanged.connect(self.portChanged)
+        self.lineEdit_ManJog_increments.editingFinished.connect(self.updateIncrements)
+
+        self.Slider_ManJog_theta1.sliderPressed.connect(self.createManJogThread)
+        self.Slider_ManJog_theta2.sliderPressed.connect(self.createManJogThread)
+        self.Slider_ManJog_theta3.sliderPressed.connect(self.createManJogThread)
+
+        self.Slider_ManJog_theta1.sliderReleased.connect(self.sliderRealesed)
+        self.Slider_ManJog_theta2.sliderReleased.connect(self.sliderRealesed)
+        self.Slider_ManJog_theta3.sliderReleased.connect(self.sliderRealesed)
 
 
     #-----------------Ajout des fonctions pour connecter--------------------------------------
@@ -66,19 +116,13 @@ class MainWindow(QtGui.QMainWindow, Ui_MainWindow):
     def paramUpdateCoordonneCart(self):
         """Pour updater les coordonnees cartesiennes ou joints lorsqu'elles sont modifiees"""
         if self.checkBox_cinDir.isChecked():
-            self.xx = float(self.lineEdit_x.text())
-            self.yy = float(self.lineEdit_y.text())
-            self.zz = float(self.lineEdit_z.text())
-            self.label_x_confirmed.setText(str(self.xx))
-            self.label_y_confirmed.setText(str(self.yy))
-            self.label_z_confirmed.setText(str(self.zz))
+            self.label_x_confirmed.setText(self.lineEdit_z.text())
+            self.label_y_confirmed.setText(self.lineEdit_z.text())
+            self.label_z_confirmed.setText(self.lineEdit_z.text())
         else:
-            self.theta1 = int(self.lineEdit_theta1.text())
-            self.theta2 = int(self.lineEdit_theta2.text())
-            self.theta3 = int(self.lineEdit_theta3.text())
-            self.label_theta1_confirmed.setText(str(self.theta1))
-            self.label_theta2_confirmed.setText(str(self.theta2))
-            self.label_theta3_confirmed.setText(str(self.theta3))
+            self.label_theta1_confirmed.setText(self.lineEdit_theta1.text())
+            self.label_theta2_confirmed.setText(self.lineEdit_theta2.text())
+            self.label_theta3_confirmed.setText(self.lineEdit_theta3.text())
 
     def checkboxCinDirClicked(self):
         if not self.checkBox_cinDir.isChecked():
@@ -110,22 +154,29 @@ class MainWindow(QtGui.QMainWindow, Ui_MainWindow):
 
         return messageBuff
 
-    def timeSecCheck(self):
-        print('the time thread is runing')
 
     #FONCTIONS de commande
     def commandButtonStart(self):
         cmd = self.commandNb
         answerCmdNb = cmd
+
         print('start button has been pressed')
         if cmd == 1:
             print('---------COMMAND 1----------\n')
             if self.counter < 1:
-                answerCmdNb = self.sendMotorPositionAngle(cmd,1500,1500,1500)
+                self.theta1 = 1500
+                self.theta2 = 1500
+                self.theta3 = 1500
+
                 self.counter = self.counter + 1;
             else:
-                answerCmdNb = self.sendMotorPositionAngle(cmd,2000,2000,2000)
+                self.theta1 = 2000
+                self.theta2 = 2000
+                self.theta3 = 2000
+
                 self.counter = self.counter - 1;
+
+            answerCmdNb = self.sendMotorPositionAngle(cmd,self.theta1,self.theta2,self.theta3)
 
         elif cmd == 2:
             print("Command 2 is getting executed")
@@ -140,15 +191,14 @@ class MainWindow(QtGui.QMainWindow, Ui_MainWindow):
         else:
             print("The command ", self.commandNb, " is not a known command")
 
-        if answerCmdNb != cmd: #Verification pour voir si il n'y a pas eu d'erreur de comm
-            print("!****Erreur de comm****!")
-            
-            #self.sendMotorAngleThread(cmd,1500,1500,1250)
-        
         print('--------------------------\n')
 
     def sendMotorPositionAngle(self, cmdNb, theta1, theta2, theta3):
         """Function to send data to the Open CR, also used with a different thread so the loop wont block until it receives data """
+
+        if cmdNb >= 1: #Only if the motors are moved
+            self.updateSliderManJog()
+
         messageBuff = self.packingMessageShort(cmdNb, theta1, theta2, theta3)
 
         #create a thread to send the position and wait for response
@@ -167,11 +217,55 @@ class MainWindow(QtGui.QMainWindow, Ui_MainWindow):
             
         except:
             print('\t-> [FAIL]Port', self.currentPort,' did not open')
+            answer = -1
+            print("!****Erreur de comm****!")
+            return (int)(answer)
+
+        if answer != cmdNb: #Verification pour voir si il n'y a pas eu d'erreur de comm
+            return 0
 
         return (int)(answer)
 
     #FONCTIONS pour Manual jog
-         
+
+    def sliderClicked(self):
+        self.sliderIsClicked = True
+        currentValueTheta1 = self.theta1
+        currentValueTheta2 = self.theta2
+        currentValueTheta3 = self.theta3
+
+        while self.sliderIsClicked:
+            if currentValueTheta1 != self.Slider_ManJog_theta1.value() \
+                    or currentValueTheta2 != self.Slider_ManJog_theta2.value() \
+                    or currentValueTheta3 != self.Slider_ManJog_theta3.value():
+
+                self.theta1 = self.Slider_ManJog_theta1.value()
+                self.theta2 = self.Slider_ManJog_theta2.value()
+                self.theta3 = self.Slider_ManJog_theta3.value()
+
+                result = self.sendMotorPositionAngle(1, self.theta1, self.theta2, self.theta3)
+
+                currentValueTheta1 = self.theta1
+                currentValueTheta2 = self.theta2
+                currentValueTheta3 = self.theta3
+
+            time.sleep(0.1)
+    
+    def sliderRealesed(self):
+        self.sliderIsClicked = False
+        
+
+    def updateSliderManJog(self):
+        if self.theta1 != self.Slider_ManJog_theta1.value():
+            self.Slider_ManJog_theta1.setValue(self.theta1)
+        if self.theta2 != self.Slider_ManJog_theta2.value():
+            self.Slider_ManJog_theta2.setValue(self.theta2)
+        if self.theta3 != self.Slider_ManJog_theta3.value():
+            self.Slider_ManJog_theta3.setValue(self.theta3)
+
+    def updateIncrements(self):
+        self.increments = (int)(self.lineEdit_ManJog_increments.text())
+        print("Increments has been changed to ", self.increments)
 
 
     #FONCTIONS pour self.comboBoxPort
@@ -191,8 +285,8 @@ class MainWindow(QtGui.QMainWindow, Ui_MainWindow):
         print('Port: ', self.currentPort)
     
     #-----------------------Thread creation functions to call------------------------------------------------------
-    def createTimeThread(self):
-        worker = Worker(self.timeSecCheck) # Any other args, kwargs are passed to the run function
+    def createManJogThread(self):
+        worker = Worker(self.sliderClicked) # Any other args, kwargs are passed to the run function
         self.threadpool.start(worker)
 
     def sendMotorAngleThread(self, cmdNb, theta1, theta2, theta3):
@@ -202,27 +296,6 @@ class MainWindow(QtGui.QMainWindow, Ui_MainWindow):
     def createPortThread(self):
         worker = Worker(self.updatePort) # Used to check for new ports when button is clicked
         self.threadpool.start(worker)
-
-    #-------------------Modification et connection des widgets ici----------------------------------
-    def setup(self):
-        self.button_sendCommandNb.clicked.connect(self.sendCommandNumber)
-        self.pushButton_Params.clicked.connect(self.paramUpdateCoordonneCart)
-        self.EStop.clicked.connect(self.eStop)
-        self.buttonUpdatePort.clicked.connect(self.createPortThread)
-        self.button_command.clicked.connect(self.commandButtonStart)
-
-        self.checkBox_cinDir.stateChanged.connect(self.checkboxCinDirClicked)
-        self.checkBox_cinInv.stateChanged.connect(self.checkboxCinInvClicked)
-        self.comboBoxPort.currentIndexChanged.connect(self.portChanged)
-
-        self.createPortThread()
-        #self.createCommCheckThread()
-        self.serialPort = self.comboBoxPort.currentText()
-
-        self.timer = QtCore.QTimer()
-        self.timer.setInterval(100)
-        self.timer.timeout.connect(self.createTimeThread)
-        #self.timer.start()
 
 
 
