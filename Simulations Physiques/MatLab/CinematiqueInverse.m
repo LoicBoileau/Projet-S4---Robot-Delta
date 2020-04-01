@@ -1,31 +1,55 @@
-function [t] = CinematiqueInverse(P, param)
+function [phi_i] = CinematiqueInverse(P, param)
+% Calcul les positions angulaires nécessaire pour atteindre la position
+% désirée de l'effecteur
+% Prend en paramètre le vecteur position P=[x, y, z] et les paramètres du
+% robot param=[Longueur_bicep, longueur_avantBras, rayon_base, rayon_effecteur].
+% Retourne un vecteur t=[phi_1, phi_2, phi_3] contenant les positions angulaires des
+% moteurs du bras.
+
+% Position désiré de l'effecteur
 x = P(1);
 y = P(2);
 z = P(3);
 
-t1 = 0;
-t2 = 0;
-t3 = 0;
+% Angle phi résultants
+phi_1 = 0;
+phi_2 = 0;
+phi_3 = 0;
 
-[t1, s] = calcul(P, param);
-if(s == 0)
-    [t2, s] = calcul([x*cos(120*pi/180) + y*sin(120*pi/180), y*cos(120*pi/180)-x*sin(120*pi/180), z],param);
+% Calcul de phi 1
+[phi_1, singularite] = calcul(P, param);
+
+if(singularite == 0)
+    % Calcul phi 2
+    [phi_2, singularite] = calcul([x*cos(120*pi/180) + y*sin(120*pi/180), ...
+                         y*cos(120*pi/180) - x*sin(120*pi/180), ...
+                         z]...
+                         ,param);
 end
 
-if(s==0)
-    [t3,s] = calcul([x*cos(120*pi/180) - y*sin(120*pi/180), y*cos(120*pi/180)+x*sin(120*pi/180), z],param);
+if(singularite == 0)
+    % Calcul phi 3
+    [phi_3,singularite] = calcul([x*cos(120*pi/180) - y*sin(120*pi/180), ...
+                        y*cos(120*pi/180) + x*sin(120*pi/180), ...
+                        z]...
+                        ,param);
 end
 
-if(s==0) 
-    t = eval([t1,t2,t3]);
-else
-    t = [0,0,0];
+if(singularite == 0) % Position angulaire trouvée
+    phi_i = [phi_1, phi_2, phi_3];
+else % Il y a eu un problème pour au moins une section du bras
+    phi_i = [0, 0, 0]; % Position par défaut
 end
+
 end
 
+%% Fonction interne
+function [phi, singularite] = calcul(P, param)
+% Calcul la position angulaire d'une section pour atteindre la position
+% désirée de l'effecteur.
+% Prend en paramètre un vecteur de position P et les paramètres du robot.
 
-function [theta, s] = calcul(P, param)
-
+% Position désirée de l'effecteur
 x = P(1);
 y = P(2);
 z = P(3);
@@ -34,34 +58,30 @@ z = P(3);
 l_bicep = param(1);
 l_avantBras = param(2);
 
-% Dimensions de la base et l'effecteur en mètre
-base = param(3);
-effecteur = param(4);
+% Dimensions du rayon de la base et de l'effecteur en mètre
+base = param(3)/(2*sqrt(3));
+effecteur = param(4)/(2*sqrt(3));
 
-theta = [0, 0, 0];
+phi = 0;
 
-%% 
-% y1 = -base/(2*sqrt(3));
-% k = effecteur/(2*sqrt(3));
 y = y - effecteur;
 
-a = (x^2 + y^2 + z^2 + l_bicep^2 - l_avantBras^2 + base^2)/(2*z);
-b = (-base-y)/z;
+ni = (x^2 + y^2 + z^2 + l_bicep^2 - l_avantBras^2 + base^2)/(2*z);
+mi = (-base - y)/z;
 
-d = -(a+b*-base)^2 + l_bicep*(b^2 * l_bicep + l_bicep);
+li = -(ni + mi*-base)^2 + l_bicep*(mi^2*l_bicep + l_bicep);
 
-if(d < 0) % Position impossible
-    s = 1;
+if(li < 0) % Position impossible
+    singularite = 1;
 else 
-    yj = (-base - a*b - sqrt(d))/(b^2 + 1);
-    zj = a + b*yj;
-    theta = 180 * atan(-zj/(-base - yj))/pi;
+    yi = (-base - ni*mi - sqrt(li))/(mi^2 + 1);
+    zi = ni + mi*yi;
+    phi = 180 * atan(-zi/(-base - yi))/pi;
     
-    if(yj > -base) % On choisi l'autre solution
-        theta = theta + 180;
+    if(yi > -base) % On choisi l'autre solution
+        phi = phi + 180;
     end
     
-    s = 0;
+    singularite = 0;
 end
 end
-
