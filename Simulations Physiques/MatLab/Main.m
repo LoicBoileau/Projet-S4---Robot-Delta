@@ -2,36 +2,24 @@ clc;
 clear all;
 close all;
 
-%%
-rA = 0.08083;
-rB = 0.06606;
-L1 = 0.10183;
-L2 = 0.21565;
+%% Init parameters
+rA = 0.08083; % rayon de la base
+rB = 0.06606; % rayon de l'effecteur
+L1 = 0.10183; % Longueur du bicep
+L2 = 0.21565; % longueur de l'avant bras
 
-% theta = 24,2535;
+param = [L1, L2, rA, rB];
 
-% Xp = [0:10000];
-% Yp = Xp;
-% Zp = Xp;
-% 
-% syms phi1_1 phi1_2 phi1_3 phi2_1 phi2_2 phi2_3 phi3_1 phi3_2 phi3_3
-% r = rA - rB;
-% 
-% Xi = r + L1*cosd(theta);
-% 
-% Y1 = (r + L1*cosd(phi1_1) * sind(theta);
-% Y2 = (r + L1*cosd(phi1_2) * sind(theta);
-% Y3 = (r + L1*cosd(phi1_3) * sind(theta);
-% 
-% Zi = -L1 * sind(theta);
-
-%% 
-syms z real
-
-param = [L1, L2, rA, rB, z];
+%% Inverse Kinematic inputs
+% On considère que le point central entre les moteurs est [0, 0, 0].
 
 % Entrez votre position ici: P = [x, y, z]
-P = [-0.1, -0.03, -0.21]; 
+P = [-0.1, -0.03, -0.21]
+
+%% Execution
 
 % Résultat -> position angulaire des moteurs (deg)
 phi_i = CinematiqueInverse(P, param)
+
+%% Validation
+% https://www.marginallyclever.com/other/samples/fk-ik-test.html
