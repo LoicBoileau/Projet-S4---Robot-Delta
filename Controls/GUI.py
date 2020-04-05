@@ -161,6 +161,10 @@ class MainWindow(QtGui.QMainWindow, Ui_MainWindow):
         answerCmdNb = cmd
 
         print('start button has been pressed')
+        #Vérifie que la commande a envoyer doit être angulaire ou cartésienne
+        if (self.checkBox_cinInv.stateChanged.connect(self.checkboxCinInvClicked)):
+            cmd += 3
+
         if cmd == 1:
             print('---------COMMAND 1----------\n')
             if self.counter < 1:
@@ -188,6 +192,24 @@ class MainWindow(QtGui.QMainWindow, Ui_MainWindow):
             self.theta3 = (int)(self.label_theta3_confirmed.text())
 
             answerCmdNb = self.sendMotorPositionAngle(cmd,self.theta1,self.theta2,self.theta3)
+
+        elif cmd == 4:
+            print('---------COMMAND 1 CARTESIAN----------\n')
+            if self.counter < 1:
+                self.x = .1
+                self.y = .1
+                self.z = .1
+
+                self.counter = self.counter + 1;
+            else:
+                self.x = .1
+                self.y = .1
+                self.z = .2
+
+                self.counter = self.counter - 1;
+
+            answerCmdNb = self.sendCartesianCoord(cmd,self.x,self.y,self.z)
+
         else:
             print("The command ", self.commandNb, " is not a known command")
 
@@ -225,6 +247,51 @@ class MainWindow(QtGui.QMainWindow, Ui_MainWindow):
             return 0
 
         return (int)(answer)
+
+    #FONCTION d'envoi de coordonnées cartésiennes 
+
+    def calculTheta(self, x, y, z):
+        
+        rA = 0.08083 
+        rB = 0.06606
+        base = rA/(2*sqrt(3))
+        effecteur = rB/(2*sqrt(3))
+
+        l_bicep = 0.10183
+        l_avantBras = 0.21562
+
+        y = y - effecteur;
+
+        ni = (x^2 + y^2 + z^2 + l_bicep^2 - l_avantBras^2 + base^2)/(2*z);
+        mi = (-base - y)/z;
+        li = -(ni + mi*-base)^2 + l_bicep*(mi^2*l_bicep + l_bicep);
+
+        if(li < 0): # Position impossible
+            singularite = 1;
+            print("Erreur de singularité, veuillez entrer une autre commande")
+            return -1
+        else:
+            yi = (-base - ni*mi - sqrt(li))/(mi^2 + 1);
+            zi = ni + mi*yi;
+            theta = 180 * atan(-zi/(-base - yi))/pi;
+    
+            if(yi > -base): # On choisi l'autre solution
+                theta = theta + 180;
+            end
+    
+            singularite = 0;
+            return(float)(theta)
+
+
+    def sendCartesianCoord(self, cmdNb, x, y, z):
+       
+        # Calcul de thetas
+        theta1 = calculTheta(self, x, y, z)
+        theta2 = calculTheta(self, x*cos(120*pi/180) + y*sin(120*pi/180), y*cos(120*pi/180) - x*sin(120*pi/180),z)
+        theta3 = calculTheta(self, x*cos(120*pi/180) - y*sin(120*pi/180), y*cos(120*pi/180) + x*sin(120*pi/180),z)
+        # Envoi de la commande cartésienne sous forme angulaire
+        sendMotorPositionAngle(self,cmdNb,theta1,theta2,theta3)
+
 
     #FONCTIONS pour Manual jog
 
@@ -291,6 +358,10 @@ class MainWindow(QtGui.QMainWindow, Ui_MainWindow):
 
     def sendMotorAngleThread(self, cmdNb, theta1, theta2, theta3):
         worker = Worker(self.sendMotorPositionAngle, cmdNb, theta1, theta2, theta3)
+        self.threadpool.start(worker)
+
+    def sendCartCoordThread(self, cmdNb, x, y, z):
+        worker = Worker(self.sendCartesianCoord, cmdNb, x, y, z)
         self.threadpool.start(worker)
    
     def createPortThread(self):
