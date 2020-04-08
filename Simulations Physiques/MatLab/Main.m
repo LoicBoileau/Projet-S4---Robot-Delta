@@ -23,3 +23,12 @@ phi_i = CinematiqueInverse(P, param)
 
 %% Validation
 % https://www.marginallyclever.com/other/samples/fk-ik-test.html
+
+
+if (phi_i ~= [0,0,0])
+    display(phi_i)
+    plotRobot(P, phi_i, param);
+else
+    display('Not in range');
+end
+
