@@ -14,7 +14,7 @@ import serial.tools.list_ports
 import serial
 import time
 import struct
-
+import math
 
 class MainWindow(QtGui.QMainWindow, Ui_MainWindow):
     #initialisation du mainwindow object qui se trouve dans mainwindow.py
@@ -61,7 +61,6 @@ class MainWindow(QtGui.QMainWindow, Ui_MainWindow):
         print("Multithreading with maximum %d threads" % self.threadpool.maxThreadCount())
 
         self.createPortThread()
-        #self.createCommCheckThread()
         self.serialPort = self.comboBoxPort.currentText()
 
         self.timer = QtCore.QTimer()
@@ -116,8 +115,8 @@ class MainWindow(QtGui.QMainWindow, Ui_MainWindow):
     def paramUpdateCoordonneCart(self):
         """Pour updater les coordonnees cartesiennes ou joints lorsqu'elles sont modifiees"""
         if self.checkBox_cinDir.isChecked():
-            self.label_x_confirmed.setText(self.lineEdit_z.text())
-            self.label_y_confirmed.setText(self.lineEdit_z.text())
+            self.label_x_confirmed.setText(self.lineEdit_x.text())
+            self.label_y_confirmed.setText(self.lineEdit_y.text())
             self.label_z_confirmed.setText(self.lineEdit_z.text())
         else:
             self.label_theta1_confirmed.setText(self.lineEdit_theta1.text())
@@ -162,8 +161,9 @@ class MainWindow(QtGui.QMainWindow, Ui_MainWindow):
 
         print('start button has been pressed')
         #Vérifie que la commande a envoyer doit être angulaire ou cartésienne
-        if (self.checkBox_cinInv.stateChanged.connect(self.checkboxCinInvClicked)):
-            cmd += 3
+        #*****************************************************************************************
+        #if (self.checkBox_cinInv.stateChanged.connect(self.checkboxCinInvClicked)):
+        #    cmd += 3
 
         if cmd == 1:
             print('---------COMMAND 1----------\n')
@@ -186,7 +186,8 @@ class MainWindow(QtGui.QMainWindow, Ui_MainWindow):
             print("Command 2 is getting executed")
 
         elif cmd == 3:
-            print('---------COMMAND 3----------\n')
+            print('---------COMMAND 3 ANGULAR----------\n')
+
             self.theta1 = (int)(self.label_theta1_confirmed.text())
             self.theta2 = (int)(self.label_theta2_confirmed.text())
             self.theta3 = (int)(self.label_theta3_confirmed.text())
@@ -194,19 +195,18 @@ class MainWindow(QtGui.QMainWindow, Ui_MainWindow):
             answerCmdNb = self.sendMotorPositionAngle(cmd,self.theta1,self.theta2,self.theta3)
 
         elif cmd == 4:
-            print('---------COMMAND 1 CARTESIAN----------\n')
-            if self.counter < 1:
-                self.x = .1
-                self.y = .1
-                self.z = .1
+            print('---------COMMAND 4 CARTESIAN----------\n')
 
-                self.counter = self.counter + 1;
-            else:
-                self.x = .1
-                self.y = .1
-                self.z = .2
+            self.x = (float)(self.label_x_confirmed.text())
+            self.y = (float)(self.label_y_confirmed.text())
+            self.z = (float)(self.label_z_confirmed.text())
 
-                self.counter = self.counter - 1;
+            if self.x == 0:
+               self.x = 0.1
+            if self.y == 0:
+               self.y = 0.1
+            if self.z == 0:
+               self.z = 0.1
 
             answerCmdNb = self.sendCartesianCoord(cmd,self.x,self.y,self.z)
 
@@ -216,7 +216,7 @@ class MainWindow(QtGui.QMainWindow, Ui_MainWindow):
         print('--------------------------\n')
 
     def sendMotorPositionAngle(self, cmdNb, theta1, theta2, theta3):
-        """Function to send data to the Open CR, also used with a different thread so the loop wont block until it receives data """
+        """Function to send data to the Open CR, can also be used with a different thread so the loop wont block until it receives data """
 
         if cmdNb >= 1: #Only if the motors are moved
             self.updateSliderManJog()
@@ -254,30 +254,29 @@ class MainWindow(QtGui.QMainWindow, Ui_MainWindow):
         
         rA = 0.08083 
         rB = 0.06606
-        base = rA/(2*sqrt(3))
-        effecteur = rB/(2*sqrt(3))
+        base = rA/(2*math.sqrt(3))
+        effecteur = rB/(2*math.sqrt(3))
 
         l_bicep = 0.10183
         l_avantBras = 0.21562
 
         y = y - effecteur;
 
-        ni = (x^2 + y^2 + z^2 + l_bicep^2 - l_avantBras^2 + base^2)/(2*z);
+        ni = (x**2 + y**2 + z**2 + l_bicep**2 - l_avantBras**2 + base**2)/(2*z);
         mi = (-base - y)/z;
-        li = -(ni + mi*-base)^2 + l_bicep*(mi^2*l_bicep + l_bicep);
+        li = -(ni + mi*-base)**2 + l_bicep*(mi**2*l_bicep + l_bicep);
 
         if(li < 0): # Position impossible
             singularite = 1;
             print("Erreur de singularité, veuillez entrer une autre commande")
             return -1
         else:
-            yi = (-base - ni*mi - sqrt(li))/(mi^2 + 1);
+            yi = (-base - ni*mi - math.sqrt(li))/(mi**2 + 1);
             zi = ni + mi*yi;
-            theta = 180 * atan(-zi/(-base - yi))/pi;
+            theta = 180 * math.atan(-zi/(-base - yi))/math.pi;
     
             if(yi > -base): # On choisi l'autre solution
                 theta = theta + 180;
-            end
     
             singularite = 0;
             return(float)(theta)
@@ -285,13 +284,26 @@ class MainWindow(QtGui.QMainWindow, Ui_MainWindow):
 
     def sendCartesianCoord(self, cmdNb, x, y, z):
        
+        xOffset = 0
+        yOffset = 0
+        zOffset = 0
+        
         # Calcul de thetas
-        theta1 = calculTheta(self, x, y, z)
-        theta2 = calculTheta(self, x*cos(120*pi/180) + y*sin(120*pi/180), y*cos(120*pi/180) - x*sin(120*pi/180),z)
-        theta3 = calculTheta(self, x*cos(120*pi/180) - y*sin(120*pi/180), y*cos(120*pi/180) + x*sin(120*pi/180),z)
-        # Envoi de la commande cartésienne sous forme angulaire
-        sendMotorPositionAngle(self,cmdNb,theta1,theta2,theta3)
+        theta1deg = self.calculTheta(x, y, z)
+        theta2deg = self.calculTheta(x*math.cos(120*math.pi/180) + y*math.sin(120*math.pi/180), y*math.cos(120*math.pi/180) - x*math.sin(120*math.pi/180),z)
+        theta3deg = self.calculTheta(x*math.cos(120*math.pi/180) - y*math.sin(120*math.pi/180), y*math.cos(120*math.pi/180) + x*math.sin(120*math.pi/180),z)
 
+        print("As x : ",x," y : ",y," z : ",z)
+        print("Those angles were calculated theta1_deg : ",theta1deg," theta2_deg : ",theta2deg," theta3_deg : ",theta3deg)
+
+        theta1 = abs(theta1deg)*1400/180 + 1000 #scale sur le nombre de tics ou 0deg = 1200 tics et 180deg = 2400 tics
+        theta2 = abs(theta2deg)*1400/180 + 1000
+        theta3 = abs(theta3deg)*1400/180 + 1000
+
+        # Envoi de la commande cartésienne sous forme angulaire
+        
+        print("Those angles were calculated theta1 : ",theta1," theta2 : ",theta2," theta3 : ",theta3)
+        self.sendMotorPositionAngle(cmdNb,(int)(theta1),(int)(theta2),(int)(theta3))
 
     #FONCTIONS pour Manual jog
 
@@ -342,7 +354,7 @@ class MainWindow(QtGui.QMainWindow, Ui_MainWindow):
         self.comboBoxPort.clear()
         self.listNamePorts = []
         for ports in infoPorts:
-            self.listNamePorts.append(ports[0])
+            self.listNamePorts.append(ports.device) #ports[0]
         self.comboBoxPort.addItems(self.listNamePorts)
         self.currentPort = self.comboBoxPort.currentText()
         print('A search for ports has closed') 
@@ -360,9 +372,7 @@ class MainWindow(QtGui.QMainWindow, Ui_MainWindow):
         worker = Worker(self.sendMotorPositionAngle, cmdNb, theta1, theta2, theta3)
         self.threadpool.start(worker)
 
-    def sendCartCoordThread(self, cmdNb, x, y, z):
-        worker = Worker(self.sendCartesianCoord, cmdNb, x, y, z)
-        self.threadpool.start(worker)
+
    
     def createPortThread(self):
         worker = Worker(self.updatePort) # Used to check for new ports when button is clicked
