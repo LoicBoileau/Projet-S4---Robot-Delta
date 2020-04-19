@@ -3,7 +3,7 @@ function [phi_i] = CinematiqueInverse(P, param)
 % désirée de l'effecteur
 % Prend en paramètre le vecteur position P=[x, y, z] et les paramètres du
 % robot param=[Longueur_bicep, longueur_avantBras, rayon_base, rayon_effecteur].
-% Retourne un vecteur t=[phi_1, phi_2, phi_3] contenant les positions angulaires des
+% Retourne un vecteur phi_i=[phi_1, phi_2, phi_3] contenant les positions angulaires des
 % moteurs du bras.
 
 % Position désiré de l'effecteur
@@ -69,6 +69,7 @@ y = y - effecteur;
 ni = (x^2 + y^2 + z^2 + l_bicep^2 - l_avantBras^2 + base^2)/(2*z);
 mi = (-base - y)/z;
 
+% Espace 3D atteingnable par l'effecteur si li >= 0
 li = -(ni + mi*-base)^2 + l_bicep*(mi^2*l_bicep + l_bicep);
 
 if(li < 0) % Position impossible
