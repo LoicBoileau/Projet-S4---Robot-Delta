@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'Mainwindow.ui'
 #
-# Created: Fri Apr 17 09:02:01 2020
+# Created: Sat Apr 18 12:41:44 2020
 #      by: pyside-uic 0.2.15 running on PySide 1.2.4
 #
 # WARNING! All changes made in this file will be lost!
@@ -13,7 +13,7 @@ class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
         MainWindow.setEnabled(True)
-        MainWindow.resize(1124, 724)
+        MainWindow.resize(849, 724)
         self.centralwidget = QtGui.QWidget(MainWindow)
         self.centralwidget.setObjectName("centralwidget")
         self.line = QtGui.QFrame(self.centralwidget)
@@ -22,33 +22,13 @@ class Ui_MainWindow(object):
         self.line.setFrameShadow(QtGui.QFrame.Sunken)
         self.line.setObjectName("line")
         self.label_5 = QtGui.QLabel(self.centralwidget)
-        self.label_5.setGeometry(QtCore.QRect(70, 9, 80, 20))
+        self.label_5.setGeometry(QtCore.QRect(40, 14, 80, 20))
         self.label_5.setObjectName("label_5")
-        self.JsonKey = QtGui.QLineEdit(self.centralwidget)
-        self.JsonKey.setGeometry(QtCore.QRect(120, 40, 221, 20))
-        self.JsonKey.setAlignment(QtCore.Qt.AlignCenter)
-        self.JsonKey.setObjectName("JsonKey")
         self.comboBoxPort = QtGui.QComboBox(self.centralwidget)
-        self.comboBoxPort.setGeometry(QtCore.QRect(120, 10, 221, 20))
+        self.comboBoxPort.setGeometry(QtCore.QRect(90, 15, 221, 20))
         self.comboBoxPort.setObjectName("comboBoxPort")
-        self.label_4 = QtGui.QLabel(self.centralwidget)
-        self.label_4.setGeometry(QtCore.QRect(10, 270, 241, 20))
-        self.label_4.setAlignment(QtCore.Qt.AlignLeading|QtCore.Qt.AlignLeft|QtCore.Qt.AlignVCenter)
-        self.label_4.setObjectName("label_4")
-        self.graph = QtGui.QGraphicsView(self.centralwidget)
-        self.graph.setGeometry(QtCore.QRect(10, 70, 331, 191))
-        self.graph.setObjectName("graph")
-        self.label_3 = QtGui.QLabel(self.centralwidget)
-        self.label_3.setGeometry(QtCore.QRect(10, 40, 101, 20))
-        self.label_3.setObjectName("label_3")
-        self.textBrowser = QtGui.QTextBrowser(self.centralwidget)
-        self.textBrowser.setGeometry(QtCore.QRect(10, 300, 331, 191))
-        font = QtGui.QFont()
-        font.setPointSize(9)
-        self.textBrowser.setFont(font)
-        self.textBrowser.setObjectName("textBrowser")
         self.frame_command1 = QtGui.QFrame(self.centralwidget)
-        self.frame_command1.setGeometry(QtCore.QRect(360, 40, 431, 581))
+        self.frame_command1.setGeometry(QtCore.QRect(30, 40, 431, 581))
         self.frame_command1.setStyleSheet("")
         self.frame_command1.setFrameShape(QtGui.QFrame.StyledPanel)
         self.frame_command1.setFrameShadow(QtGui.QFrame.Raised)
@@ -260,10 +240,10 @@ class Ui_MainWindow(object):
         self.label_11.setAlignment(QtCore.Qt.AlignCenter)
         self.label_11.setObjectName("label_11")
         self.buttonUpdatePort = QtGui.QPushButton(self.centralwidget)
-        self.buttonUpdatePort.setGeometry(QtCore.QRect(380, 5, 93, 30))
+        self.buttonUpdatePort.setGeometry(QtCore.QRect(350, 10, 93, 30))
         self.buttonUpdatePort.setObjectName("buttonUpdatePort")
         self.frame_ManJog = QtGui.QFrame(self.centralwidget)
-        self.frame_ManJog.setGeometry(QtCore.QRect(800, 50, 301, 321))
+        self.frame_ManJog.setGeometry(QtCore.QRect(470, 50, 301, 321))
         self.frame_ManJog.setFrameShape(QtGui.QFrame.StyledPanel)
         self.frame_ManJog.setFrameShadow(QtGui.QFrame.Raised)
         self.frame_ManJog.setObjectName("frame_ManJog")
@@ -352,7 +332,7 @@ class Ui_MainWindow(object):
         self.pushButton_ManJog_Min.setObjectName("pushButton_ManJog_Min")
         MainWindow.setCentralWidget(self.centralwidget)
         self.menubar = QtGui.QMenuBar(MainWindow)
-        self.menubar.setGeometry(QtCore.QRect(0, 0, 1124, 26))
+        self.menubar.setGeometry(QtCore.QRect(0, 0, 849, 26))
         self.menubar.setObjectName("menubar")
         self.menuOption = QtGui.QMenu(self.menubar)
         self.menuOption.setObjectName("menuOption")
@@ -368,9 +348,6 @@ class Ui_MainWindow(object):
     def retranslateUi(self, MainWindow):
         MainWindow.setWindowTitle(QtGui.QApplication.translate("MainWindow", "MainWindow", None, QtGui.QApplication.UnicodeUTF8))
         self.label_5.setText(QtGui.QApplication.translate("MainWindow", "Port:", None, QtGui.QApplication.UnicodeUTF8))
-        self.JsonKey.setText(QtGui.QApplication.translate("MainWindow", "flag", None, QtGui.QApplication.UnicodeUTF8))
-        self.label_4.setText(QtGui.QApplication.translate("MainWindow", "Messages:", None, QtGui.QApplication.UnicodeUTF8))
-        self.label_3.setText(QtGui.QApplication.translate("MainWindow", "Donnees brutes:", None, QtGui.QApplication.UnicodeUTF8))
         self.label_theta1.setText(QtGui.QApplication.translate("MainWindow", "theta1", None, QtGui.QApplication.UnicodeUTF8))
         self.lineEdit_x.setText(QtGui.QApplication.translate("MainWindow", "0", None, QtGui.QApplication.UnicodeUTF8))
         self.button_command.setText(QtGui.QApplication.translate("MainWindow", "Start Command", None, QtGui.QApplication.UnicodeUTF8))
@@ -407,9 +384,10 @@ class Ui_MainWindow(object):
 "p, li { white-space: pre-wrap; }\n"
 "</style></head><body style=\" font-family:\'MS Shell Dlg 2\'; font-size:8pt; font-weight:400; font-style:normal;\">\n"
 "<p style=\" margin-top:2px; margin-bottom:2px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:9pt;\">- 1 : Go to home (2000/1750)</span></p>\n"
-"<p style=\" margin-top:2px; margin-bottom:2px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:9pt;\">- 2 : Sequence pick</span></p>\n"
-"<p style=\" margin-top:2px; margin-bottom:2px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:9pt;\">- 3 : Go to position </span></p>\n"
-"<p style=\" margin-top:2px; margin-bottom:2px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:9pt;\">- 4 :</span></p></body></html>", None, QtGui.QApplication.UnicodeUTF8))
+"<p style=\" margin-top:2px; margin-bottom:2px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:9pt;\">- 2 : Déplacement cartésien préenregistrer</span></p>\n"
+"<p style=\" margin-top:2px; margin-bottom:2px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:9pt;\">- 3 : Déplacement </span></p>\n"
+"<p style=\" margin-top:2px; margin-bottom:2px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:9pt;\">- 4 : Mouvement en boucle 1</span></p>\n"
+"<p style=\" margin-top:2px; margin-bottom:2px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:9pt;\">- 5 : Mouvement en boucle 2</span></p></body></html>", None, QtGui.QApplication.UnicodeUTF8))
         self.lineEdit_theta2.setText(QtGui.QApplication.translate("MainWindow", "0", None, QtGui.QApplication.UnicodeUTF8))
         self.lineEdit_theta3.setText(QtGui.QApplication.translate("MainWindow", "0", None, QtGui.QApplication.UnicodeUTF8))
         self.label_theta2_confirmed.setText(QtGui.QApplication.translate("MainWindow", "2000", None, QtGui.QApplication.UnicodeUTF8))

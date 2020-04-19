@@ -30,7 +30,7 @@ class MainWindow(QtGui.QMainWindow, Ui_MainWindow):
     #-------------------Modification et connection des widgets ici----------------------------------
     def setup(self):
 
-        #QTWidgets setuo
+        #QTWidgets setup
         self.button_group = QtGui.QButtonGroup(self) 
         self.button_group.addButton(self.checkBox_cinDir)
         self.button_group.addButton(self.checkBox_cinInv)
@@ -48,13 +48,19 @@ class MainWindow(QtGui.QMainWindow, Ui_MainWindow):
 
         #Initialisation des variables globales
         self.commandNb = 1
+        self.stop = False
         self.currentPort = ''
         self.counter = 0
         self.sliderIsClicked = False
         self.theta1 = (int)(self.label_theta1_confirmed.text())
         self.theta2 = (int)(self.label_theta2_confirmed.text())
         self.theta3 = (int)(self.label_theta3_confirmed.text())
+        self.x = (float)(self.label_x_confirmed.text())
+        self.y = (float)(self.label_y_confirmed.text())
+        self.z = (float)(self.label_z_confirmed.text())
         self.increments = (int)(self.lineEdit_ManJog_increments.text())
+
+        self.home_theta = 2000
 
         #Thread setup
         self.threadpool = QtCore.QThreadPool()
@@ -75,6 +81,7 @@ class MainWindow(QtGui.QMainWindow, Ui_MainWindow):
         self.EStop.clicked.connect(self.eStop)
         self.buttonUpdatePort.clicked.connect(self.createPortThread)
         self.button_command.clicked.connect(self.commandButtonStart)
+        self.button_command_Stop.clicked.connect(self.commandButtonStop)
 
         self.checkBox_cinDir.stateChanged.connect(self.checkboxCinDirClicked)
         self.checkBox_cinInv.stateChanged.connect(self.checkboxCinInvClicked)
@@ -92,7 +99,7 @@ class MainWindow(QtGui.QMainWindow, Ui_MainWindow):
 
     #-----------------Ajout des fonctions pour connecter--------------------------------------
     def eStop(self):
-       """Bouton d'arrêt d'urgence"""
+       """Bouton d'arrêt d'urgence, envoi un signal electrique sur une pin digital ce qui va générer un interrupt sur l'Open CR"""
         
         
 
@@ -156,46 +163,37 @@ class MainWindow(QtGui.QMainWindow, Ui_MainWindow):
 
     #FONCTIONS de commande
     def commandButtonStart(self):
+        """Cette fonction sert à activer la bonne fonction lorsque la commande est appuyée"""
+
         cmd = self.commandNb
         answerCmdNb = cmd
+        self.stop = False
 
         print('start button has been pressed')
         #Vérifie que la commande a envoyer doit être angulaire ou cartésienne
-        #*****************************************************************************************
+
         #if (self.checkBox_cinInv.stateChanged.connect(self.checkboxCinInvClicked)):
         #    cmd += 3
 
         if cmd == 1:
             print('---------COMMAND 1----------\n')
             if self.counter < 1:
-                self.theta1 = 1500
-                self.theta2 = 1500
-                self.theta3 = 1500
+                self.theta1 = self.home_theta - 500
+                self.theta2 = self.home_theta - 500
+                self.theta3 = self.home_theta - 500
 
                 self.counter = self.counter + 1;
             else:
-                self.theta1 = 2000
-                self.theta2 = 2000
-                self.theta3 = 2000
+                self.theta1 = self.home_theta
+                self.theta2 = self.home_theta
+                self.theta3 = self.home_theta
 
                 self.counter = self.counter - 1;
 
             answerCmdNb = self.sendMotorPositionAngle(cmd,self.theta1,self.theta2,self.theta3)
 
         elif cmd == 2:
-            print("Command 2 is getting executed")
-
-        elif cmd == 3:
-            print('---------COMMAND 3 ANGULAR----------\n')
-
-            self.theta1 = (int)(self.label_theta1_confirmed.text())
-            self.theta2 = (int)(self.label_theta2_confirmed.text())
-            self.theta3 = (int)(self.label_theta3_confirmed.text())
-
-            answerCmdNb = self.sendMotorPositionAngle(cmd,self.theta1,self.theta2,self.theta3)
-
-        elif cmd == 4:
-            print('---------COMMAND 4 CARTESIAN----------\n')
+            print('---------COMMAND 2 CARTESIAN----------\n')
 
             self.x = (float)(self.label_x_confirmed.text())
             self.y = (float)(self.label_y_confirmed.text())
@@ -209,6 +207,25 @@ class MainWindow(QtGui.QMainWindow, Ui_MainWindow):
                self.z = 0.1
 
             answerCmdNb = self.sendCartesianCoord(cmd,self.x,self.y,self.z)
+
+        elif cmd == 3:
+            print('---------COMMAND 3 ANGULAR----------\n')
+
+            self.theta1 = (int)(self.label_theta1_confirmed.text())
+            self.theta2 = (int)(self.label_theta2_confirmed.text())
+            self.theta3 = (int)(self.label_theta3_confirmed.text())
+
+            answerCmdNb = self.sendMotorPositionAngle(cmd,self.theta1,self.theta2,self.theta3)
+
+        elif cmd == 4:
+
+            print('---------COMMAND 4 MOVEMENT EN BOUCLE 1----------\n')           
+            self.createLoopMovementThread(cmd, 1)
+        
+        elif cmd == 5:
+
+            print('---------COMMAND 5 MOVEMENT EN BOUCLE 2----------\n')           
+            self.createLoopMovementThread(cmd, 2)
 
         else:
             print("The command ", self.commandNb, " is not a known command")
@@ -247,6 +264,7 @@ class MainWindow(QtGui.QMainWindow, Ui_MainWindow):
             return 0
 
         return (int)(answer)
+
 
     #FONCTION d'envoi de coordonnées cartésiennes 
 
@@ -314,9 +332,9 @@ class MainWindow(QtGui.QMainWindow, Ui_MainWindow):
         currentValueTheta3 = self.theta3
 
         while self.sliderIsClicked:
-            if currentValueTheta1 != self.Slider_ManJog_theta1.value() \
-                    or currentValueTheta2 != self.Slider_ManJog_theta2.value() \
-                    or currentValueTheta3 != self.Slider_ManJog_theta3.value():
+            if abs(currentValueTheta1-self.Slider_ManJog_theta1.value()) >= self.increments \
+                    or abs(currentValueTheta2-self.Slider_ManJog_theta2.value()) >= self.increments \
+                    or abs(currentValueTheta3-self.Slider_ManJog_theta3.value()) >= self.increments:
 
                 self.theta1 = self.Slider_ManJog_theta1.value()
                 self.theta2 = self.Slider_ManJog_theta2.value()
@@ -328,7 +346,7 @@ class MainWindow(QtGui.QMainWindow, Ui_MainWindow):
                 currentValueTheta2 = self.theta2
                 currentValueTheta3 = self.theta3
 
-            time.sleep(0.1)
+            time.sleep(0.001)
     
     def sliderRealesed(self):
         self.sliderIsClicked = False
@@ -363,22 +381,67 @@ class MainWindow(QtGui.QMainWindow, Ui_MainWindow):
         self.currentPort = self.comboBoxPort.currentText()
         print('Port: ', self.currentPort)
     
+    #FONCTIONS pour le mode automatique
+    def commandButtonStop(self):
+        print("Stop has been pressed")
+        self.stop = True
+
+    def loopMovementThread(self,cmdNb):
+        counter = 0 
+        while not self.stop:
+            if counter%2 == 0:
+                answerCmdNb = self.sendMotorPositionAngle(cmdNb,self.home_theta, self.home_theta, self.home_theta)
+                if counter == 4:
+                    counter = 0
+            else:
+                if counter == 1:
+                    self.theta1 = 1750
+                    self.theta2 = 1750
+                    self.theta3 = 1200
+                elif counter == 3:
+                    self.theta1 = 1200
+                    self.theta2 = 1750
+                    self.theta3 = 1750
+
+                answerCmdNb = self.sendMotorPositionAngle(cmdNb,self.theta1, self.theta2, self.theta3)
+            counter = counter + 1
+            time.sleep(1.5)
+        self.stop = False
+        return
+
+    def loopMovementThread2(self,cmdNb):
+        counter = 0
+        nbPoints = 75
+        while not self.stop:
+            self.theta1 = (int)(math.cos((counter/nbPoints)*2*math.pi)*500 + 1500)
+            self.theta2 = (int)(math.cos((counter/nbPoints)*2*math.pi + 2*math.pi/3)*500 + 1500)
+            self.theta3 = (int)(math.cos((counter/nbPoints)*2*math.pi + 2*math.pi*2/3)*500 + 1500)
+
+            answerCmdNb = self.sendMotorPositionAngle(cmdNb,self.theta1, self.theta2, self.theta3)
+
+            counter = counter + 1
+            if counter > nbPoints-1:
+                counter = 0
+            time.sleep(0.15)
+        self.stop = False
+        return
+
     #-----------------------Thread creation functions to call------------------------------------------------------
     def createManJogThread(self):
-        worker = Worker(self.sliderClicked) # Any other args, kwargs are passed to the run function
+        worker = Worker(self.sliderClicked) # Any other args, kwargs are passed to the run function i.e. Worker(self.sliderClicked, cmdNb, theta1, theta2, theta3))
         self.threadpool.start(worker)
-
-    def sendMotorAngleThread(self, cmdNb, theta1, theta2, theta3):
-        worker = Worker(self.sendMotorPositionAngle, cmdNb, theta1, theta2, theta3)
-        self.threadpool.start(worker)
-
-
+    
+    def createLoopMovementThread(self, cmdNb, loopNb):
+        if loopNb == 1:
+            worker = Worker(self.loopMovementThread, cmdNb)
+            self.threadpool.start(worker)
+        elif loopNb == 2:
+            worker = Worker(self.loopMovementThread2, cmdNb)
+            self.threadpool.start(worker)
    
     def createPortThread(self):
         worker = Worker(self.updatePort) # Used to check for new ports when button is clicked
         self.threadpool.start(worker)
-
-
 
 
 
