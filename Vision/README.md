@@ -1,5 +1,6 @@
 # ReadMe pour la vision.
 ## Étapes pour faire fonctionner la vision
+* Installer pip avec la commande: sudo apt-get install python3-pip (si ce n'est pas fait);
 * Installer la librairie OpenCV avec la commande: pip install opencv-python==3.4.1.15;
 * Installer la librairie numpy avec la commande: pip install numpy;
 * Installer la librairie csv avec la commande: pip install csv; 
