@@ -19,26 +19,31 @@ Pour programmer les moteurs Dynamixel, il faut aller consulter le fichier "READM
 ## Requis pour l'Interface graphique
 ### Composantes
   - RaspberryPi avec python 3.4 installé (ou une version moins récente)
-  - Python 3.4 installé sur un ordinateur pour programmer sur un ordinateur 
+  - Python 3.4 32 bits installé sur un ordinateur pour programmer sur un ordinateur 
   - Librairies PySide et PySerial installées dans python 3.4 ou dans un environnement virtuel
   - IDE de programmation pour python (i.e. Visual Studio ou Visual Studio Code)
   
+### Fonctionnement
+L'interface graphique est codé en python et se compile à l'aide du fichier principale (GUI.py) et le fichier de widgets (mainwindow34.py et mainwindow34.ui
+Le fichier mainwindow34.py est composé à partir du .ui qui lui se modifie à l'aide du designer.exe de QT. Donc pour modifier le fichier mainwindow34.py, 
+il est nécessaire de suivre lesinstructions suivantes.
+
 ### Main pour Interface graphique
 GUI.py est le main pour l'interface graphique et dépend du fichier de setup du UI appelé Mainwindow34.py
 
 ### Designer .UI
 Pour accéder au designer de .ui de Qt, accéder au virtualEnvironnement ou le dossier contenant les librairies de python 3.4.
-Dans le fichier, aller ensuite dans "Lib", "site-packages", "PySide" et cliquer sur le .exe appelé "designer.exe".
+Dans le fichier, aller ensuite dans "Lib", "site-packages", "PySide"  et trouver le .exe appelé "designer.exe".
 
 ### Convertir .ui à .py 
-Aller dans le menu de VS "outils" ou "tools", ensuite aller dans "ligne de commande", "invite de commande développeur" et entrer les deux commandes suivantes :
+Il est nécessaire de convertir le .ui à .py. Pour ce faire, aller dans le menu de VS "outils" ou "tools", ensuite aller dans "ligne de commande", 
+"invite de commande développeur" et entrer les deux commandes suivantes :
 * cd Controls
 * pyside-uic Mainwindow.ui -o Mainwindow34.py
 
 ### Creation de l'environnement virtuel à programmer
-Pour programmer le UI, il faut un environnement virtuel qui contient les librairies utilisées.
-Pour en créer un nouveau, il faut aller dans "Explorateur de solutions". Choisir 
-la version de python et ensuite prendre le fichier requirements.txt pour télécharger les bonnes 
-librairies.
+Pour programmer le UI, il faut un environnement virtuel qui contient les librairies utilisées. (PySide et PySerial)
+Pour que les librairies soient disponibles, il est nécessaire de télécharger python3.4 32bits. Ensuite, soit par Visual Studio 
+ou par l'invite de commande, installer les librairies.
 
 
