@@ -27,9 +27,9 @@ Pour programmer les moteurs Dynamixel, il faut aller consulter le fichier "READM
   - IDE de programmation pour python (i.e. Visual Studio ou Visual Studio Code)
   
 ### Fonctionnement
-L'interface graphique est codé en python et se compile à l'aide du fichier principale (GUI.py) et le fichier de widgets (mainwindow34.py et mainwindow34.ui
+L'interface graphique est codée en python et se compile à l'aide du fichier principal (GUI.py) et le fichier de widgets (mainwindow34.py et mainwindow34.ui
 Le fichier mainwindow34.py est composé à partir du .ui qui lui se modifie à l'aide du designer.exe de QT. Donc pour modifier le fichier mainwindow34.py, 
-il est nécessaire de suivre lesinstructions suivantes.
+il est nécessaire de suivre les instructions suivantes.
 
 ### Main pour Interface graphique
 GUI.py est le main pour l'interface graphique et dépend du fichier de setup du UI appelé Mainwindow34.py
@@ -44,13 +44,13 @@ Il est nécessaire de convertir le .ui à .py. Pour ce faire, aller dans le menu
 * cd Controls
 * pyside-uic Mainwindow.ui -o Mainwindow34.py
 
-### Creation de l'environnement virtuel à programmer
+### Création de l'environnement virtuel à programmer
 Pour programmer le UI, il faut un environnement virtuel qui contient les librairies utilisées. (PySide et PySerial)
 Pour que les librairies soient disponibles, il est nécessaire de télécharger python3.4 32bits. Ensuite, soit par Visual Studio 
 ou par l'invite de commande, installer les librairies.
 
 
-### Installation des pacquets sur le Raspberry Pi
+### Installation des paquets sur le Raspberry Pi
 * Installer l'image qui se trouve au lien suivant: https://github.com/UdeS-GRO/pi-gen et installer les paquets mentionnés dans le dossier stage5;
 * Ensuite il faut installer python3.4 avec la commande: sudo apt-get install python3.4;
 * Installer pip avec la commande: sudo apt-get install python3-pip;
