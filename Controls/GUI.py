@@ -29,6 +29,9 @@ class MainWindow(QtGui.QMainWindow, Ui_MainWindow):
 
     #-------------------Modification et connection des widgets ici----------------------------------
     def setup(self):
+        """
+        Fonction d'initialisation des variables et des widgets, des threads et des fonctions
+        """
 
         #QTWidgets setup
         self.button_group = QtGui.QButtonGroup(self) 
@@ -74,7 +77,7 @@ class MainWindow(QtGui.QMainWindow, Ui_MainWindow):
         #self.timer.timeout.connect(self.creatSliderThread)
         #self.timer.start()
 
-        #FUNCTIONS SETUP
+        #FONCTIONS SETUP
 
         self.button_sendCommandNb.clicked.connect(self.sendCommandNumber)
         self.pushButton_Params.clicked.connect(self.paramUpdateCoordonneCart)
@@ -99,11 +102,16 @@ class MainWindow(QtGui.QMainWindow, Ui_MainWindow):
 
     #-----------------Ajout des fonctions pour connecter--------------------------------------
     def eStop(self):
-       """Bouton d'arrêt d'urgence, envoi un signal electrique sur une pin digital ce qui va générer un interrupt sur l'Open CR"""
+       """
+       Bouton d'arrêt d'urgence, envoi un signal electrique sur une pin digital ce qui va générer un interrupt sur l'Open CR
+       """
         
         
 
     def sendCommandNumber(self):
+        """"
+        Fonction servant a modifié la valeur du numéro de commande en appuyant sur un bouton à partir de la valeur entrée
+        """
         self.commandNb = self.lineEdit_ChangeCommand.text()
         try:
             cmdNb = int(self.commandNb)
@@ -120,7 +128,9 @@ class MainWindow(QtGui.QMainWindow, Ui_MainWindow):
         print('Command is set to: ', self.commandNb)
 
     def paramUpdateCoordonneCart(self):
-        """Pour updater les coordonnees cartesiennes ou joints lorsqu'elles sont modifiees"""
+        """
+        Pour updater les coordonnees cartesiennes ou joints lorsqu'elles sont modifiees
+        """
         if self.checkBox_cinDir.isChecked():
             self.label_x_confirmed.setText(self.lineEdit_x.text())
             self.label_y_confirmed.setText(self.lineEdit_y.text())
@@ -131,6 +141,9 @@ class MainWindow(QtGui.QMainWindow, Ui_MainWindow):
             self.label_theta3_confirmed.setText(self.lineEdit_theta3.text())
 
     def checkboxCinDirClicked(self):
+        """
+        Pour empecher d'entrer des valeurs dans les cases de cinématiques directes 
+        """
         if not self.checkBox_cinDir.isChecked():
             self.lineEdit_x.setEnabled(False)
             self.lineEdit_y.setEnabled(False)
@@ -140,6 +153,9 @@ class MainWindow(QtGui.QMainWindow, Ui_MainWindow):
             self.lineEdit_theta3.setEnabled(True)
 
     def checkboxCinInvClicked(self):
+        """
+        Pour empecher d'entrer des valeurs dans les cases de cinématiques inverses
+        """
         if not self.checkBox_cinInv.isChecked():
             self.lineEdit_x.setEnabled(True)
             self.lineEdit_y.setEnabled(True)
@@ -150,7 +166,11 @@ class MainWindow(QtGui.QMainWindow, Ui_MainWindow):
         
 
     def packingMessageShort(self, msg1_cmdNb, msg2_short, msg3_short, msg4_short):
-        """Msg1 stands for the command Nb, msg2 msg3 msg4 stand for the argument to send"""
+        """
+        Cette Fonction sert à composer le message en binaire pour pouvoir l'envoyer en port sériel.
+        Msg1 est le numéro de commande, msg2 msg3 msg4 sont les arguments/octets à envoyer.
+        """
+        
         format = 'hhhh'
         size = struct.calcsize(format)
         st = struct.Struct(format)
@@ -163,7 +183,9 @@ class MainWindow(QtGui.QMainWindow, Ui_MainWindow):
 
     #FONCTIONS de commande
     def commandButtonStart(self):
-        """Cette fonction sert à activer la bonne fonction lorsque la commande est appuyée"""
+        """
+        Cette fonction sert à activer la bonne fonction lorsque la commande est appuyée
+        """
 
         cmd = self.commandNb
         answerCmdNb = cmd
@@ -172,8 +194,6 @@ class MainWindow(QtGui.QMainWindow, Ui_MainWindow):
         print('start button has been pressed')
         #Vérifie que la commande a envoyer doit être angulaire ou cartésienne
 
-        #if (self.checkBox_cinInv.stateChanged.connect(self.checkboxCinInvClicked)):
-        #    cmd += 3
 
         if cmd == 1:
             print('---------COMMAND 1----------\n')
@@ -233,7 +253,9 @@ class MainWindow(QtGui.QMainWindow, Ui_MainWindow):
         print('--------------------------\n')
 
     def sendMotorPositionAngle(self, cmdNb, theta1, theta2, theta3):
-        """Function to send data to the Open CR, can also be used with a different thread so the loop wont block until it receives data """
+        """
+        Fonction pour envoyer les informations et commandes à l'OpenCR. Le code bloque si il ne recoit pas de réponse 
+        """
 
         if cmdNb >= 1: #Only if the motors are moved
             self.updateSliderManJog()
@@ -266,10 +288,11 @@ class MainWindow(QtGui.QMainWindow, Ui_MainWindow):
         return (int)(answer)
 
 
-    #FONCTION d'envoi de coordonnées cartésiennes 
 
     def calculTheta(self, x, y, z):
-        
+        """
+        Fonction de calcul des coordonnées cartésiennes 
+        """
         rA = 0.08083 
         rB = 0.06606
         base = rA/(2*math.sqrt(3))
@@ -301,10 +324,9 @@ class MainWindow(QtGui.QMainWindow, Ui_MainWindow):
 
 
     def sendCartesianCoord(self, cmdNb, x, y, z):
-       
-        xOffset = 0
-        yOffset = 0
-        zOffset = 0
+        """
+        Fonction d'envoi de coordonnées cartésiennes
+        """
         
         # Calcul de thetas
         theta1deg = self.calculTheta(x, y, z)
@@ -326,6 +348,9 @@ class MainWindow(QtGui.QMainWindow, Ui_MainWindow):
     #FONCTIONS pour Manual jog
 
     def sliderClicked(self):
+        """
+        Fonction pour le contrôle manuel des moteurs en temps réel
+        """
         self.sliderIsClicked = True
         currentValueTheta1 = self.theta1
         currentValueTheta2 = self.theta2
@@ -349,10 +374,16 @@ class MainWindow(QtGui.QMainWindow, Ui_MainWindow):
             time.sleep(0.001)
     
     def sliderRealesed(self):
+        """
+        Ajuste le flag pour terminer le thread de contrôle manuel
+        """
         self.sliderIsClicked = False
         
 
     def updateSliderManJog(self):
+        """
+        Fonction pour ajuster la valeur des sliders lorsqu'une commande d'angle est envoyée
+        """
         if self.theta1 != self.Slider_ManJog_theta1.value():
             self.Slider_ManJog_theta1.setValue(self.theta1)
         if self.theta2 != self.Slider_ManJog_theta2.value():
@@ -361,12 +392,18 @@ class MainWindow(QtGui.QMainWindow, Ui_MainWindow):
             self.Slider_ManJog_theta3.setValue(self.theta3)
 
     def updateIncrements(self):
+        """
+        Modifie les incréments du contrôle manuel
+        """
         self.increments = (int)(self.lineEdit_ManJog_increments.text())
         print("Increments has been changed to ", self.increments)
 
 
     #FONCTIONS pour self.comboBoxPort
     def updatePort(self):
+        """
+        Fonction qui va recherchée les ports disponibles et les afficher
+        """
         print('A search for ports has been created')
         infoPorts = list(serial.tools.list_ports.comports())
         self.comboBoxPort.clear()
@@ -383,10 +420,16 @@ class MainWindow(QtGui.QMainWindow, Ui_MainWindow):
     
     #FONCTIONS pour le mode automatique
     def commandButtonStop(self):
+        """
+        Fonction pour arrêter la commande lors de commande automatique
+        """
         print("Stop has been pressed")
         self.stop = True
 
     def loopMovementThread(self,cmdNb):
+        """
+        Fonction de déplacement automatique pour le robot
+        """
         counter = 0 
         while not self.stop:
             if counter%2 == 0:
@@ -410,6 +453,9 @@ class MainWindow(QtGui.QMainWindow, Ui_MainWindow):
         return
 
     def loopMovementThread2(self,cmdNb):
+        """
+        Fonction de déplacement automatique en cercle pour le robot
+        """
         counter = 0
         nbPoints = 75
         while not self.stop:
