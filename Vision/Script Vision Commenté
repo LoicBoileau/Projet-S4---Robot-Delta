@@ -10,10 +10,10 @@ def lecture_image(Nom_Image_Enregistree):
     return image
 
 
-def convertir_image_tons_gris(image):
-    #Converti l'image de couleur en tons de gris
-    image_grise = cv2.cvtColor(image, cv2.COLOR_BGR2HSV)
-    return image_grise
+def convertir_HSV(image):
+    #Converti l'image de couleur en format HSV
+    image_HSV = cv2.cvtColor(image, cv2.COLOR_BGR2HSV)
+    return image_HSV
 
 
 def prise_photo(cadre, Compteur_Image):
@@ -41,14 +41,14 @@ def ecriture_csv(coordonnee_bleu, coordonnee_noir, Compteur_Image):
             ecriture.writerow(z)
 
 
-def nombre_contours(image_grise, limite_inferieure, limite_superieure):
+def nombre_contours(image_HSV, limite_inferieure, limite_superieure):
     #créé un masque qui isole juste une couleur
-    masque = cv2.inRange(image_grise, limite_inferieure, limite_superieure)
+    masque = cv2.inRange(image_HSV, limite_inferieure, limite_superieure)
     #cv2.imshow('masque', masque)
 
     retour, seuil = cv2.threshold(masque, 127, 255, 0)
     #Trouve les contours dans le masque
-    image2,contours, hierarchy = cv2.findContours(seuil, cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)
+    image2, contours, hierarchy = cv2.findContours(seuil, cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)
     return contours
 
 
@@ -61,7 +61,7 @@ def calcul_coordonnee(image, contours, Couleur_Choisie):
         j = 0
         moment = cv2.moments(c)
 
-        if M["m00"] != 0:
+        if moment["m00"] != 0:
             cX = round(moment["m10"] / moment["m00"], 3)
             cY = round(moment["m01"] / moment["m00"], 3)
         else:
@@ -102,10 +102,10 @@ while (1):
         '''
         Nom_Image_Enregistree = prise_photo(frame, Compteur_Image)
         image = lecture_image(Nom_Image_Enregistree)
-        image_grise = convertir_image_tons_gris(image)
-        masque_bleu = cv2.inRange(image_grise, limite_inferieure_bleu, limite_superieure_bleu)
+        image_HSV = convertir_HSV(image)
+        masque_bleu = cv2.inRange(image_HSV, limite_inferieure_bleu, limite_superieure_bleu)
         cv2.imshow('masque_bleu', masque_bleu)
-        masque_noir = cv2.inRange(image_grise, limite_inferieure_noir, limite_superieure_noir)
+        masque_noir = cv2.inRange(image_HSV, limite_inferieure_noir, limite_superieure_noir)
         cv2.imshow('masque_noir', masque_noir)
         '''
 
@@ -116,10 +116,10 @@ while (1):
             Nom_Image_Enregistree = prise_photo(cadre, Compteur_Image)
 
             image = lecture_image(Nom_Image_Enregistree)
-            image_grise = convertir_image_tons_gris(image)
+            image_HSV = convertir_HSV(image)
 
-            contours_bleu = nombre_contours(image_grise, limite_inferieure_bleu, limite_superieure_bleu)
-            contours_noir = nombre_contours(image_grise, limite_inferieure_noir, limite_superieure_noir)
+            contours_bleu = nombre_contours(image_HSV, limite_inferieure_bleu, limite_superieure_bleu)
+            contours_noir = nombre_contours(image_HSV, limite_inferieure_noir, limite_superieure_noir)
 
             coordonnee_bleu = calcul_coordonnee(image, contours_bleu, 'bleu')
             coordonnee_noir = calcul_coordonnee(image, contours_noir, 'noir')
