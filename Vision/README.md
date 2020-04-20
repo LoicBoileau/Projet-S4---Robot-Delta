@@ -26,6 +26,6 @@ Suite des étapes:
 * Installer la librairie numpy avec la commande: pip install numpy;
 * Installer la librairie csv avec la commande: pip install csv; 
   
-# Sources utiles
+## Sources utiles
 * Pour le calcul du centre de masse: https://www.learnopencv.com/find-center-of-blob-centroid-using-opencv-cpp-python/
 * Pour l'algorithme de détection de contours: https://www.youtube.com/watch?v=6AY5p1uC5gM
