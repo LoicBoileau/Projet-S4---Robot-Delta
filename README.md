@@ -47,3 +47,9 @@ Pour que les librairies soient disponibles, il est nécessaire de télécharger 
 ou par l'invite de commande, installer les librairies.
 
 
+### Installation des pacquets sur le Raspberry Pi
+* Installer l'image qui se trouve au lien suivant: https://github.com/UdeS-GRO/pi-gen et installer les paquets mentionnés dans le dossier stage5;
+* Ensuite il faut installer python3.4 avec la commande: sudo apt-get install python3.4;
+* Installer pip avec la commande: sudo apt-get install python3-pip;
+* Installer PySide avec la commande: sudo apt-get install python3-pyside;
+* Installer PySerial avec la commande: python3 -m pip install pyserial.
