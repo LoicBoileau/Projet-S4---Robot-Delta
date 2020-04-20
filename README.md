@@ -9,6 +9,9 @@ Pour une description complète de la License, voir le fichier License.
 ## Partie mécanique
 Pour voir la liste des matériaux, les étapes d'assemblage du robot ainsi qu'une description des fichiers et des pièces, allez voir dans le fichier Robot_Delta_CAD.
 
+## Partie vision
+Pour voir le code de la vision, allez voir dans le fichier vision.
+
 ## Mathématiques du modèle
 Une simulation physique a été conçue pour décrire la cinématique directe et inverse du robot.
 -Disponible [ici](https://github.com/LoicBoileau/Projet-S4---Robot-Delta/tree/master/Simulations%20Physiques).
