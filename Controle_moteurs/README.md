@@ -12,8 +12,7 @@ http://emanual.robotis.com/docs/en/parts/controller/opencr10/
 http://emanual.robotis.com/docs/en/software/dynamixel/dynamixel_workbench/
 
 Les nombres spécifiés en paramètres dans la fonction "goalPosition" ne doivent pas dépasser 4096, qui est la résolution de chaque moteur.
-Si une telle situation survient, il faut téleverser le programme à nouveau, car les moteurs vont tomber en "erreur". Pour un angle de
+Si une telle situation survient, il faut téléverser le programme à nouveau, car les moteurs vont tomber en "erreur". Pour un angle de
 90 degrés, par exemple, il faut spécifier 1024 et ajuster par la suite, car la position 0 de chaque moteur n'est pas nécessairement la 
 même. Il est également nécessaire de spécifier un délai minimal pour s'assurer que les moteurs atteignent leur position avant que le
 prochain ne soit appelé.
-
