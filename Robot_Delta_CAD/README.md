@@ -10,7 +10,7 @@
 
 * L'avant-bras est le second bras (inférieur, celui qui est plus long) qui est d'une longueur de 25 cm.
 
-* Les « *turnbuckles* » sont utilisés pour accorder plus de liberté au mouvement de rotation des biceps avec les avant-bras ainsi qu'au avant-bras avec l'effecteur. Ils sont achetés tels quels au lien suivant: https://traxxas.com/products/parts/3745.
+* Les « *turnbuckles* » sont utilisés pour accorder plus de liberté au mouvement de rotation des biceps avec les avant-bras ainsi qu'aux avant-bras avec l'effecteur. Ils sont achetés tels quels au lien suivant: https://traxxas.com/products/parts/3745.
 
 * Le « Fixateur_Bicep_Turnbuckle » sert à empêcher que le « *turnbuckle* » supérieur, celui attaché au biceps, puisse se déplacer horizontalement ou tourner. 
 
@@ -20,7 +20,7 @@
 
 * L'effecteur est la pince elle-même. 
 
-* Le dossier « Piece_Electroaimant » contient toutes les pièces pour l'assemblage de l'electroaimant à l'effecteur. 
+* Le dossier « Piece_Electroaimant » contient toutes les pièces pour l'assemblage de l'électroaimant à l'effecteur. 
 
 * Dechet_Poubelle et Dechet_Recyclage sont des déchets de différentes couleurs avec un aimant permettant au robot de les prendre avec l'électroaimant et de les trier dans les bacs correspondants. 
 
@@ -38,7 +38,7 @@
 ## Méthodes de confection des pièces
 * Toutes les pièces en bois sont découpées à l'aide d'une découpeuse laser. 
 
-* Les autes pièces sont imprimées à l'aide d'une imprimante 3D.
+* Les autres pièces sont imprimées à l'aide d'une imprimante 3D.
 
 ## Étapes d'assemblage
 1. Assembler la base du robot à l'aide des extrudés d'aluminium.
@@ -74,21 +74,18 @@
 16. Attacher la plaque supérieure aux extrudés d'aluminium. 
 
 ## Liste des composantes *BOM (Bill Of Materials)*
-1. 1 plaque supérieure en bois
-2. 3 équerres en plastique
-3. 3 moteurs dynamixel XL-430
-4. 3 biceps en bois
-5. 6 « Fixateur_Bicep_Turnbuckle » en plastique
-6. 6 « *turnbuckles* »
-7. 6 avant-bras de longueur de 25 cm en métal
-8. 3 « Attache_Turnbuckle_Effecteur » en plastique
-9. 1 électroaimant
-10. 24 morceaux de gaine thermorétrécissable de longueur de 1 cm
-11. 1 support à électroaimant en plastique
-12. 1 effecteur en bois
-13. 28 vis M4 à tête cylindrique à six pans creux avec des écrous respectifs
-14. 12 vis M2 à tête cylindrique bombée à six pans creux avec 12 rondelles respectives
-15. 12 vis M2 à tête cylindrique bombée à empreinte cruciforme
-
-
-
+1. 1 plaque supérieure en bois;
+2. 3 équerres en plastique;
+3. 3 moteurs dynamixel XL-430;
+4. 3 biceps en bois;
+5. 6 « Fixateur_Bicep_Turnbuckle » en plastique;
+6. 6 « *turnbuckles* »;
+7. 6 avant-bras de longueur de 25 cm en métal;
+8. 3 « Attache_Turnbuckle_Effecteur » en plastique;
+9. 1 électroaimant;
+10. 24 morceaux de gaine thermorétrécissable de longueur de 1 cm;
+11. 1 support à électroaimant en plastique;
+12. 1 effecteur en bois;
+13. 28 vis M4 à tête cylindrique à six pans creux avec des écrous respectifs;
+14. 12 vis M2 à tête cylindrique bombée à six pans creux avec 12 rondelles respectives;
+15. 12 vis M2 à tête cylindrique bombée à empreinte cruciforme.
